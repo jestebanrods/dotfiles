@@ -5,3 +5,6 @@ custom/*
 
 # Log files
 *.log
+
+.idea
+.vscode
