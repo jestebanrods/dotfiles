@@ -19,5 +19,8 @@ source /home/jerodriguez/Documents/Code/jestebanrods/repos/dotfiles/.mdot/ini
 
 ## Uso
 
-Existe un comando que se llama mdot-{{}} para ver los helpers
-Crea comandos que empiezan con m-{{}}
+Existe un comando que se llama ```mdot-{{ }}``` para ver los helpers
+
+Crea comandos que empiezan con ```m-{{ }}```
+
+Comandos de merqueo ```mer-{{ }}```
