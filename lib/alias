@@ -1,0 +1,51 @@
+#!/usr/bin/env bash
+
+alias ..="cd .."
+alias ...="cd ../.."
+
+# Git
+alias gits='git status'
+alias gitss='git status -sb'
+alias gitb='git branch'
+alias gitl='git log --oneline -n 20'
+alias gitco='git switch'
+alias gitcom='git switch master'
+alias gitcod='git switch develop'
+alias gitfap='git fetch --all --prune'
+alias gitfp='git fetch origin --prune'
+
+# Utils
+alias k='kill -9'
+alias i.="(idea $PWD &>/dev/null &)"
+alias c.="(code $PWD &>/dev/null &)"
+alias o.='open .'
+alias up='dot package update_all'
+
+# Dirs
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ll='ls -l'
+alias la='ls -la'
+alias lss='ls -1X'
+alias lsa='ls -1SXa'
+alias lh='ls -lhX'
+
+# OS
+alias dud='du -d 1 -h'
+alias duf='du -sh'
+alias cdc="cd $HOME/Documents/Code"
+alias merqueo="cd $HOME/Documents/Code/merqueo"
+alias jestebanrods="cd $HOME/Documents/Code/jestebanrods"
+alias dotfiles="cd $DOTFILES_PATH"
+alias cat="/usr/bin/batcat"
+
+# PHP
+alias unit='vendor/bin/phpunit'
+alias unitcover='XDEBUG_MODE=coverage unit --coverage-html coverage'
+alias fixformat='php-cs-fixer fix -v'
+
+# Laravel
+alias artisan='php artisan'
+alias seeder='artisan db:seed'
+alias optimize='artisan optimize'
+alias optimize-test='artisan optimize --env=testing'

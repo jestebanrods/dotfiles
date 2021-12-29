@@ -1,0 +1,9 @@
+m-rofi-merqueo-repos:
+ Abre rofi para abrir en vscode un repositorio de merqueo
+
+ Syntax: m-rofi-merqueo-repos
+
+m-rofi-active-windows:
+ Abre rofi para seleccionar una la ventana activa
+
+ Syntax: m-rofi-active-windows

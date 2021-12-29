@@ -1,0 +1,24 @@
+* apt
+    - flameshot
+    - bat
+    - gnome-sushi
+    - tmux
+    - megasync
+    - menulibre
+    - brave-browser
+    - nload
+    - caffeinate
+    - fzf
+    - j
+
+* gnome
+    - Clipboard Indicator
+
+* deb
+    - Mega Sync
+    - Mega Nautilus Manager
+    - Brave
+
+*remove
+    - apache2
+    - apache2-utils

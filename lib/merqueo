@@ -1,0 +1,184 @@
+#!/usr/bin/env bash
+
+# Directorio donde están los repositorios de trabajo
+REPOS=~/Documents/Code/merqueo/repos
+
+function mer-user()
+{
+    squad=$(_mer-deploy-users)
+    sudo su -l "$squad"
+}
+
+function mer-deploy()
+{
+    _mer-command "deploy_"
+}
+
+function mer-deploy-logs()
+{
+    path=$(_mer-deploy-users --path)
+    path_deployer="$path/deployer"
+
+    if ! [ -d $path_deployer ]; then
+        echo "No hay logs de despliegue"
+        return
+    fi
+
+    log=$(ls -1 $path_deployer | fzf --header="Seleccione el log a visualizar")
+    if [ $log ]; then
+        less "$path_deployer/$log"
+    fi
+}
+
+function mer-tunnel()
+{
+    _mer-command "tunnel_"
+}
+
+function mer-ssh()
+{
+    _mer-command "ssh_"
+}
+
+function mer-pipeline-php()
+{
+    squad=$(_mer-deploy-users --squad)
+    if [ $squad ]; then
+        MERQUEO_ENV=$squad make local-tester
+    fi
+}
+
+function mer-repos()
+{
+    REPO_SEL=$(ls -1 $REPOS \
+        | fzf --header="Seleccione el repositorio a abrir" \
+        | awk '{ print $1 }'
+    )
+
+    if [ $REPO_SEL ]; then
+        $MDOT_ENV_IDE $REPOS/$REPO_SEL
+    fi
+}
+
+function mer-infra-up()
+{
+    squad=$(_mer-deploy-users --squad)
+
+    bcd=$PWD
+    cd $REPOS/infrastructure
+    echo "Actualizando repositorio..."
+    git pull
+    ansible-playbook tecnologia/ansible/squad-config/01_prepare.yml --extra-vars "user=$(whoami) file=$squad"
+
+    cd $bcd
+    sudo su -l "deploy-$squad"
+}
+
+function mer-source()
+{
+    source_path="$(_mer-deploy-users --path)/source"
+
+    i_mdot_title "Modificando $source_path"
+    project_selected=$(grep 'BRANCH_' $source_path \
+        | awk -F"BRANCH_" '{ print $2 }' \
+        | fzf --header="Seleccione el proyecto a cambiar la rama"
+    )
+    if [ $project_selected ]; then
+        # Si está instalado git selecciona la rama actual
+        if [ -d ".git" ]; then
+            defined_branch=$(git branch --show-current)
+        fi
+        read -e -p "Escriba el nombre de la rama 🌿🌿: " -i "$defined_branch" defined_branch
+    fi
+
+    if [ $defined_branch ]; then
+        # Eliminar valor anterior
+        LINE=$(m-grep-line "$project_selected" $source_path)
+        sudo sed -i "${LINE}d" $source_path
+
+        project_name=$(echo $project_selected | awk -F "=" '{ print $1 }')
+        set_project_branch="BRANCH_$project_name=$defined_branch"
+        sudo sh -c "echo $set_project_branch >> $source_path"
+
+        i_mdot_title "Se actualizó correctamente"
+        echo "$set_project_branch"
+    fi
+}
+
+
+
+# Private methods
+
+# Lista los usuarios disponibles para trabajar
+ # si solo hay uno lo selecciona directamente
+ # si hay más de uno, muestra listado para seleccionar
+function _mer-deploy-users()
+{
+    user_selected=$(ls -1 /home \
+        | grep 'deploy-*' \
+        | awk -F "deploy-" '{ print $2 }' \
+        | fzf -1 --header="Seleccione un usuario"
+    )
+
+    # solo obtener deploy-(squad-xxx)
+    if [ "$1" = "--squad" ]; then
+        echo $user_selected
+    elif [ "$1" = "--path" ]; then
+        echo "/home/deploy-$user_selected"
+    else
+        echo "deploy-$user_selected"
+    fi
+}
+
+# Busca el comando y lo copia al portapapeles <tunnel_mysql>
+function _mer-command()
+{
+    squad=$(_mer-deploy-users)
+
+    sudo su "$squad" -c "echo ''"
+    command=$(_mer-source-command-name "$squad" "$1")
+
+    m-copy -s "$command; exit"
+    i_mdot_title "Se copio el comando al portapapeles.\nPeguelo en la terminal para realizar el proceso"
+
+    sudo su -l "$squad"
+}
+
+# obtiene el nombre del comando <tunnel_mysql>
+function _mer-source-command-name()
+{
+    path_alias="/home/$1/.bash_aliases"
+    shift
+
+    if [ "$1" ]; then
+        command_name=$(grep "$1" $path_alias \
+            | awk -F"alias " '{ print $2 }' \
+            | awk -F"$1" '{ print $2 }' \
+            | awk -F"='" '{ print $1 }' \
+            | fzf)
+    else
+        command_name=$(cat $path_alias | awk '{ print $2 }' | awk -F"=" '{ print $1 }' | fzf)
+    fi
+    echo "${1}${command_name}"
+}
+
+# Obtiene el valor del comando
+function _mer-source-command-value()
+{
+    path_alias="/home/$1/.bash_aliases"
+    shift
+
+    if [ "$1" ]; then
+        command_name=$(grep "$1" $path_alias \
+            | awk -F"alias " '{ print $2 }' \
+            | awk -F"$1" '{ print $2 }' \
+            | awk -F"='" '{ print $1 }' \
+            | fzf)
+    else
+        command_name=$(cat $path_alias | awk '{ print $2 }' | awk -F"=" '{ print $1 }' | fzf)
+    fi
+
+    cmd_line=$(grep -n "${1}${command_name}" $path_alias | awk -F":" '{ print $1 }' | head -1)
+    command=$(tail +$cmd_line $path_alias | awk -F"alias " '{ print $2 }' | awk -F"='" '{print $2 }' | head -1)
+    echo "${command::-1}"
+}

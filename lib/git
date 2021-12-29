@@ -1,0 +1,95 @@
+#!/usr/bin/env bash
+
+# Listar las ramas excepto las remotas
+# Solo muestra las activas
+function _m-git-branches()
+{
+    BRANCHE_USED=$(git branch --show-current)
+    branch=$(git branch --all  \
+        | grep -v "remotes/" \
+        | grep -v "$BRANCHE_USED" \
+        | fzf --header="Seleccione una rama: " \
+        | awk '{ print $1 }'
+    )
+    echo $branch
+}
+
+# Cambiar de rama desde seleccion o directamente
+function m-git-checkout()
+{
+    branch=$(_m-git-branches)
+    if [ $branch ]; then
+        git checkout $branch
+    fi
+}
+
+function m-git-merge()
+{
+    BRANCHE_USED=$(git branch --show-current)
+
+    if [[ $1 ]]; then
+        branch=$1
+    else
+        branch=$(_m-git-branches)
+    fi
+
+    if [[ $branch ]]; then
+        i_mdot_title "Sincronizando rama: $branch"
+        git checkout $branch
+        git pull
+
+        i_mdot_title "Fusionando en rama: $BRANCHE_USED"
+        git checkout $BRANCHE_USED
+        git merge $branch
+    fi
+}
+
+function m-git-changes()
+{
+    if [[ "$1" = "-s" ]]; then
+        hash=$(git log --oneline | fzf --header="Seleccione el commit")
+    else
+        hash=$(git log --oneline | head -1)
+    fi
+    hash=$(echo $hash | awk '{ print $1 }')
+    git diff $hash --stat
+}
+
+function m-git-config()
+{
+    VAR_VALUE=$(git config --list \
+        | grep -v "branch\." \
+        | grep -v "remote\.origin\.fetch" \
+        | fzf --header="Seleccione la variable a modificar"
+    )
+    if [[ $VAR_VALUE ]]; then
+        VAR_NAME=$(echo $VAR_VALUE | awk -F "=" '{ print $1 }')
+        OLD_VALUE=$(echo $VAR_VALUE | awk -F "=" '{ print $2 }')
+        read -e -p "Digite el nuevo valor para $VAR_NAME: " -i "$OLD_VALUE" NEW_VALUE
+    fi
+
+    if [[ $NEW_VALUE ]]; then
+        git config "$VAR_NAME" "$NEW_VALUE"
+    fi
+}
+
+function m-git-rebuild()
+{
+    base=$(git config --list | grep "remote.origin.url")
+    origin=$(echo $base | awk -F "=" '{print $2}')
+    repo=$(echo $base | awk -F "/" '{print $2}')
+    folder_backup=~/mdot/backups/$repo
+
+    echo -e "Se borrara el repositorio local y se volvera a reconstruir todo."
+    echo "Se creara una copia en $folder_backup"
+    read -e -p " Esta seguro Y/N?: " reset
+    if [[ "$reset" = "Y" ]]; then
+        sudo rm -rf $folder_backup
+        mkdir -p $folder_backup
+        cp -arp .git/. $folder_backup
+        rm -rf .git
+        git init
+        git remote add origin $origin
+        git add .
+    fi
+}

@@ -1,0 +1,7 @@
+help/.commands
+# Directory to define custom imports
+custom/*
+.env
+
+# Log files
+*.log

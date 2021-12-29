@@ -1,0 +1,23 @@
+#!/bin/bash
+
+read -e -p "Define directory to save dotfiles :~/" -i "dotfiles" path_install
+
+echo ""
+
+path_install = ~/$path_install
+
+echo $path_install
+echo "**** Download repository dotfiles"
+
+git clone https://github.com/jestebanrods/dotfiles $path_install
+
+echo ""
+
+cd $path_install
+chmod +x install
+
+echo ""
+echo ""
+echo -e "**** Installing dotfiles "
+
+./install
