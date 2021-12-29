@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+ansible-vault \
+	"$@" \
+	--vault-password-file=$INVVITAE_INFRA_PATH/ansible/environments/production/credentials/av.hash
