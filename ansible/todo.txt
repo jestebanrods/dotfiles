@@ -9,7 +9,7 @@
     - nload
     - caffeinate
     - fzf
-    - j
+    - autojump
 
 * gnome
     - Clipboard Indicator

@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+function m-ddd()
+{
+    echo "todo creates ddd structure"
+}

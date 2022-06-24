@@ -48,6 +48,7 @@ function mer-pipeline-php()
     fi
 }
 
+# Se mueve al repo de merqueo seleccionado
 function mer-repos()
 {
     REPO_SEL=$(ls -1 $REPOS \
@@ -56,7 +57,7 @@ function mer-repos()
     )
 
     if [ $REPO_SEL ]; then
-        $MDOT_ENV_IDE $REPOS/$REPO_SEL
+        cd $REPOS/$REPO_SEL
     fi
 }
 

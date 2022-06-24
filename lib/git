@@ -1,25 +1,21 @@
 #!/usr/bin/env bash
 
-# Listar las ramas excepto las remotas
-# Solo muestra las activas
-function _m-git-branches()
+function m-git-delete()
 {
-    BRANCHE_USED=$(git branch --show-current)
-    branch=$(git branch --all  \
-        | grep -v "remotes/" \
-        | grep -v "$BRANCHE_USED" \
-        | fzf --header="Seleccione una rama: " \
-        | awk '{ print $1 }'
-    )
-    echo $branch
+    branch=$(_m-git-branches)
+    read -e -p " Esta seguro de borrar la rama $branch Y/N?: " delete
+
+    if [[ "$delete" = "Y" ]]; then
+        git branch -D $branch
+    fi
 }
 
 # Cambiar de rama desde seleccion o directamente
-function m-git-checkout()
+function m-git-switch()
 {
     branch=$(_m-git-branches)
     if [ $branch ]; then
-        git checkout $branch
+        git switch $branch
     fi
 }
 
@@ -92,4 +88,22 @@ function m-git-rebuild()
         git remote add origin $origin
         git add .
     fi
+}
+
+function parse-git-branch() {
+     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
+}
+
+# Listar las ramas excepto las remotas
+# Solo muestra las activas
+function _m-git-branches()
+{
+    BRANCHE_USED=$(git branch --show-current)
+    branch=$(git branch --all  \
+        | grep -v "remotes/" \
+        | grep -v "$BRANCHE_USED" \
+        | fzf --header="Seleccione una rama: " \
+        | awk '{ print $1 }'
+    )
+    echo $branch
 }
