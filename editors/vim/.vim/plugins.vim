@@ -46,7 +46,7 @@ au VimEnter NERD_tree_1 enew | execute 'NERDTree '.argv()[0]
 
 " CtrlP
 let g:ctrlp_show_hidden = 1
-let g:ctrlp_custom_ignore = { 'dir': '\v[\/](\.git|node_modules|vendor)$' }
+let g:ctrlp_custom_ignore = { 'dir': '\v[\/](\.git|\.vim\/plugged|\.vim\/undodir|\.vim\/autoload|node_modules|vendor)$' }
 
 " Vim Go
 let g:go_def_mode = 'gopls'
