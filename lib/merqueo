@@ -63,7 +63,8 @@ function mer-repos()
 
 function mer-infra-up()
 {
-    squad=$(_mer-deploy-users --squad)
+    squad=$(_mer-infra-squads)
+    echo $squad
 
     bcd=$PWD
     cd $REPOS/infrastructure
@@ -111,8 +112,8 @@ function mer-source()
 # Private methods
 
 # Lista los usuarios disponibles para trabajar
- # si solo hay uno lo selecciona directamente
- # si hay más de uno, muestra listado para seleccionar
+# si solo hay uno lo selecciona directamente
+# si hay más de uno, muestra listado para seleccionar
 function _mer-deploy-users()
 {
     user_selected=$(ls -1 /home \
@@ -129,6 +130,16 @@ function _mer-deploy-users()
     else
         echo "deploy-$user_selected"
     fi
+}
+
+function _mer-infra-squads() {
+    user_selected=$(ls -1 $REPOS/infrastructure/tecnologia/ansible/squad-config/tmp \
+        | grep 'squad-*' \
+        | awk -F ".yml" '{ print $1 }' \
+        | fzf -1 --header="Seleccione un squad"
+    )
+
+    echo $user_selected
 }
 
 # Busca el comando y lo copia al portapapeles <tunnel_mysql>

@@ -10,6 +10,7 @@
     - caffeinate
     - fzf
     - autojump
+    - xclip
 
 * gnome
     - Clipboard Indicator
