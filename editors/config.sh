@@ -1,2 +1,2 @@
-ln -s $DOFTLIES/editos/vim/.vim $HOME/.vim
-ln -s $DOFTLIES/editos/vim/.vimrc $HOME/.vimrc
+ln -s $DOFTLIES/editors/vim/.vim $HOME/.vim
+ln -s $DOFTLIES/editors/vim/.vimrc $HOME/.vimrc
