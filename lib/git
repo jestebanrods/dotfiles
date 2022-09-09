@@ -3,6 +3,10 @@
 function m-git-delete()
 {
     branch=$(_m-git-branches)
+    if [ ! $branch ]; then
+        return 0
+    fi
+
     read -e -p " Esta seguro de borrar la rama $branch Y/N?: " delete
 
     if [[ "$delete" = "Y" ]]; then
@@ -66,27 +70,6 @@ function m-git-config()
 
     if [[ $NEW_VALUE ]]; then
         git config "$VAR_NAME" "$NEW_VALUE"
-    fi
-}
-
-function m-git-rebuild()
-{
-    base=$(git config --list | grep "remote.origin.url")
-    origin=$(echo $base | awk -F "=" '{print $2}')
-    repo=$(echo $base | awk -F "/" '{print $2}')
-    folder_backup=~/mdot/backups/$repo
-
-    echo -e "Se borrara el repositorio local y se volvera a reconstruir todo."
-    echo "Se creara una copia en $folder_backup"
-    read -e -p " Esta seguro Y/N?: " reset
-    if [[ "$reset" = "Y" ]]; then
-        sudo rm -rf $folder_backup
-        mkdir -p $folder_backup
-        cp -arp .git/. $folder_backup
-        rm -rf .git
-        git init
-        git remote add origin $origin
-        git add .
     fi
 }
 

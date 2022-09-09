@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-
 function m-php()
 {
     if [[ $1 ]]; then

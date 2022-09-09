@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+REPOS_JESTEBANRODS=~/Documents/Code/jestebanrods/repos
+
+function m-repos()
+{
+    REPO_SEL=$(ls -1 $REPOS_JESTEBANRODS \
+        | fzf --header="Seleccione el repositorio a abrir" \
+        | awk '{ print $1 }'
+    )
+
+    if [ $REPO_SEL ]; then
+        cd $REPOS_JESTEBANRODS/$REPO_SEL
+    fi
+}
+
