@@ -9,6 +9,11 @@ function mer-user()
     sudo su -l "$squad"
 }
 
+function mer-squad-116()
+{
+  export MERQUEO_ENV=squad-116  
+}
+
 function mer-deploy()
 {
     _mer-command "deploy_"

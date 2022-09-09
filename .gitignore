@@ -11,4 +11,9 @@ custom/*
 editors/vim/.vim/autoload
 editors/vim/.vim/undodir
 editors/vim/.vim/plugged
+editors/vim/.vim/site
 editors/vim/.vim/dict.utf-8.add.spl
+
+#  NeoVim
+editors/nvim_base
+editors/nvim/plugin/packer_compiled.lua
