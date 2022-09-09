@@ -2,7 +2,7 @@ local actions = require("telescope.actions")
 local action_layout = require("telescope.actions.layout")
 
 require('telescope').setup {
-    defaults = {
+	defaults = {
 		prompt_prefix = "❯ ",
 		selection_caret = "❯ ",
 
@@ -90,23 +90,31 @@ require('telescope').setup {
 			path = "~/.local/share/nvim/databases/telescope_history.sqlite3",
 			limit = 100,
 		},
-    },
-    pickers = {
-        -- Default configuration for builtin pickers goes here:
-        -- picker_name = {
-        --   picker_config_key = value,
-        --   ...
-        -- }
-        -- Now the picker_config_key will be applied every time you call this
-        -- builtin picker
-    },
-    extensions = {
-        -- Your extension configuration goes here:
-        -- extension_name = {
-        --   extension_config_key = value,
-        -- }
-        -- please take a look at the readme of the extension you want to configure
-    }
+	},
+	pickers = {
+		-- Default configuration for builtin pickers goes here:
+		-- picker_name = {
+		--   picker_config_key = value,
+		--   ...
+		-- }
+		-- Now the picker_config_key will be applied every time you call this
+		-- builtin picker
+	},
+	extensions = {
+		file_browser = {
+			theme = "ivy",
+			-- disables netrw and use telescope-file-browser in its place
+			hijack_netrw = true,
+			mappings = {
+				["i"] = {
+					-- your custom insert mode mappings
+				},
+				["n"] = {
+					-- your custom normal mode mappings
+				},
+			},
+		},
+	},
 }
 
 vim.keymap.set('n', '<leader>ff', require 'telescope.builtin'.git_files, { remap = false })
@@ -116,3 +124,18 @@ vim.keymap.set('n', '<leader>fb', require 'telescope.builtin'.buffers, { remap =
 vim.keymap.set('n', '<leader>fh', require 'telescope.builtin'.help_tags, { remap = false })
 vim.keymap.set('n', '<leader>fgb', require 'telescope.builtin'.git_branches, { remap = false })
 vim.keymap.set('n', '<leader>fc', require 'telescope.builtin'.command_history, { remap = false })
+vim.keymap.set('n', '<leader>ve', require 'telescope.builtin'.diagnostics, { remap = false })
+vim.keymap.set('n', '<leader>fy', require 'telescope.builtin'.treesitter, { remap = false })
+
+vim.api.nvim_set_keymap(
+	"n",
+	"<leader>fb",
+	":Telescope file_browser<CR><C-l>",
+	{ noremap = true }
+)
+
+-- vim.keymap.set('n', '<leader>fp', function()
+-- 	return require("telescope").extensions.git_worktree.git_worktrees()
+-- end, { remap = false })
+
+require("telescope").load_extension "file_browser"

@@ -58,4 +58,7 @@ return require('packer').startup(function(use)
     use 'jiangmiao/auto-pairs'
     use 'alvan/vim-closetag'
     use 'mattesgroeger/vim-bookmarks'
+
+    use 'jose-elias-alvarez/null-ls.nvim'
+    use 'nvim-telescope/telescope-file-browser.nvim'
 end)
