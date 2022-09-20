@@ -37,7 +37,7 @@ alias cdc="cd $HOME/Documents/Code"
 alias merqueo="cd $HOME/Documents/Code/merqueo"
 alias jestebanrods="cd $HOME/Documents/Code/jestebanrods"
 alias dotfiles="cd $DOTFILES_PATH"
-alias cat="/usr/bin/batcat"
+alias cat="/usr/bin/bat"
 
 # PHP
 alias unit='vendor/bin/phpunit'
