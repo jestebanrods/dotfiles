@@ -21,6 +21,13 @@ return require('packer').startup(function(use)
         run = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
     }
 
+    use {
+        'nvim-treesitter/nvim-treesitter-refactor',
+        'nvim-treesitter/nvim-treesitter-textobjects'
+    }
+
+    use 'vim-test/vim-test'
+
     use 'nvim-treesitter/playground'
 
     use {
@@ -61,4 +68,12 @@ return require('packer').startup(function(use)
 
     use 'jose-elias-alvarez/null-ls.nvim'
     use 'nvim-telescope/telescope-file-browser.nvim'
+
+    use {
+        'ThePrimeagen/refactoring.nvim',
+        requires = {
+            'nvim-lua/plenary.nvim',
+            'nvim-treesitter/nvim-treesitter'
+        }
+    }
 end)

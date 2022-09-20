@@ -3,41 +3,38 @@ if not ok then
 	return
 end
 
--- local php_actions = require("php-code-actions")
-
+local codeActions = null_ls.builtins.code_actions
+local diagnostics = null_ls.builtins.diagnostics
 local formatting = null_ls.builtins.formatting
 
 local sources = {
-	null_ls.builtins.code_actions.gitsigns,
-	formatting.stylua,
-	-- -- null_ls.builtins.diagnostics.eslint,
-	null_ls.builtins.diagnostics.phpstan,
+	codeActions.gitsigns,
+	diagnostics.golangci_lint,
+	diagnostics.phpstan,
+	diagnostics.staticcheck,
+	-- diagnostics.yamllint,
+	formatting.gofmt,
+	formatting.goimports,
+	formatting.jq,
 	formatting.phpcsfixer,
-	-- -- null_ls.builtins.formatting.pint,
-	-- null_ls.builtins.diagnostics.golangci_lint,
-	-- -- null_ls.builtins.formatting.goimports,
-	-- null_ls.builtins.formatting.jq,
-	-- null_ls.builtins.code_actions.gitrebase,
-	-- null_ls.builtins.code_actions.refactoring,
-	-- null_ls.builtins.formatting.blade_formatter,
-	-- null_ls.builtins.formatting.sql_formatter,
-	-- php_actions.getter_setter,
+	formatting.stylua,
+	formatting.yamlfmt,
 }
 
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
 null_ls.setup({
 	sources = sources,
-    on_attach = function(client, bufnr)
-        if client.supports_method("textDocument/formatting") then
-            vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
-            vim.api.nvim_create_autocmd("BufWritePre", {
-                group = augroup,
-                buffer = bufnr,
-                callback = function()
-                    vim.lsp.buf.formatting_sync()
-                end,
-            })
-        end
-    end,
+	on_attach = function(client, bufnr)
+		if client.supports_method("textDocument/formatting") then
+			vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+			vim.api.nvim_create_autocmd("BufWritePre", {
+				group = augroup,
+				buffer = bufnr,
+				callback = function()
+					vim.lsp.buf.formatting_sync()
+				end,
+			})
+		end
+	end,
 })
