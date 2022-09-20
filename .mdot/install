@@ -1,0 +1,42 @@
+#!/bin/bash
+
+MDOT_BIN="$PWD"
+MDOT_INI="$MDOT_BIN/.mdot/ini"
+
+source $MDOT_BIN/.mdot/core
+
+iMdotTitle "Starting Dotfiles Configuration"
+
+fileSource=~/.bashrc
+idMdot="# mdot library"
+
+num=$(grep -n "$idMdot" $fileSource \
+    | awk -F ":" '{ print $1 }' \
+    | head -1
+)
+
+if [[ $num ]]; then
+    linesDel="$num,$(( $num +2 ))d"
+    sed -i $linesDel $fileSource
+    iMdotTitle "Mdot Unistalled"
+fi
+
+iRead "Your Want To Execute Mdot Globally ?" \
+    -i "Y" useGlobal
+
+echo "$idMdot" >> "$fileSource"
+echo "MDOT_BIN=\"$MDOT_BIN\"" >> "$fileSource"
+
+if [[ "$useGlobal" == "Y" ]]; then
+    cmdDefined="source $MDOT_INI"
+else
+    cmdDefined="alias mdot='source $MDOT_INI'"
+fi
+
+echo "$cmdDefined" >> "$fileSource"
+
+iMdotTitle "Mdot Installed:"
+
+if ! test -f ".env"; then
+    cp .env-example .env
+fi

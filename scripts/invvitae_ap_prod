@@ -1,6 +1,0 @@
-#!/usr/bin/env bash
-
-ansible-playbook \
-	-i $INVVITAE_INFRA_PATH/ansible/environments/production/inventory.conf \
-	--vault-password-file=$INVVITAE_INFRA_PATH/ansible/environments/production/credentials/av.hash \
-	"$@"

@@ -1,23 +1,32 @@
 #!/bin/bash
 
-read -e -p "Define directory to save dotfiles :~/" -i "dotfiles" path_install
+read -e -p "Define Dotfiles Directory : ~/" -i "dotfiles" pathInstall
 
 echo ""
 
-path_install = ~/$path_install
+pathInstall = $HOME/$pathInstall
 
-echo $path_install
-echo "**** Download repository dotfiles"
+echo $pathInstall
+echo "**** Download Dotfiles Repository"
 
-git clone https://github.com/jestebanrods/dotfiles $path_install
+git clone https://github.com/jestebanrods/dotfiles $pathInstall
 
 echo ""
 
-cd $path_install
+cd $pathInstall
 chmod +x install
 
 echo ""
 echo ""
-echo -e "**** Installing dotfiles "
+echo -e "**** Installing Dotfiles"
 
-./install
+./.mdot/install
+
+echo ""
+echo -e "**** Install Dependencies"
+
+echo ""
+echo -e "**** Create Symbolic Links"
+
+ln -sf $DOTFILES/editors/nvim $HOME/.config/nvim
+ln -sf $DOFTLIES/shell/tmux/.tmux.conf $HOME/.tmux.conf

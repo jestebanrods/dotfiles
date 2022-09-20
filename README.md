@@ -1,26 +1,31 @@
+# Dotfiles
 
-# Libreria Dotfiles
-
-## 🚀 Instalación
+## 🚀 Installing
 
 ```bash
 bash <(curl -s https://raw.githubusercontent.com/jestebanrods/dotfiles/master/installer)
 ```
 
-## 📑 Documentación
-
-Esto se agrega en el .bashrc
+## 📑 Documentation
 
 ```bash
-# mdot library
 MDOT_BIN="/home/jerodriguez/Documents/Code/jestebanrods/repos/dotfiles"
-source /home/jerodriguez/Documents/Code/jestebanrods/repos/dotfiles/.mdot/ini
+source $MDOT_BIN/.mdot/ini
 ```
 
-## Uso
+## Command
 
-Existe un comando que se llama ```mdot-{{ }}``` para ver los helpers
+* Helpers
+```
+mdot-{{ }}
+```
 
-Crea comandos que empiezan con ```m-{{ }}```
+* Commands
+```
+m-{{ }}
+```
 
-Comandos de merqueo ```mer-{{ }}```
+* Merqueo
+```
+mer-{{ }}
+```
