@@ -1,20 +1,30 @@
 #!/bin/bash
 
+# $MDOT_BIN  Must define in .bashrc when install
 MDOT_INI="$MDOT_BIN/.mdot/ini"
 
 source $MDOT_BIN/.env
 source $MDOT_BIN/.mdot/core
 source $MDOT_BIN/.mdot/loader
 
+# ------ CONSTRAINTS -----------------
+# MDOT_E_x = Must Defines in $MDOT_BIN/.env
+# ------
+
+# Saves directory to return it when command uses cd <path>
 MDOT_PWD=$PWD
 MDOT_TMP="mdot-temp"
 
+# Path of libraries
 MDOT_MODULES=$MDOT_BIN/lib;
 
+# Paths of help configuration
 MDOT_HELP="$MDOT_BIN/help";
 MDOT_HELP_CMDS="$MDOT_HELP/.commands"
 MDOT_HELP_LIST="$MDOT_HELP/.commands/.list";
 
+# Start
+# Imports and defines wikis
 mdot-loader-imports
 mdot-loader-custom-imports
 
@@ -22,14 +32,16 @@ if ! [ -f $MDOT_HELP_LIST ]; then
     mdot-loader-wikis
 fi
 
+# Clear mdot internal libraries
 mdot-core-clear
 mdot-loader-clear
 
+# Deletes mdot temporary
 function mdot-clear()
 {
     if [ -d "tests-bk" ]; then
-        echo "Replacement tests/ With tests-bk/"
-        read -e -p "Do You Continue (Y) ? : " ok
+        echo "Se va a reemplazar el directorio tests/ con el contenidoo de tests-bk/"
+        read -e -p "Desea continuar (Y)?: " ok
 
         if [ "$ok" = "Y" ]; then
             rm -r "tests"
@@ -44,6 +56,7 @@ function mdot-clear()
     rm -rf $MDOT_TMP
 }
 
+# Lists all commands and shows help
 function mdot-help()
 {
     cd $MDOT_HELP_CMDS

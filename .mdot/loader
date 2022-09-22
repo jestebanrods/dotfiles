@@ -1,30 +1,37 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 function mdot-reload()
 {
     rm $MDOT_HELP_LIST
     source $MDOT_BIN/.mdot/core
-    echo "🚀🚀🚀 MDOT Reload"
+    echo "🚀🚀🚀 MDOT reload"
+
     source $MDOT_INI
 }
 
+# Load all
 function mdot-loader-imports()
 {
-    for fileSource in $(find "$MDOT_MODULES" -type f); do 
-        source $fileSource
+    for file_source in $(find "$MDOT_MODULES" -type f); do 
+        source $file_source
     done
 }
 
+# Writes all commands in file
 function mdot-loader-cmds()
 {
     rm -r $MDOT_HELP_CMDS &> /dev/null
     mkdir -p $MDOT_HELP_CMDS &> /dev/null
     echo "" > $MDOT_HELP_LIST
 
-    for moduleFile in $(find "$MDOT_MODULES" -type f); do 
-        grep -n 'function m-' $moduleFile | while read -r actualLine; do
-            lineNumPos=$(echo $actualLine | awk -F ":" '{ print $1 }')
-            METHOD_NAME=$(tail +$lineNumPos $moduleFile \
+    for module_file in $(find "$MDOT_MODULES" -type f); do 
+        # gets each line with methods
+        grep -n 'function m-' $module_file | while read -r actual_line; do
+            # gets line num of method: line=1, 24
+            line_num_pos=$(echo $actual_line | awk -F ":" '{ print $1 }')
+
+            # gets name of method: Ex: [m-php-unit]
+            METHOD_NAME=$(tail +$line_num_pos $module_file \
                 | head -1 \
                 | awk -F "function " '{ print $2 }' \
                 | awk -F "\(\)" '{ print $1 }'
@@ -39,15 +46,14 @@ function mdot-loader-wikis()
     mdot-loader-cmds
 
     for METHOD_NAME in $(grep -E ".+" $MDOT_HELP_LIST); do
-        moduleName=$(echo $METHOD_NAME \
+        module_name=$(echo $METHOD_NAME \
             | awk -F "-" '{ print $2 }'
         )
 
-        FILE_MODULE_WIKI="$MDOT_HELP/$moduleName"
+        FILE_MODULE_WIKI="$MDOT_HELP/$module_name"
         FILE_METHOD_WIKI="$MDOT_HELP_CMDS/$METHOD_NAME"
-
-        echo -e "Not Documentation Available." > "$FILE_METHOD_WIKI"
-
+        echo -e "No hay documentación disponible aún." > "$FILE_METHOD_WIKI"
+        
         if [ -f "$FILE_MODULE_WIKI" ]; then
             LINE_INI=$(m-grep-line $METHOD_NAME: $FILE_MODULE_WIKI)
             if [ "$LINE_INI" ]; then
@@ -68,12 +74,13 @@ function mdot-loader-clear(){
     unset -f mdot-loader-custom-imports
 }
 
+# Loade custom libraries
 function mdot-loader-custom-imports()
 {
     if [[ $MDOT_CUSTOM_LIBRARIES ]]; then
         path="$MDOT_BIN/$MDOT_CUSTOM_LIBRARIES"
-        for customLib  in $(ls -1 $path); do
-            source "$path/$customLib"
+        for custom_lib  in $(ls -1 $path); do
+            source "$path/$custom_lib"
         done
     fi
 }
@@ -82,7 +89,6 @@ function m--arg-param()
 {
     echo "$1" | awk -F "=" '{ print $1 }'
 }
-
 function m--arg-value()
 {
     echo "$1" | awk -F "=" '{ print $2 }'
