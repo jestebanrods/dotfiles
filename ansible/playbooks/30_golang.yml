@@ -1,0 +1,100 @@
+# instala todo lo relacionado con golang
+# isntall go without uninstall current version
+# ansible-playbook 50_golang.yml --extra-vars "GO=1.13"
+#
+# install go and uninstall current version
+# ansible-playbook 50_golang.yml --extra-vars "GO=1.13 UNINSTALL=true"
+
+- name: install golang 
+  hosts: localhost
+  
+  vars_files: 
+    - base.yaml
+
+  vars:
+    GO: "1.18.5"
+    FILE: "{{CACHE_DIR}}/go/go{{GO}}.{{OS}}-amd64.tar.gz"
+    SRC:  "{{CACHE_DIR}}/go/go{{GO}}"
+    DEST: "/usr/local/golang/{{GO}}"
+    OS: linux
+    UNINSTALL: false
+  
+  tasks:
+  - name: uninstall golang
+    file:
+      state: absent
+      path: "{{item}}"
+    become: true
+    with_items:
+      - "/usr/local/go"
+      - "/usr/local/golang"
+    when: UNINSTALL
+
+  - name: create folder
+    file: 
+      path:  "{{item}}"
+      state: directory
+      mode: 0777
+    with_items:
+      - "{{SRC}}"
+      - "{{DEST}}"
+
+  - name: download go
+    get_url:
+      url:  "https://storage.googleapis.com/golang/{{FILE | basename}}"
+      dest: "{{FILE}}"
+
+  - name: unarchive golang
+    unarchive:
+      src:  "{{FILE}}"
+      dest: "{{SRC}}"
+      remote_src: yes
+    connection: local
+
+  - name: copy
+    command: "cp -r {{SRC}}/go {{DEST}}"
+    args:
+      creates: "{{DEST}}/go"
+
+  - name: list bin
+    command: "ls {{DEST}}/go/bin"
+    changed_when: false
+    register: list_bin
+
+  - name: create links
+    file:
+      state: link
+      src: "{{DEST}}/go/bin/{{item}}"
+      dest: "/usr/local/bin/{{item}}"
+    with_items: "{{list_bin.stdout_lines}}"
+
+  - name: create goroot link
+    file:
+      state: link
+      src: "{{DEST}}/go"
+      dest: "/usr/local/go"
+
+  - lineinfile:
+      path: "{{item}}"
+      line: "export PATH=~/.go/bin:$PATH"
+    with_items:
+      - ~/.bashrc
+    connection: local
+
+  - lineinfile:
+      path: "{{item}}"
+      line: "export GOPATH=~/.go"
+    with_items:
+      - ~/.bashrc
+    connection: local
+
+  - name: install packages
+    command: "go install {{item}}@latest"
+    environment:
+      GOPATH: "/home/jerodriguez/.go"
+      GO111MODULE: "auto"
+    with_items:
+      - honnef.co/go/tools/cmd/staticcheck
+      - github.com/jstemmer/go-junit-report
+      - github.com/google/wire/cmd/wire
+    connection: local

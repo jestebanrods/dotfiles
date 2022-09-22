@@ -1,3 +1,8 @@
+local ok, configs = pcall(require, "vim-test")
+if not ok then
+    return
+end
+
 vim.g["test#preserve_screen"] = 1
 
 vim.cmd([[

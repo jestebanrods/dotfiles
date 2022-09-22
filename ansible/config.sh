@@ -1,3 +1,3 @@
 #!/bin/bash
 
-sudo -H ansible-playbook playbooks/config.yaml --extra-vars "USER=$(whoami)"
+sudo -H ansible-playbook playbooks/00_config.yaml --extra-vars "USER=$(whoami)"

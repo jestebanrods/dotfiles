@@ -1,3 +1,8 @@
+local ok, _ = pcall(require, "cmp")
+if not ok then
+	return
+end
+
 local cmp = require 'cmp'
 
 cmp.setup({

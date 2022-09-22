@@ -1,8 +1,3 @@
-# configuramos un servidor ssh local
-#
-# sudo -H ansible-playbook basics.yaml --extra-vars "USER=$(whoami)"
-#
-
 - hosts: localhost
 
   vars:
@@ -14,7 +9,6 @@
     apt:
       name: 
         - openssh-server
-        - libc6-dev
   
   - name: generare ssh key for local ssh connection
     openssh_keypair:

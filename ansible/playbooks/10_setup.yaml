@@ -10,6 +10,7 @@
         update_cache: yes
       loop:
         - htop
+        - flameshot
         - nload
         - bat
         - unzip
@@ -63,7 +64,7 @@
         state: present
     - name: add apt repository
       apt_repository:
-        repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ release_linux_name }} stable"
+        repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
         state: present
     - name: install packages
       apt:

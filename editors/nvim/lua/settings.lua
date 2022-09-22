@@ -38,5 +38,10 @@ options.updatetime = 50
 options.signcolumn = "yes"
 
 vim.g.neovide_transparency = 0.9
-vim.cmd('colorscheme PaperColor')
-options.background = "dark"
+
+local ok, _ = pcall(require, "PaperColor")
+if ok then
+    vim.cmd('colorscheme PaperColor')
+    options.background = "dark"
+    return
+end
