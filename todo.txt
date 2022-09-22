@@ -1,0 +1,1 @@
+- automatizar la configuracion global de usuario, correo y editor de git

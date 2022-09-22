@@ -21,3 +21,9 @@ echo ""
 echo -e "**** Installing dotfiles "
 
 ./install
+
+echo ""
+echo -e "**** Create Symbolic Links"
+
+ln -sf $MDOT_BIN/editors/nvim $HOME/.config/nvim
+ln -sf $MDOT_BIN/shell/tmux/.tmux.conf $HOME/.tmux.conf
