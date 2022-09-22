@@ -1,0 +1,38 @@
+# configuramos un servidor ssh local
+#
+# sudo -H ansible-playbook basics.yaml --extra-vars "USER=$(whoami)"
+#
+
+- hosts: localhost
+
+  vars:
+    HOME: "/home/{{USER}}"
+    GROUP: "{{USER}}"
+
+  tasks:
+  - name: instalar ssh
+    apt:
+      name: 
+        - openssh-server
+        - libc6-dev
+  
+  - name: generare ssh key for local ssh connection
+    openssh_keypair:
+      path: "/{{HOME}}/.ssh/id_rsa_local"
+      size: 2048
+  
+  - name: key access
+    file:
+      path:  "{{HOME}}/.ssh/{{item}}"
+      owner: "{{USER}}"
+      group: "{{GROUP}}"
+    with_items:
+      - id_rsa_local
+      - id_rsa_local.pub
+
+  - name: copy ssh pub
+    authorized_key:
+      user: root
+      state: present
+      key: "{{ lookup('file', '{{HOME}}/.ssh/id_rsa_local.pub') }}"      
+
