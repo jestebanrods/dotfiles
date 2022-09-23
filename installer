@@ -4,16 +4,16 @@ read -e -p "Define directory to save dotfiles :~/" -i "Documents/Code/jestebanro
 
 echo ""
 
-path_install = ~/$path_install
+# path_install = "~/$path_install"
 
-echo $path_install
+echo ~/$path_install
 echo "**** Download repository dotfiles"
 
-git clone https://github.com/jestebanrods/dotfiles $path_install
+git clone https://github.com/jestebanrods/dotfiles ~/$path_install
 
 echo ""
 
-cd $path_install
+cd ~/$path_install
 chmod +x install
 
 echo ""
@@ -21,6 +21,7 @@ echo ""
 echo -e "**** Installing dotfiles "
 
 ./install
+source ~/.bashrc
 
 echo ""
 echo -e "**** Create Symbolic Links"
