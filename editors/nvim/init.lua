@@ -1,7 +1,7 @@
 pcall(require, 'impatient')
 
 if require 'packer_installer' () then
-  return
+    return
 end
 
 require 'settings'

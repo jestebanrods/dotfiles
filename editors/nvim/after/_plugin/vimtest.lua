@@ -1,4 +1,4 @@
-local ok, configs = pcall(require, "vim-test")
+local ok, _ = pcall(require, "vim-test")
 if not ok then
     return
 end
