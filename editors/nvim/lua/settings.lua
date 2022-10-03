@@ -6,9 +6,10 @@ local cmd = vim.cmd
 global.mapleader = " "
 
 opt.guifont = { "Hasklig Medium", ":h10" }
-cmd('colorscheme nightfox')
+cmd('colorscheme duskfox')
+-- cmd('colorscheme nightfox')
 
-options.cursorline = true
+options.cursorline = false
 options.number = true
 options.relativenumber = true
 options.colorcolumn = 80

@@ -3,22 +3,6 @@ if not ok then
     return
 end
 
-local ok_mason, mason = pcall(require, "mason")
-if not ok_mason then
-    return
-end
-
-local ok_mason_config, mason_lsp_config = pcall(require, "mason-lspconfig")
-if not ok_mason_config then
-    return
-end
-
-mason.setup()
-
-mason_lsp_config.setup({
-    automatic_installation = true,
-})
-
 -- Diagnostics Mappings
 local opts = { noremap = true, silent = true }
 
@@ -66,7 +50,18 @@ lspconfig.sumneko_lua.setup({
     },
 })
 
+-- lspconfig.phpactor.setup({
+--     on_attach = on_attach,
+--     flags = lsp_flags,
+--     filetypes = { "php" },
+-- })
+
 lspconfig.intelephense.setup({
+    on_attach = on_attach,
+    flags = lsp_flags,
+})
+
+lspconfig.gopls.setup({
     on_attach = on_attach,
     flags = lsp_flags,
 })

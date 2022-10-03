@@ -17,14 +17,6 @@ return packer.startup(function(use)
     use 'wbthomason/packer.nvim'
     use 'lewis6991/impatient.nvim'
 
-    -- IDE
-    use 'tpope/vim-fugitive'
-    use 'tpope/vim-surround'
-    use 'tpope/vim-commentary'
-    use 'jiangmiao/auto-pairs'
-    use 'alvan/vim-closetag'
-    use 'lewis6991/gitsigns.nvim'
-
     -- Styles
     use 'edeneast/nightfox.nvim'
     use 'xiyaowong/nvim-transparent'
@@ -33,6 +25,7 @@ return packer.startup(function(use)
     -- Status Bar
     use 'nvim-lualine/lualine.nvim'
     use 'kdheepak/tabline.nvim'
+    use 'stevearc/dressing.nvim'
 
     -- Telescope
     use {
@@ -49,39 +42,57 @@ return packer.startup(function(use)
         }
     }
 
+    use 'rcarriga/nvim-notify'
+
     -- Syntax
     use {
         'nvim-treesitter/nvim-treesitter',
-        run = function() require('nvim-treesitter.install').update({ with_sync = true }) end
+        run = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
+        requires = {
+            'nvim-treesitter/playground',
+            'nvim-treesitter/nvim-treesitter-textobjects',
+            'nvim-treesitter/nvim-treesitter-refactor',
+        }
     }
 
-    use 'nvim-treesitter/playground'
-
-    -- use 'nvim-treesitter/nvim-treesitter-refactor'
-    -- use 'nvim-treesitter/nvim-treesitter-textobjects'
+    use 'jwalton512/vim-blade'
 
     -- LSP
-    use "neovim/nvim-lspconfig"
+    use 'neovim/nvim-lspconfig'
 
     -- Installation LSP/Debuggers/Other
     use {
-        "williamboman/mason.nvim",
-        "williamboman/mason-lspconfig.nvim",
+        'williamboman/mason.nvim',
+        'williamboman/mason-lspconfig.nvim',
     }
 
-    -- use 'vim-test/vim-test'
+    -- Completion
+    use {
+        'hrsh7th/nvim-cmp',
+        requires = {
+            'hrsh7th/cmp-buffer',
+            'hrsh7th/cmp-cmdline',
+            'hrsh7th/cmp-nvim-lsp',
+            'hrsh7th/cmp-nvim-lsp-signature-help',
+            'hrsh7th/cmp-nvim-lua',
+            'hrsh7th/cmp-path',
+            'onsails/lspkind-nvim',
+        }
+    }
 
-    -- use 'jwalton512/vim-blade'
+    -- IDE
+    use 'tpope/vim-commentary'
+    use 'tpope/vim-fugitive'
+    use 'tpope/vim-repeat'
+    use 'tpope/vim-surround'
+    use 'jiangmiao/auto-pairs'
+    use 'alvan/vim-closetag'
+    use 'lewis6991/gitsigns.nvim'
+    use 'j-hui/fidget.nvim'
+    use 'voldikss/vim-floaterm'
 
-    -- use {
-    --     'hrsh7th/nvim-cmp',
-    --     requires = {
-    --         'hrsh7th/cmp-nvim-lsp',
-    --         'hrsh7th/cmp-buffer',
-    --         'hrsh7th/cmp-path',
-    --         'hrsh7th/cmp-cmdline',
-    --     }
-    -- }
+    -- Testing
+    use 'vim-test/vim-test'
 
     -- use 'jose-elias-alvarez/null-ls.nvim'
 
@@ -92,4 +103,5 @@ return packer.startup(function(use)
     --         'nvim-treesitter/nvim-treesitter'
     --     }
     -- }
+
 end)

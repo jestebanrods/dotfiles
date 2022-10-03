@@ -10,5 +10,40 @@ treesitter.setup({
     highlight = {
         enable = true,
         disable = {}
-    }
+    },
+    indent = {
+        enable = true,
+    },
+    incremental_selection = {
+        enable = true,
+        keymaps = {
+            init_selection = "gnn",
+            scope_incremental = "grc",
+            node_incremental = "grn",
+            node_decremental = "grm",
+        },
+    },
+    refactor = {
+        highlight_definitions = { enable = true },
+        smart_rename = {
+            enable = true,
+            keymaps = {
+                smart_rename = "trr",
+            },
+        },
+    },
+    textobjects = {
+        select = {
+            enable = true,
+            lookahead = true,
+            keymaps = {
+                ["af"] = "@function.outer",
+                ["if"] = "@function.inner",
+                ["ac"] = "@conditional.outer",
+                ["ic"] = "@conditional.inner",
+                ["al"] = "@loop.outer",
+                ["il"] = "@loop.inner",
+            }
+        }
+    },
 })
