@@ -1,4 +1,4 @@
-local ok, lspconfig = pcall(require, "lspconfig")
+local ok, lspconfig = pcall(require, 'lspconfig')
 if not ok then
     return
 end
@@ -41,7 +41,7 @@ lspconfig.sumneko_lua.setup({
                 globals = { 'vim' },
             },
             workspace = {
-                library = vim.api.nvim_get_runtime_file("", true),
+                library = vim.api.nvim_get_runtime_file('', true),
             },
             telemetry = {
                 enable = false,

@@ -4,6 +4,7 @@ local opt = vim.opt
 local cmd = vim.cmd
 
 global.mapleader = " "
+global.snippets = "luasnip"
 
 opt.guifont = { "JetBrainsMono Nerd Font", ":h10" }
 cmd('colorscheme duskfox')
