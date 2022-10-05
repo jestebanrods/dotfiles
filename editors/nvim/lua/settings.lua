@@ -5,11 +5,10 @@ local cmd = vim.cmd
 
 global.mapleader = " "
 
-opt.guifont = { "Hasklig Medium", ":h10" }
+opt.guifont = { "JetBrainsMono Nerd Font", ":h10" }
 cmd('colorscheme duskfox')
--- cmd('colorscheme nightfox')
 
-options.cursorline = false
+options.cursorline = true
 options.number = true
 options.relativenumber = true
 options.colorcolumn = 80
