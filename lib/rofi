@@ -2,12 +2,12 @@
 
 function m-rofi-merqueo-repos()
 {
-    ls $HOME/Documents/Code/merqueo/repos | rofi -show -dmenu -i | xargs -I_ code $HOME/Documents/Code/merqueo/repos/_
+    ls $HOME/Documents/Code/merqueo/repos | rofi -show -dmenu -i | xargs -I_ bash -c 'cd $HOME/Documents/Code/merqueo/repos/_ && neovide --maximized'
 }
 
-function m-rofi-personal-repos()
+function m-rofi-jestebanrods-repos()
 {
-    ls $HOME/Documents/Code/jestebanrods/repos | rofi -show -dmenu -i | xargs -I_ code $HOME/Documents/Code/jestebanrods/repos/_
+    ls $HOME/Documents/Code/jestebanrods/repos | rofi -show -dmenu -i | xargs -I_ bash -c 'cd $HOME/Documents/Code/jestebanrods/repos/_ && neovide --maximized'
 }
 
 function m-rofi-active-windows()

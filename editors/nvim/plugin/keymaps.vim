@@ -16,3 +16,21 @@ nnoremap <A-v> :vertical split<CR>
 " Managment Tabs
 nnoremap <leader>tn :tabnew<CR>
 nnoremap <A-;> :tabnext<CR>
+
+" Movements
+nnoremap gg gg0
+nnoremap n nzzzv
+nnoremap N nzzzv
+
+" Undo
+inoremap , ,<c-g>u
+inoremap . .<c-g>u
+inoremap ! !<c-g>u
+inoremap ? ?<c-g>u
+inoremap $ $<c-g>u
+inoremap > ><c-g>u
+
+" Visual
+vnoremap < <gv
+vnoremap > >gv
+vnoremap <leader>ss :!sort<CR>
