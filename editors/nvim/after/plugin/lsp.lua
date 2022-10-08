@@ -50,16 +50,16 @@ lspconfig.sumneko_lua.setup({
     },
 })
 
--- lspconfig.phpactor.setup({
---     on_attach = on_attach,
---     flags = lsp_flags,
---     filetypes = { "php" },
--- })
-
-lspconfig.intelephense.setup({
+lspconfig.phpactor.setup({
     on_attach = on_attach,
     flags = lsp_flags,
+    filetypes = { "php" },
 })
+
+-- lspconfig.intelephense.setup({
+--     on_attach = on_attach,
+--     flags = lsp_flags,
+-- })
 
 lspconfig.gopls.setup({
     on_attach = on_attach,

@@ -81,6 +81,14 @@ return packer.startup(function(use)
         }
     }
 
+    use {
+        'jose-elias-alvarez/null-ls.nvim',
+        requires = {
+            'WhoIsSethDaniel/mason-tool-installer.nvim',
+            'nvim-lua/plenary.nvim',
+        }
+    }
+
     -- Snippets
     use 'L3MON4D3/LuaSnip'
     use 'saadparwaiz1/cmp_luasnip'
@@ -100,7 +108,6 @@ return packer.startup(function(use)
     -- Testing
     use 'vim-test/vim-test'
 
-    -- use 'jose-elias-alvarez/null-ls.nvim'
 
     -- use {
     --     'ThePrimeagen/refactoring.nvim',
