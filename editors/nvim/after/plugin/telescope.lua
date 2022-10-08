@@ -65,7 +65,20 @@ vim.keymap.set('n', 'gr', require 'telescope.builtin'.lsp_references, { remap = 
 vim.keymap.set('n', 'gi', require 'telescope.builtin'.lsp_implementations, { remap = false })
 vim.keymap.set('n', 'gtd', require 'telescope.builtin'.lsp_type_definitions, { remap = false })
 
-vim.api.nvim_set_keymap('n', '<leader>fn', ':Telescope file_browser<CR><C-l>', { noremap = true })
+vim.api.nvim_set_keymap(
+    'n',
+    '<leader>fn',
+    ':Telescope file_browser<CR><C-l>',
+    { noremap = true }
+)
+
+vim.api.nvim_set_keymap(
+    "v",
+    "<leader>rr",
+    "<Esc><cmd>lua require('telescope').extensions.refactoring.refactors()<CR>",
+    { noremap = true }
+)
 
 telescope.load_extension('file_browser')
 telescope.load_extension('notify')
+telescope.load_extension("refactoring")

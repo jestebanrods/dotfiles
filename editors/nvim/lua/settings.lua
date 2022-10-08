@@ -7,12 +7,13 @@ global.mapleader = " "
 global.snippets = "luasnip"
 
 opt.guifont = { "JetBrainsMono Nerd Font", ":h10" }
+opt.colorcolumn = "85"
+
 cmd('colorscheme duskfox')
 
 options.cursorline = true
 options.number = true
 options.relativenumber = true
-options.colorcolumn = 80
 options.undodir = os.getenv("HOME") .. "/.cache/nvim/undodir"
 options.clipboard = "unnamedplus"
 options.undofile = true

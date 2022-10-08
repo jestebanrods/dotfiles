@@ -108,13 +108,13 @@ return packer.startup(function(use)
     -- Testing
     use 'vim-test/vim-test'
 
-
-    -- use {
-    --     'ThePrimeagen/refactoring.nvim',
-    --     requires = {
-    --         'nvim-lua/plenary.nvim',
-    --         'nvim-treesitter/nvim-treesitter'
-    --     }
-    -- }
-
+    -- Refactor
+    use {
+        'ThePrimeagen/refactoring.nvim',
+        requires = {
+            'nvim-lua/plenary.nvim',
+            'nvim-treesitter/nvim-treesitter',
+            'nvim-telescope/telescope.nvim',
+        }
+    }
 end)
