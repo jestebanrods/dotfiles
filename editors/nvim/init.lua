@@ -1,9 +1,9 @@
-pcall(require, 'impatient')
+pcall(require, "impatient")
 
-if require 'packer_installer' () then
-    return
+if require("packer_installer")() then
+	return
 end
 
-require 'settings'
-require 'disables'
-require 'plugins'
+require("settings")
+require("disables")
+require("plugins")

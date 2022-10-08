@@ -7,9 +7,9 @@ global.mapleader = " "
 global.snippets = "luasnip"
 
 opt.guifont = { "JetBrainsMono Nerd Font", ":h10" }
-opt.colorcolumn = "85"
+opt.colorcolumn = "120"
 
-cmd('colorscheme duskfox')
+cmd("colorscheme duskfox")
 
 options.cursorline = true
 options.number = true
