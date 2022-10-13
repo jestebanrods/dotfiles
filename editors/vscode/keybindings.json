@@ -1,0 +1,15 @@
+[
+    {
+        "key": "ctrl+meta+t",
+        "command": "workbench.action.tasks.runTask"
+    },
+    {
+        "key": "ctrl+escape",
+        "command": "workbench.action.tasks.reRunTask"
+    },
+    {
+        "key": "ctrl+shift+b",
+        "command": "-workbench.action.tasks.build",
+        "when": "taskCommandsRegistered"
+    }
+]

@@ -1,0 +1,23 @@
+{
+    // Editor
+    "editor.fontFamily": "JetBrainsMono Nerd Font, Hasklug Nerd Font Mono",
+    "editor.fontWeight": "500",
+    "editor.fontLigatures": true,
+    "editor.fontSize": 14,
+    // Styles
+    "workbench.iconTheme": "file-icons",
+    // PHP
+    "php-docblocker.returnGap": true,
+    "php-docblocker.useShortNames": true,
+    // Tasks
+    "typescript.tsc.autoDetect": "off",
+    "grunt.autoDetect": "off",
+    "jake.autoDetect": "off",
+    "gulp.autoDetect": "off",
+    "npm.autoDetect": "off",
+    "task.autoDetect": "off",
+    "phpstan.configFile": "",
+    "workbench.startupEditor": "none",
+    "extensions.ignoreRecommendations": true
+    // Disable @builtin php (PHP Language Features)
+}
