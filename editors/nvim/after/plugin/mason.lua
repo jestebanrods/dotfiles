@@ -19,6 +19,11 @@ mason_tool_installer.setup({
 		"intelephense",
 		"phpactor",
 		"lua-language-server",
+		"html-lsp",
+		"typescript-language-server",
+		"json-lsp",
+		"dockerfile-language-server",
+		"vue-language-server",
 		-- Formatter
 		"blade-formatter",
 		"golangci-lint",

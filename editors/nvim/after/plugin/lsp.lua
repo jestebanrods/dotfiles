@@ -65,3 +65,28 @@ lspconfig.gopls.setup({
 	on_attach = on_attach,
 	flags = lsp_flags,
 })
+
+lspconfig.html.setup({
+	on_attach = on_attach,
+	flags = lsp_flags,
+})
+
+lspconfig.tsserver.setup({
+    on_attach = on_attach,
+    flags = lsp_flags,
+})
+
+lspconfig.volar.setup({
+    on_attach = on_attach,
+    flags = lsp_flags,
+})
+
+lspconfig.jsonls.setup({
+    on_attach = on_attach,
+    flags = lsp_flags,
+})
+
+lspconfig.dockerls.setup({
+    on_attach = on_attach,
+    flags = lsp_flags,
+})
