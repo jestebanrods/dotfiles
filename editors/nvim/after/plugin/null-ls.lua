@@ -6,7 +6,6 @@ end
 local code_actions = null_ls.builtins.code_actions
 local diagnostics = null_ls.builtins.diagnostics
 local formatting = null_ls.builtins.formatting
-local methods = null_ls.methods
 
 null_ls.setup({
 	debug = true,
@@ -18,19 +17,9 @@ null_ls.setup({
 		formatting.gofmt,
 		formatting.goimports,
 		-- PHP
-		diagnostics.phpstan.with({
-			command = "./vendor/bin/phpstan",
-			to_temp_file = false,
-			method = methods.DIAGNOSTICS_ON_SAVE,
-		}),
-		diagnostics.phpcs.with({
-			command = "./vendor/bin/phpcs",
-			to_temp_file = false,
-			method = methods.DIAGNOSTICS_ON_SAVE,
-		}),
-		formatting.phpcsfixer.with({
-			command = "./vendor/bin/php-cs-fixer",
-		}),
+		diagnostics.phpstan,
+		diagnostics.phpcs,
+		formatting.phpcsfixer,
 		formatting.blade_formatter,
 		-- JSON
 		formatting.jq,

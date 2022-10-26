@@ -15,20 +15,24 @@ mason_lspconfig.setup({
 mason_tool_installer.setup({
 	ensure_installed = {
 		-- LSP
-		"gopls",
-		"intelephense",
-		"phpactor",
-		"lua-language-server",
-		"html-lsp",
-		"typescript-language-server",
-		"json-lsp",
 		"dockerfile-language-server",
+		"gopls",
+		"html-lsp",
+		"intelephense",
+		"json-lsp",
+		"lua-language-server",
+		"phpactor",
+		"typescript-language-server",
 		"vue-language-server",
 		-- Formatter
 		"blade-formatter",
-		"golangci-lint",
 		"goimports",
+		"php-cs-fixer",
 		"stylua",
+		-- Linters
+		"golangci-lint",
+		"phpcs",
+		"phpstan",
 	},
 	auto_update = false,
 	run_on_start = true,

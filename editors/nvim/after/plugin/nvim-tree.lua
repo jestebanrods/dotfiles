@@ -8,7 +8,6 @@ vim.g.loaded_netrwPlugin = true
 
 nvimtree.setup({
 	open_on_setup = true,
-	focus_empty_on_setup = true,
 	open_on_tab = true,
 	view = {
 		width = 35,

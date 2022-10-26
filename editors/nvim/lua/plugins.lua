@@ -106,6 +106,10 @@ return packer.startup(function(use)
 	use("lewis6991/gitsigns.nvim")
 	use("j-hui/fidget.nvim")
 	use("voldikss/vim-floaterm")
+	use("Yggdroot/indentLine")
+
+	-- Languages
+	use("fatih/vim-go")
 
 	-- Testing
 	use("vim-test/vim-test")

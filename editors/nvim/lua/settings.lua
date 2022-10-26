@@ -1,15 +1,12 @@
 local options = vim.o
 local global = vim.g
 local opt = vim.opt
-local cmd = vim.cmd
 
 global.mapleader = " "
 global.snippets = "luasnip"
 
 opt.guifont = { "JetBrainsMono Nerd Font", ":h10" }
 opt.colorcolumn = "120"
-
-cmd("colorscheme duskfox")
 
 options.cursorline = true
 options.number = true
