@@ -101,18 +101,30 @@ return packer.startup(function(use)
 	use("tpope/vim-fugitive")
 	use("tpope/vim-repeat")
 	use("tpope/vim-surround")
-	use("jiangmiao/auto-pairs")
+	use("windwp/nvim-autopairs")
 	use("alvan/vim-closetag")
 	use("lewis6991/gitsigns.nvim")
 	use("j-hui/fidget.nvim")
 	use("voldikss/vim-floaterm")
 	use("Yggdroot/indentLine")
+	use("nicwest/vim-camelsnek")
 
 	-- Languages
 	use("fatih/vim-go")
 
 	-- Testing
 	use("vim-test/vim-test")
+	use({
+		"nvim-neotest/neotest",
+		requires = {
+			"nvim-lua/plenary.nvim",
+			"nvim-treesitter/nvim-treesitter",
+			"antoinemadec/FixCursorHold.nvim",
+			"nvim-neotest/neotest-go",
+		},
+	})
+
+	use("anuvyklack/hydra.nvim")
 
 	-- Refactor
 	use({

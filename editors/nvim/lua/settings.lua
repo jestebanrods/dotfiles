@@ -4,6 +4,7 @@ local opt = vim.opt
 
 global.mapleader = " "
 global.snippets = "luasnip"
+global.neovide_transparency = 0.85
 
 opt.guifont = { "JetBrainsMono Nerd Font", ":h10" }
 opt.colorcolumn = "120"
