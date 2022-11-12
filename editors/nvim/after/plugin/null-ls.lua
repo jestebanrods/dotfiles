@@ -18,7 +18,7 @@ null_ls.setup({
 		formatting.goimports,
 		-- PHP
 		diagnostics.phpstan,
-		diagnostics.phpcs,
+		-- diagnostics.phpcs,
 		formatting.phpcsfixer,
 		formatting.blade_formatter,
 		-- JSON
