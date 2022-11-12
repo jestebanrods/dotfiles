@@ -9,3 +9,4 @@ custom/*
 
 #  NeoVim
 editors/nvim/plugin/packer_compiled.lua
+editors/nvim/.luarc.json
