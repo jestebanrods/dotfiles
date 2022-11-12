@@ -1,9 +1,13 @@
 pcall(require, "impatient")
 
-if require("packer_installer")() then
+if require("alpha.packer_installer")() then
 	return
 end
 
-require("settings")
-require("disables")
-require("plugins")
+require("alpha.settings")
+require("alpha.globals")
+require("alpha.disables")
+require("alpha.plugins")
+
+require("alpha.telescope.setup")
+require("alpha.telescope.mappings")

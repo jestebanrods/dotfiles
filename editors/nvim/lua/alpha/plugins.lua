@@ -43,7 +43,6 @@ return packer.startup(function(use)
 	})
 
 	use("rcarriga/nvim-notify")
-	use("kyazdani42/nvim-tree.lua")
 
 	-- Syntax
 	use({
