@@ -28,15 +28,26 @@ cmp.setup({
 			select = true,
 		}),
 	}),
-	sources = cmp.config.sources({
-		{ name = "luasnip" },
-		{ name = "nvim_lsp" },
+	sources = {
 		{ name = "nvim_lua" },
+		{ name = "nvim_lsp" },
 		{ name = "nvim_lsp_signature_help" },
 		{ name = "path" },
-	}, {
-		{ name = "buffer" },
-	}),
+		{ name = "luasnip" },
+		{
+			name = "buffer",
+			keyword_length = 4,
+			option = {
+				get_bufnrs = function()
+					local bufs = {}
+					for _, win in ipairs(vim.api.nvim_list_wins()) do
+						bufs[vim.api.nvim_win_get_buf(win)] = true
+					end
+					return vim.tbl_keys(bufs)
+				end,
+			},
+		},
+	},
 	formatting = {
 		format = lspkind.cmp_format({
 			mode = "symbol_text",
@@ -45,6 +56,13 @@ cmp.setup({
 			before = function(_, vim_item)
 				return vim_item
 			end,
+			menu = {
+				nvim_lua = "[API]",
+				nvim_lsp = "[LSP]",
+				path = "[PATH]",
+				luasnip = "[SNIP]",
+				buffer = "[BUF]",
+			},
 		}),
 	},
 	experimental = {
