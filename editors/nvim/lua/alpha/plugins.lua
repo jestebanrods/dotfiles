@@ -107,6 +107,7 @@ return packer.startup(function(use)
 	use("voldikss/vim-floaterm")
 	use("Yggdroot/indentLine")
 	use("nicwest/vim-camelsnek")
+	use("folke/trouble.nvim")
 
 	-- Languages
 	use("fatih/vim-go")

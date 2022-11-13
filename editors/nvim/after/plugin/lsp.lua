@@ -60,6 +60,10 @@ local lsp_flags = {
 	debounce_text_changes = 150,
 }
 
+vim.diagnostic.config({
+	virtual_text = false,
+})
+
 local signs = { Error = "", Warn = "", Hint = "", Info = "" }
 
 for type, icon in pairs(signs) do
