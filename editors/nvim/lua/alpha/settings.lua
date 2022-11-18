@@ -3,6 +3,7 @@ local global = vim.g
 
 global.mapleader = " "
 global.snippets = "luasnip"
+global.indentLine_setConceal = 0
 
 options.colorcolumn = "120"
 
