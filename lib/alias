@@ -39,9 +39,10 @@ alias jestebanrods="cd $HOME/Documents/Code/jestebanrods"
 alias dotfiles="cd $DOTFILES_PATH"
 
 # PHP
-alias unit='vendor/bin/phpunit'
-alias unitcover='XDEBUG_MODE=coverage unit --coverage-html coverage'
-alias fixformat='php-cs-fixer fix -v'
+alias phptest='vendor/bin/phpunit'
+alias phptestcover='XDEBUG_MODE=coverage phptest --coverage-html coverage'
+alias phpformat='vendor/bin/php-cs-fixer fix -v'
+alias phplinter='vendor/bin/phpstan analyse --memory-limit=10G'
 
 # Laravel
 alias artisan='php artisan'
