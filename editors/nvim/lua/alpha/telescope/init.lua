@@ -112,6 +112,10 @@ function M.search_nvim_files()
 	})
 end
 
+function M.flutter_commands()
+	require("telescope").extensions.flutter.commands()
+end
+
 return setmetatable({}, {
 	__index = function(_, k)
 		reloader()

@@ -21,6 +21,7 @@ return packer.startup(function(use)
 	use("edeneast/nightfox.nvim")
 	use("xiyaowong/nvim-transparent")
 	use("kyazdani42/nvim-web-devicons")
+	use("ellisonleao/gruvbox.nvim")
 
 	-- Status Bar
 	use("nvim-lualine/lualine.nvim")
@@ -108,9 +109,11 @@ return packer.startup(function(use)
 	use("Yggdroot/indentLine")
 	use("nicwest/vim-camelsnek")
 	use("folke/trouble.nvim")
+	use("mfussenegger/nvim-dap")
 
 	-- Languages
 	use("fatih/vim-go")
+	use("akinsho/flutter-tools.nvim")
 
 	-- Testing
 	use("vim-test/vim-test")

@@ -28,6 +28,7 @@ map_tele("<leader>rr", "refactor", {}, nil, { "n", "v" })
 map_tele("<leader>fr", "file_browser_relative")
 map_tele("<leader>fn", "file_browser")
 map_tele("<leader>fcc", "search_nvim_files")
+map_tele("<leader>cf", "flutter_commands")
 
 -- Natives
 map_tele("<leader>fs", "live_grep")

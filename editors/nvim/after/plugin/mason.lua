@@ -36,5 +36,5 @@ mason_tool_installer.setup({
 	},
 	auto_update = false,
 	run_on_start = true,
-	start_delay = 3000,
+	start_delay = 500,
 })
