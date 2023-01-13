@@ -13,6 +13,5 @@
     "npm.autoDetect": "off",
     "task.autoDetect": "off",
     "workbench.startupEditor": "none",
-    "extensions.ignoreRecommendations": true,
-    "workbench.colorTheme": "Darcula"
+    "extensions.ignoreRecommendations": true
 }

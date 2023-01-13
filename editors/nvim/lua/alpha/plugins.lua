@@ -110,6 +110,7 @@ return packer.startup(function(use)
 	use("nicwest/vim-camelsnek")
 	use("folke/trouble.nvim")
 	use("mfussenegger/nvim-dap")
+	use("nvim-tree/nvim-tree.lua")
 
 	-- Languages
 	use("fatih/vim-go")
