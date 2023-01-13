@@ -8,7 +8,21 @@ if not ok_lspkind then
 	return
 end
 
+local compare = require("cmp.config.compare")
 local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+
+local function border(hl_name)
+	return {
+		{ "╭", hl_name },
+		{ "─", hl_name },
+		{ "╮", hl_name },
+		{ "│", hl_name },
+		{ "╯", hl_name },
+		{ "─", hl_name },
+		{ "╰", hl_name },
+		{ "│", hl_name },
+	}
+end
 
 cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 
@@ -18,22 +32,30 @@ cmp.setup({
 			require("luasnip").lsp_expand(args.body)
 		end,
 	},
+	window = {
+		completion = {
+			border = border("CmpBorder"),
+			winhighlight = "Normal:CmpPmenu,CursorLine:PmenuSel,Search:None",
+		},
+		documentation = {
+			border = border("CmpDocBorder"),
+		},
+	},
 	mapping = cmp.mapping.preset.insert({
-		["<C-b>"] = cmp.mapping.scroll_docs(-4),
-		["<C-f>"] = cmp.mapping.scroll_docs(4),
+		["<C-u>"] = cmp.mapping.scroll_docs(-4),
+		["<C-d>"] = cmp.mapping.scroll_docs(4),
 		["<C-Space>"] = cmp.mapping.complete(),
-		["<C-e>"] = cmp.mapping.abort(),
+		["<C-c>"] = cmp.mapping.abort(),
 		["<CR>"] = cmp.mapping.confirm({
-			behavior = cmp.ConfirmBehavior.Insert,
+			behavior = cmp.ConfirmBehavior.Replace,
 			select = true,
 		}),
 	}),
 	sources = {
-		{ name = "nvim_lua" },
 		{ name = "nvim_lsp" },
-		{ name = "nvim_lsp_signature_help" },
-		{ name = "path" },
+		{ name = "nvim_lua" },
 		{ name = "luasnip" },
+		{ name = "nvim_lsp_signature_help" },
 		{
 			name = "buffer",
 			keyword_length = 4,
@@ -47,6 +69,8 @@ cmp.setup({
 				end,
 			},
 		},
+		{ name = "path" },
+		{ name = "calc" },
 	},
 	formatting = {
 		format = lspkind.cmp_format({
@@ -65,6 +89,13 @@ cmp.setup({
 			},
 		}),
 	},
+	-- sorting = {
+	-- 	priority_weight = 2,
+	-- 	comparators = {
+	-- 		compare.kind,
+	-- 		compare.sort_text,
+	-- 	},
+	-- },
 	experimental = {
 		native_menu = false,
 		ghost_text = true,

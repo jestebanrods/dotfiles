@@ -62,6 +62,7 @@ return packer.startup(function(use)
 
 	-- LSP
 	use("neovim/nvim-lspconfig")
+	use("erichdongubler/lsp_lines.nvim")
 
 	-- Installation LSP/Debuggers/Other
 	use({
@@ -111,6 +112,7 @@ return packer.startup(function(use)
 	use("folke/trouble.nvim")
 	use("mfussenegger/nvim-dap")
 	use("nvim-tree/nvim-tree.lua")
+	use("sindrets/diffview.nvim")
 
 	-- Languages
 	use("fatih/vim-go")
