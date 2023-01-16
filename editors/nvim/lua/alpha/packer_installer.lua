@@ -1,8 +1,6 @@
 local download_packer = function()
-	if vim.fn.input("Download Packer ? [Y/n] ") ~= "Y" then
-		return
-	end
-
+	print("Installing packer.nvim ...")
+	
 	local directory = string.format("%s/site/pack/packer/start", vim.fn.stdpath("data"))
 
 	vim.fn.mkdir(directory, "p")
@@ -11,7 +9,6 @@ local download_packer = function()
 		string.format("git clone %s %s", "https://github.com/wbthomason/packer.nvim", directory .. "/packer.nvim")
 	)
 
-	print(" ")
 	print("Downloading packer.nvim ...")
 	print(out)
 	print("( You'll need to restart now )")

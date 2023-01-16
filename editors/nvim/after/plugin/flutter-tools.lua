@@ -13,7 +13,7 @@ fluttertools.setup({
 		on_attach = on_attach,
 	},
 	debugger = {
-		enabled = true,
+		enabled = false,
 		run_via_dap = false,
 	},
 })

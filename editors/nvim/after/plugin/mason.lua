@@ -33,6 +33,8 @@ mason_tool_installer.setup({
 		"golangci-lint",
 		"phpcs",
 		"phpstan",
+		-- Code Actions
+		"gomodifytags",
 	},
 	auto_update = false,
 	run_on_start = true,

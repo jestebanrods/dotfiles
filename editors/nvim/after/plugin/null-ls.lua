@@ -10,20 +10,19 @@ local formatting = null_ls.builtins.formatting
 null_ls.setup({
 	debug = true,
 	sources = {
-		-- General
+		-- Code Actions
 		code_actions.refactoring,
-		-- Go
+		code_actions.gomodifytags,
+		code_actions.gitsigns,
+		-- Diagnostics
 		diagnostics.golangci_lint,
+		diagnostics.phpstan,
+		-- Formattings
 		formatting.gofmt,
 		formatting.goimports,
-		-- PHP
-		diagnostics.phpstan,
-		-- diagnostics.phpcs,
 		formatting.phpcsfixer,
 		formatting.blade_formatter,
-		-- JSON
 		formatting.jq,
-		-- Lua
 		formatting.stylua,
 	},
 })

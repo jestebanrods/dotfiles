@@ -8,7 +8,6 @@ if not ok_lspkind then
 	return
 end
 
-local compare = require("cmp.config.compare")
 local cmp_autopairs = require("nvim-autopairs.completion.cmp")
 
 local function border(hl_name)
@@ -52,10 +51,10 @@ cmp.setup({
 		}),
 	}),
 	sources = {
-		{ name = "nvim_lsp" },
 		{ name = "nvim_lua" },
-		{ name = "luasnip" },
+		{ name = "nvim_lsp" },
 		{ name = "nvim_lsp_signature_help" },
+		{ name = "luasnip" },
 		{
 			name = "buffer",
 			keyword_length = 4,
@@ -81,21 +80,15 @@ cmp.setup({
 				return vim_item
 			end,
 			menu = {
-				nvim_lua = "[API]",
+				nvim_lua = "[LUA]",
 				nvim_lsp = "[LSP]",
-				path = "[PATH]",
 				luasnip = "[SNIP]",
 				buffer = "[BUF]",
+				path = "[PATH]",
+				calc = "[CAL]",
 			},
 		}),
 	},
-	-- sorting = {
-	-- 	priority_weight = 2,
-	-- 	comparators = {
-	-- 		compare.kind,
-	-- 		compare.sort_text,
-	-- 	},
-	-- },
 	experimental = {
 		native_menu = false,
 		ghost_text = true,
