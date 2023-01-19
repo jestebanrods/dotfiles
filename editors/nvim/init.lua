@@ -1,6 +1,4 @@
-pcall(require, "impatient")
-
-if require("alpha.packer_installer")() then
+if require("alpha.installer")() then
 	return
 end
 
