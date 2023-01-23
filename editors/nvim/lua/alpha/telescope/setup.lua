@@ -1,7 +1,4 @@
-local ok, telescope = pcall(require, "telescope")
-if not ok then
-	return
-end
+local telescope = require("telescope")
 
 telescope.setup({
 	defaults = {
@@ -40,7 +37,5 @@ telescope.setup({
 	},
 })
 
-require("telescope").load_extension("notify")
-require("telescope").load_extension("file_browser")
-require("telescope").load_extension("refactoring")
-require("telescope").load_extension("flutter")
+telescope.load_extension("notify") -- TODO Move
+telescope.load_extension("file_browser")

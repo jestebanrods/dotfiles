@@ -2,10 +2,7 @@ if vim.g.snippets ~= "luasnip" then
 	return
 end
 
-local ok, luasnip = pcall(require, "luasnip")
-if not ok then
-	return
-end
+local luasnip = require("luasnip")
 
 luasnip.config.set_config({
 	history = true,

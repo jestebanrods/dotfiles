@@ -54,10 +54,6 @@ function M.find_symbol()
 	end)
 end
 
-function M.refactor()
-	return require("telescope").extensions.refactoring.refactors()
-end
-
 function M.file_browser_relative()
 	return M.file_browser({ path = "%:p:h" })
 end

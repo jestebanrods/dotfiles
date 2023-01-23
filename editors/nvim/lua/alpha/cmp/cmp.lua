@@ -1,13 +1,5 @@
-local ok, cmp = pcall(require, "cmp")
-if not ok then
-	return
-end
-
-local ok_lspkind, lspkind = pcall(require, "lspkind")
-if not ok_lspkind then
-	return
-end
-
+local cmp = require("cmp")
+local lspkind = require("lspkind")
 local cmp_autopairs = require("nvim-autopairs.completion.cmp")
 
 local function border(hl_name)
