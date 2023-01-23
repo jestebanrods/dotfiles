@@ -1,11 +1,11 @@
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 
 local config = {
-	defaults = {
-		lazy = false,
-	},
 	install = {
 		missing = true,
+	},
+	checker = {
+		enabled = false,
 	},
 	performance = {
 		rtp = {
@@ -24,6 +24,8 @@ local config = {
 }
 
 if not vim.loop.fs_stat(lazypath) then
+	print("Installing Lazy.NVIM ...")
+
 	vim.fn.system({
 		"git",
 		"clone",
