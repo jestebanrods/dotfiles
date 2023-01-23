@@ -133,5 +133,3 @@ lspconfig.dockerls.setup({
 	on_attach = on_attach,
 	flags = lsp_flags,
 })
-
-return on_attach

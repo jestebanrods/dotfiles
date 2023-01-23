@@ -4,9 +4,22 @@ local config = {
 	defaults = {
 		lazy = false,
 	},
-	lockfile = vim.fn.stdpath("config") .. "/lazy-lock.json",
 	install = {
 		missing = true,
+	},
+	performance = {
+		rtp = {
+			disabled_plugins = {
+				"gzip",
+				"matchit",
+				"matchparen",
+				"netrwPlugin",
+				"tarPlugin",
+				"tohtml",
+				"tutor",
+				"zipPlugin",
+			},
+		},
 	},
 }
 

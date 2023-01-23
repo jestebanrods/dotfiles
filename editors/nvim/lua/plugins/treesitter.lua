@@ -10,7 +10,20 @@ return {
 	config = function()
 		local treesitter = require("nvim-treesitter.configs")
 		treesitter.setup({
-			ensure_installed = "all",
+			ensure_installed = {
+				"php",
+				"phpdoc",
+				"vim",
+				"go",
+				"gomod",
+				"css",
+				"html",
+				"javascript",
+				"lua",
+				"typescript",
+				"yaml",
+				"query",
+			},
 			sync_install = false,
 			auto_install = true,
 			ignore_install = {},
