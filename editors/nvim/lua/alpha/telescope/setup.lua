@@ -37,5 +37,5 @@ telescope.setup({
 	},
 })
 
-telescope.load_extension("notify") -- TODO Move
+telescope.load_extension("notify")
 telescope.load_extension("file_browser")

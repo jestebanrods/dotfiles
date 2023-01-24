@@ -1,13 +1,12 @@
--- Configurador rápido de LSP.
+-- LSP Client Quick Configurator
 return {
 	"neovim/nvim-lspconfig",
-	event = "BufReadPre",
 	dependencies = {
-		"j-hui/fidget.nvim", -- Visualizador de progreso de carga del LSP.
-		"williamboman/mason.nvim", -- Manejador de paquetes para servidores LSP, linters y formaters.
-		"williamboman/mason-lspconfig.nvim", -- Extensión para la autoinstalación de servers.
-		"whoissethdaniel/mason-tool-installer.nvim", -- Instalador de herramientas adicionales.
-		"jose-elias-alvarez/null-ls.nvim", -- Complemento para el analisis, diagnostico, acciones y formateo de código.
+		"j-hui/fidget.nvim", -- Standalone UI For LSP Progress
+		"williamboman/mason.nvim", -- Package Manager For LSP Server, Linters And Formaters
+		"williamboman/mason-lspconfig.nvim", -- Bridge From Mason And LSP Config
+		"whoissethdaniel/mason-tool-installer.nvim", -- Install Or Upgrade All Of Your Third-Party Tools
+		"jose-elias-alvarez/null-ls.nvim", -- Inject LSP Diagnostics And Code Actions
 	},
 	config = function()
 		require("alpha.lsp.lsp")

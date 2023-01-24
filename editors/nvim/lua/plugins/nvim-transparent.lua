@@ -1,4 +1,4 @@
--- Enables IDE Terminal Transparency.
+-- Enables IDE Terminal Transparency
 return {
 	"xiyaowong/nvim-transparent",
 	opts = {

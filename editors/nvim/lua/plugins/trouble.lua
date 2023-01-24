@@ -1,4 +1,4 @@
--- Visualizador de diagnosticos de código.
+-- Diagnostics Code Viewer
 return {
 	"folke/trouble.nvim",
 	opts = {

@@ -1,4 +1,4 @@
--- Permite saltar entre el final y el inicio de una declaración.
+-- Allows To Jump Between The End And The Beginning Of A Statement
 return {
 	"andymass/vim-matchup",
 	event = { "BufNewFile", "BufRead", "BufAdd" },

@@ -1,4 +1,4 @@
--- Permite mover bloques de código.
+-- Allows Moving Code Blocks
 return {
 	"matze/vim-move",
 	keys = {

@@ -1,4 +1,4 @@
--- Manejador de notificaciones emergentes.
+-- Pop-Up Notification Manager
 return {
 	"rcarriga/nvim-notify",
 	config = function()

@@ -1,8 +1,8 @@
--- Agrega decoraciones de la metainformación de los commits.
+-- Adds Git Meta Information Decorators
 return {
 	"lewis6991/gitsigns.nvim",
 	dependencies = {
-		"nvim-lua/plenary.nvim", -- Módulo comunmente usado para la creación de plugins.
+		"nvim-lua/plenary.nvim", -- Lua Add-On For Plugin Development
 	},
 	config = function()
 		local gitsigns = require("gitsigns")

@@ -1,4 +1,4 @@
--- Añade integración con git.
+-- Adds Git Integration
 return {
 	"tpope/vim-fugitive",
 	keys = {

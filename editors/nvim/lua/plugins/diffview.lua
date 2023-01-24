@@ -1,8 +1,8 @@
--- Visor de cambios y comparación entre commits.
+-- Viewer Changes Differences
 return {
 	"sindrets/diffview.nvim",
 	dependencies = {
-		"nvim-lua/plenary.nvim",
+		"nvim-lua/plenary.nvim", -- Lua Add-On For Plugin Development
 	},
 	keys = {
 		{ "<leader><leader>dvo", "<cmd>DiffviewOpen<cr>", desc = "DiffviewOpen" },

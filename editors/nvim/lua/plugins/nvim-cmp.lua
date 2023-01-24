@@ -1,20 +1,20 @@
--- Motor de autocompletado y sugerencias de código.
+-- Autocomplete Engine And Code Hints
 return {
 	"hrsh7th/nvim-cmp",
 	event = { "BufNewFile", "BufRead", "BufAdd" },
 	dependencies = {
-		"hrsh7th/cmp-buffer", -- Extensión que sugiere palabras de los buffers.
-		"hrsh7th/cmp-cmdline", -- Extensión para que autocomplete en el cmdline de vim.
-		"hrsh7th/cmp-nvim-lsp", -- Extensión que sugiere a partir del LSP.
-		"hrsh7th/cmp-nvim-lsp-signature-help", -- Extensión que sugiere la firma de los métodos.
-		"hrsh7th/cmp-nvim-lua", -- Extensión que sugiere nativamente lua.
-		"hrsh7th/cmp-path", -- Extensión que sugiere los archivos del sistema.
-		"hrsh7th/cmp-calc", -- Extensión que permite sugerir calculos matemáticos.
-		"onsails/lspkind-nvim", -- Extensión que agrega simbolos y tipado a los tipos de autocompletado.
-		"l3mon4d3/luasnip", -- Motor de snippets.
-		"saadparwaiz1/cmp_luasnip", -- Complemento para el uso de snippets con autocompletado.
-		"rafamadriz/friendly-snippets", -- Lista de snippets basados en visual studio code.
-		"windwp/nvim-autopairs", -- Permite el autocerrado de diferentes claves.
+		"hrsh7th/cmp-buffer", -- Add-On Source For Buffer Words
+		"hrsh7th/cmp-cmdline", -- Add-On Source For Vim Command Line
+		"hrsh7th/cmp-nvim-lsp", -- Add-On Source For Built-In LSP
+		"hrsh7th/cmp-nvim-lsp-signature-help", -- Add-On Source For Displaying Functions Signatures
+		"hrsh7th/cmp-nvim-lua", -- Add-On Source For Lua API
+		"hrsh7th/cmp-path", -- Add-On Source For Filesystem Paths
+		"hrsh7th/cmp-calc", -- Add-On Source For Math Calculation
+		"onsails/lspkind-nvim", -- Adds VSCode Pictograms To Built-In LSP
+		"l3mon4d3/luasnip", -- Snippets Engine
+		"saadparwaiz1/cmp_luasnip", -- Adds Completion Of Snippets
+		"rafamadriz/friendly-snippets", -- Snippets Based On VSCode
+		"windwp/nvim-autopairs", -- Allows Autoclose Pairs From Multiple Characters
 	},
 	config = function()
 		require("alpha.cmp.cmp")

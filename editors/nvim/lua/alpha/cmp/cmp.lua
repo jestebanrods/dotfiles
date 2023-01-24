@@ -32,6 +32,11 @@ cmp.setup({
 			border = border("CmpDocBorder"),
 		},
 	},
+	performance = {
+		debounce = 40,
+		throttle = 40,
+		fetching_timeout = 300,
+	},
 	mapping = cmp.mapping.preset.insert({
 		["<C-u>"] = cmp.mapping.scroll_docs(-4),
 		["<C-d>"] = cmp.mapping.scroll_docs(4),

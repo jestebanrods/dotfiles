@@ -1,4 +1,4 @@
--- Añade indicador de indentación.
+-- Adds Indentation Guides To All Lines
 return {
 	"lukas-reineke/indent-blankline.nvim",
 	event = { "BufNewFile", "BufRead", "BufAdd" },

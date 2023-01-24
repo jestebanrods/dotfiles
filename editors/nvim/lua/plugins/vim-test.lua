@@ -1,4 +1,4 @@
--- Ejecución de baterias de tests.
+-- Execution Of Test Batteries
 return {
 	"vim-test/vim-test",
 	keys = {

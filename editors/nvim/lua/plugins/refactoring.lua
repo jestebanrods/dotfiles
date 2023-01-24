@@ -1,9 +1,9 @@
--- Supports Various Common Refactoring Operations.
+-- Supports Various Common Refactoring Operations
 return {
 	"theprimeagen/refactoring.nvim",
 	dependencies = {
-		"nvim-lua/plenary.nvim", -- Módulo comunmente usado para la creación de plugins.
-		"nvim-treesitter/nvim-treesitter", -- Resaltado de sintanxis de lenguajes de programación.
+		"nvim-lua/plenary.nvim", -- Lua Add-On For Plugin Development
+		"nvim-treesitter/nvim-treesitter", -- Builds A Concrete Syntax Tree For Source Files
 	},
 	keys = {
 		{

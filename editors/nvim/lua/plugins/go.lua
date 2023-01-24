@@ -1,9 +1,9 @@
--- Agrega herramientas para desarrollo en Go.
+-- Adds Tools For Go Development
 return {
 	"ray-x/go.nvim",
 	dependencies = {
-		"neovim/nvim-lspconfig", -- Configurador rápido de LSP.
-		"nvim-treesitter/nvim-treesitter", -- Resaltado de sintanxis de lenguajes de programación.
+		"neovim/nvim-lspconfig", -- LSP Client Quick Configurator
+		"nvim-treesitter/nvim-treesitter", -- Builds A Concrete Syntax Tree For Source Files
 	},
 	ft = { "go", "gohtml", "tmpl" },
 	config = function()

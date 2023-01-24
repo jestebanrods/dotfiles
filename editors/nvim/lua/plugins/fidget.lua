@@ -1,4 +1,4 @@
--- Visualizador de progreso de carga del LSP.
+-- LSP Loading Progress Display
 return {
 	"j-hui/fidget.nvim",
 	config = true,

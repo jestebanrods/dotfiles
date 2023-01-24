@@ -1,11 +1,10 @@
--- Resaltado de sintanxis de lenguajes de programación.
+-- Builds A Concrete Syntax Tree For Source Files
 return {
 	"nvim-treesitter/nvim-treesitter",
 	build = ":TSUpdate",
 	dependencies = {
-		"nvim-treesitter/playground", -- Extensión para analizar el arbol de sintaxis.
-		"nvim-treesitter/nvim-treesitter-textobjects", -- Extensión para la selección textos para programación.
-		"nvim-treesitter/nvim-treesitter-refactor", -- Extensión para renaming y resaltado de ocurrencias de variables.
+		"nvim-treesitter/nvim-treesitter-textobjects", -- Add-On Selection Texts For Programming
+		"nvim-treesitter/nvim-treesitter-refactor", -- Add-On For Renaming And Highlighting Variable Occurrences
 	},
 	config = function()
 		local treesitter = require("nvim-treesitter.configs")

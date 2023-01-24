@@ -1,4 +1,4 @@
--- Permite el autocerrado de diferentes claves.
+-- Allows Autoclose Pairs From Multiple Characters
 return {
 	"windwp/nvim-autopairs",
 	config = true,

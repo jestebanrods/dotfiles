@@ -1,9 +1,9 @@
--- Fuzzy Finder Window Manager.
+-- Fuzzy Finder Window Manager
 return {
 	"nvim-telescope/telescope.nvim",
 	dependencies = {
-		"nvim-lua/plenary.nvim", -- Módulo comunmente usado para la creación de plugins.
-		"nvim-telescope/telescope-file-browser.nvim", -- Extensión para listar estructura de carpetas.
+		"nvim-lua/plenary.nvim", -- Lua Add-On For Plugin Development
+		"nvim-telescope/telescope-file-browser.nvim", -- Add-On To List Folder Structure
 	},
 	config = function()
 		require("alpha.telescope.setup")

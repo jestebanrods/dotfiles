@@ -1,4 +1,4 @@
--- Themes.
+-- Theme Default
 return {
 	"ellisonleao/gruvbox.nvim",
 	init = function()

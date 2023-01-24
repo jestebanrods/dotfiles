@@ -1,8 +1,8 @@
--- Bottom Status Bar.
+-- Bottom Status Bar
 return {
 	"nvim-lualine/lualine.nvim",
 	dependencies = {
-		"kyazdani42/nvim-web-devicons", -- Agrega pack de iconos.
+		"kyazdani42/nvim-web-devicons", -- Adds Icon Packs
 	},
 	opts = {
 		sections = {

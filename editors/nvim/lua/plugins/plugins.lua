@@ -1,8 +1,5 @@
 return {
-	-- IDE
-	"tpope/vim-repeat", -- Otorga funcionalidad extra al operador de repetición punto.
-	"tpope/vim-surround", -- Añade funcionalidad para realizar operaciones al rededor de un conjunto de claves.
-
-	-- Dev Tools
-	"anuvyklack/hydra.nvim", -- Herramienta para la creación de grupos de comandos.
+	"tpope/vim-repeat", -- Gives Extra Functionality To Point Repeat Operator
+	"tpope/vim-surround", -- Adds Perform To Operations Around A Set Of Keys
+	"anuvyklack/hydra.nvim", -- Relates Commands Into A Family Short Bindings With A Common Prefix
 }

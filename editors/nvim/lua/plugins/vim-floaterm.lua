@@ -1,4 +1,4 @@
--- Visualizador de terminal en ventana flotante.
+-- Adds Terminal Display In Floating Window
 return {
 	"voldikss/vim-floaterm",
 	keys = {
