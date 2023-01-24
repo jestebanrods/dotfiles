@@ -27,7 +27,6 @@ map_tele("<leader>fwy", "find_symbol")
 map_tele("<leader>fr", "file_browser_relative")
 map_tele("<leader>fn", "file_browser")
 map_tele("<leader>fcc", "search_nvim_files")
-map_tele("<leader>cf", "flutter_commands")
 
 -- Natives
 map_tele("<leader>fs", "live_grep")
@@ -41,6 +40,7 @@ map_tele("<leader>fc", "command_history")
 map_tele("<leader>fd", "diagnostics")
 map_tele("<leader>fk", "keymaps")
 
+-- LSP
 map_tele("gd", "lsp_definitions")
 map_tele("gr", "lsp_references")
 map_tele("gi", "lsp_implementations")

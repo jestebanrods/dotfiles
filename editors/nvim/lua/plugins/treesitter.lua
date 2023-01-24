@@ -44,6 +44,10 @@ return {
 					node_decremental = "grm",
 				},
 			},
+			matchup = {
+				enable = true,
+				include_match_words = true,
+			},
 			refactor = {
 				highlight_definitions = {
 					enable = true,

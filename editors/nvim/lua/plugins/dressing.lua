@@ -2,4 +2,5 @@
 return {
 	"stevearc/dressing.nvim",
 	config = true,
+	event = { "BufNewFile", "BufRead", "BufAdd" },
 }

@@ -1,6 +1,7 @@
 -- Configurador rápido de LSP.
 return {
 	"neovim/nvim-lspconfig",
+	event = "BufReadPre",
 	dependencies = {
 		"j-hui/fidget.nvim", -- Visualizador de progreso de carga del LSP.
 		"williamboman/mason.nvim", -- Manejador de paquetes para servidores LSP, linters y formaters.

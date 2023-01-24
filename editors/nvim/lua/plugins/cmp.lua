@@ -1,6 +1,7 @@
 -- Motor de autocompletado y sugerencias de código.
 return {
 	"hrsh7th/nvim-cmp",
+	event = { "BufNewFile", "BufRead", "BufAdd" },
 	dependencies = {
 		"hrsh7th/cmp-buffer", -- Extensión que sugiere palabras de los buffers.
 		"hrsh7th/cmp-cmdline", -- Extensión para que autocomplete en el cmdline de vim.
