@@ -5,7 +5,7 @@ return {
 		"neovim/nvim-lspconfig", -- LSP Client Quick Configurator
 		"nvim-treesitter/nvim-treesitter", -- Builds A Concrete Syntax Tree For Source Files
 	},
-	ft = { "go", "gohtml", "tmpl" },
+	ft = { "go", "gohtml", "tmpl", "gohtmltmpl"},
 	config = function()
 		require("go").setup()
 	end,

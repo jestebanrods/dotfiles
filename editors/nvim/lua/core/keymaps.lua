@@ -19,8 +19,9 @@ map("n", "<A-j>", "<C-w>j")
 map("n", "<A-k>", "<C-w>k")
 map("n", "<A-l>", "<C-w>l")
 
--- Create Split Vertical
-map("n", "<A-v>", ":vertical split<CR>")
+-- Create Splits
+map("n", "<A-\\>", ":vertical split<CR>")
+map("n", "<A-->", ":split<CR>")
 
 -- Managment Tabs
 map("n", "<leader>tn", ":tabnew<CR>")

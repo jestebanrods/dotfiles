@@ -11,18 +11,20 @@ null_ls.setup({
 	debug = true,
 	sources = {
 		-- Code Actions
-		code_actions.refactoring,
-		code_actions.gomodifytags,
 		code_actions.gitsigns,
+		code_actions.gomodifytags,
+		code_actions.refactoring,
 		-- Diagnostics
 		diagnostics.golangci_lint,
 		diagnostics.phpstan,
 		-- Formattings
+		formatting.blade_formatter,
 		formatting.gofmt,
 		formatting.goimports,
-		formatting.phpcsfixer,
-		formatting.blade_formatter,
 		formatting.jq,
+		formatting.phpcsfixer,
+		formatting.shfmt,
+		formatting.sql_formatter,
 		formatting.stylua,
 	},
 })

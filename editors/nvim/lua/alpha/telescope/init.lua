@@ -63,6 +63,7 @@ function M.file_browser(opts)
 		path = opts.path,
 		sorting_strategy = "ascending",
 		scroll_strategy = "cycle",
+		grouped = true,
 		layout_config = {
 			prompt_position = "top",
 		},

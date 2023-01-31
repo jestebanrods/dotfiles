@@ -15,6 +15,7 @@ mason_lspconfig.setup({
 mason_tool_installer.setup({
 	ensure_installed = {
 		-- LSP
+		"bash-language-server",
 		"dockerfile-language-server",
 		"gopls",
 		"html-lsp",
@@ -28,6 +29,8 @@ mason_tool_installer.setup({
 		"blade-formatter",
 		"goimports",
 		"php-cs-fixer",
+		"shfmt",
+		"sql-formatter",
 		"stylua",
 		-- Linters
 		"golangci-lint",
