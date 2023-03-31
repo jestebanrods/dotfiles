@@ -32,6 +32,7 @@ mason_tool_installer.setup({
 		"shfmt",
 		"sql-formatter",
 		"stylua",
+        "prettier",
 		-- Linters
 		"golangci-lint",
 		"phpcs",

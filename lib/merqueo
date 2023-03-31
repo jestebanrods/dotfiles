@@ -12,10 +12,23 @@ function mer-user()
 
 function mer-envs()
 {
-    COMMANDS=("squad-115" "squad-116" "prod")
+    COMMANDS=("squad-102" "squad-115" "squad-116" "prod")
     ENV=$(printf "%s\n" "${COMMANDS[@]}" | fzf)
 
     export MERQUEO_ENV=$ENV
+}
+
+function mer-localpipeline()
+{
+    COMMANDS=("deploy-ec2-web" "deploy-ec2-worker" "deploy" "testing")
+    CMD=$(printf "%s\n" "${COMMANDS[@]}" | fzf)
+
+    localpipeline -runner $CMD
+}
+
+function mer-squad-102()
+{
+  export MERQUEO_ENV=squad-102
 }
 
 function mer-squad-115()

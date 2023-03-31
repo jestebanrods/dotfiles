@@ -72,28 +72,6 @@ for type, icon in pairs(signs) do
 	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 end
 
--- lspconfig.sumneko_lua.setup({
--- 	on_attach = on_attach,
--- 	flags = lsp_flags,
--- 	settings = {
--- 		Lua = {
--- 			runtime = {
--- 				version = "LuaJIT",
--- 			},
--- 			diagnostics = {
--- 				globals = { "vim" },
--- 			},
--- 			workspace = {
--- 				library = vim.api.nvim_get_runtime_file("", true),
--- 				checkThirdParty = false,
--- 			},
--- 			telemetry = {
--- 				enable = false,
--- 			},
--- 		},
--- 	},
--- })
-
 lspconfig.lua_ls.setup({
 	on_attach = on_attach,
 	flags = lsp_flags,
