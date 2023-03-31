@@ -14,6 +14,21 @@ function m-git-delete()
     fi
 }
 
+function m-git-user()
+{
+    COMMANDS=("personal" "merqueo")
+    ENV=$(printf "%s\n" "${COMMANDS[@]}" | fzf)
+
+    git config --global core.editor nvim
+    git config --global user.name "Jossie Esteban Rodriguez Salazar"
+
+    if [[ "$ENV" = "personal" ]]; then
+        git config user.email "jestebanrods@gmail.com"
+    else
+        git config user.email "jerodriguez@merqueo.com"
+    fi
+}
+
 # Cambiar de rama desde seleccion o directamente
 function m-git-switch()
 {
