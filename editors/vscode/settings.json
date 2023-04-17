@@ -14,5 +14,8 @@
     "task.autoDetect": "off",
     "workbench.startupEditor": "none",
     "extensions.ignoreRecommendations": true,
-    "diffEditor.ignoreTrimWhitespace": false
+    "diffEditor.ignoreTrimWhitespace": false,
+    "[python]": {
+        "editor.formatOnType": true
+    }
 }

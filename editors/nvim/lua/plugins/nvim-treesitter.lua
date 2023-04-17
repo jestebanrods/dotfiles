@@ -22,6 +22,7 @@ return {
 				"typescript",
 				"yaml",
 				"query",
+                "sql",
 			},
 			sync_install = false,
 			auto_install = true,

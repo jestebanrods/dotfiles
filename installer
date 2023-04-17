@@ -32,6 +32,7 @@ ln -sf $MDOT_BIN/editors/vscode/tasks.json $HOME/.config/Code/User/tasks.json
 ln -sf $MDOT_BIN/editors/vscode/keybindings.json $HOME/.config/Code/User/keybindings.json
 ln -sf $MDOT_BIN/editors/vscode/snippets $HOME/.config/Code/User/snippets
 ln -sf $MDOT_BIN/shell/tmux/.tmux.conf $HOME/.tmux.conf
+ln -sf $MDOT_BIN/shell/wezterm/.wezterm.lua $HOME/.wezterm.lua
 ln -sf $MDOT_BIN/shell/kitty $HOME/.config/kitty
 
 # code --list-extensions | xargs -L 1 echo code --install-extension
