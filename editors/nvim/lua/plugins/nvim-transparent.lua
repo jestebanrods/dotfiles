@@ -12,5 +12,5 @@ return {
 			"BufferLineIndicatorSelected",
 		},
 	},
-	-- cmd = "TransparentEnable",
+	cmd = "TransparentEnable",
 }

@@ -1,21 +1,27 @@
 {
+    // Native
     "editor.fontFamily": "JetBrainsMono Nerd Font, Hasklug Nerd Font Mono",
     "editor.fontWeight": "600",
     "editor.fontLigatures": true,
     "editor.fontSize": 14,
+    "editor.formatOnPaste": false,
+    "editor.suggestSelection": "first",
+    "editor.tabSize": 4,
+    "editor.wordWrap": "off",
+    "explorer.confirmDelete": false,
+    "explorer.confirmDragAndDrop": false,
+    "explorer.excludeGitIgnore": false,
+    "search.useGlobalIgnoreFiles": true,
+    "search.useIgnoreFiles": true,
+    "files.autoSave": "onFocusChange",
+    "files.eol": "\n",
+    // Plugins
     "workbench.iconTheme": "file-icons",
     "php-docblocker.returnGap": true,
     "php-docblocker.useShortNames": true,
-    "typescript.tsc.autoDetect": "off",
-    "grunt.autoDetect": "off",
-    "jake.autoDetect": "off",
-    "gulp.autoDetect": "off",
-    "npm.autoDetect": "off",
-    "task.autoDetect": "off",
     "workbench.startupEditor": "none",
     "extensions.ignoreRecommendations": true,
     "diffEditor.ignoreTrimWhitespace": false,
-    "[python]": {
-        "editor.formatOnType": true
-    }
+    "focus.opacity": "0.7",
+    "focus.highlightRange": "block"
 }

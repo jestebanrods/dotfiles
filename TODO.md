@@ -8,6 +8,16 @@
 * cargo
 * ripgrep
 
+### Maquinas Virtuales
+
+* cpu-checker
+* qemu-kvm
+* virt-manager
+* virtinst
+* libvirt-clients
+* bridge-utils
+* libvirt-daemon-system
+
 ## Automatizaciónes
 
 * Definir que proyecto se despliega primero, en teoría debe ser developertools.
