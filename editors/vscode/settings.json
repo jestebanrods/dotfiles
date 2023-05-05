@@ -23,5 +23,15 @@
     "extensions.ignoreRecommendations": true,
     "diffEditor.ignoreTrimWhitespace": false,
     "focus.opacity": "0.7",
-    "focus.highlightRange": "block"
+    "focus.highlightRange": "block",
+    "luahelper.format.align_args": true,
+    "luahelper.format.align_parameter": true,
+    "luahelper.format.break_after_functioncall_lp": true,
+    "luahelper.format.break_after_functiondef_lp": true,
+    "luahelper.format.break_after_table_lb": true,
+    "luahelper.format.break_before_functioncall_rp": true,
+    "luahelper.format.break_before_functiondef_rp": true,
+    "luahelper.format.break_before_table_rb": true,
+    "luahelper.format.chop_down_parameter": true,
+    "luahelper.format.chop_down_table": true
 }

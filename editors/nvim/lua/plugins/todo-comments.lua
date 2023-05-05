@@ -1,7 +1,6 @@
+-- Highlight Comments.
 return {
-	"folke/todo-comments.nvim",
-	dependencies = "nvim-lua/plenary.nvim",
-	config = {
-		signs = true,
-	},
+    "folke/todo-comments.nvim",
+    dependencies = "nvim-lua/plenary.nvim",
+    config = true
 }

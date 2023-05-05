@@ -1,38 +1,54 @@
-local map = vim.keymap.set
+-- Functional wrapper for mapping custom keybindings.
+function map(mode, lhs, rhs, opts)
+    local options = {
+        noremap = true
+    }
 
--- Reload File
-map("n", "<leader><leader>f", "<cmd>source %<CR>")
+    if opts then
+        options = vim.tbl_extend("force", options, opts)
+    end
 
--- Disable/Enable Diagnostic Text
-map("n", "<leader>dd", function()
-	vim.diagnostic.config({
-		virtual_text = not vim.diagnostic.config().virtual_text,
-	})
-end)
+    vim.api.nvim_set_keymap(mode, lhs, rhs, options)
+end
 
--- Delete Buffer
-map("n", "bd", ":bd!<CR>")
+-- vim.keymap.set("n", "<Leader>cn", change_scheme)
 
--- Easy Moving Between Buffers
+local symbols = {
+    ",",
+    ".",
+    "!",
+    "?",
+    "$",
+    ">",
+    "<"
+}
+
+-- Symbols Undo Points
+for _, symbol in pairs(symbols) do
+    map("i", symbol, symbol .. "<c-g>u")
+end
+
+-- Buffers
+map("n", "<leader>ba", ":e#<cr>")
+map("n", "<leader>bn", ":bnext<cr>")
+map("n", "<leader>bp", ":bprevious<cr>")
+map("n", "<leader>bd", ":bd!<cr>")
+
+-- Windows
 map("n", "<A-h>", "<C-w>h")
 map("n", "<A-j>", "<C-w>j")
 map("n", "<A-k>", "<C-w>k")
 map("n", "<A-l>", "<C-w>l")
+map("n", "<A-9>", "<C-w>>")
+map("n", "<A-0>", "<C-w><")
 
--- Create Splits
-map("n", "<A-\\>", ":vertical split<CR>")
-map("n", "<A-->", ":split<CR>")
+-- Splits
+map("n", "<A-\\>", ":vertical split<cr>")
+map("n", "<A-->", ":split<cr>")
 
--- Managment Tabs
-map("n", "<leader>tn", ":tabnew<CR>")
-map("n", "<A-;>", ":tabnext<CR>")
-
--- Symbols Undo Points
-local symbols = { ",", ".", "!", "?", "$", ">", "<" }
-
-for _, symbol in pairs(symbols) do
-	map("i", symbol, symbol .. "<c-g>u")
-end
+-- Tabs
+map("n", "<leader>tn", ":tabnew<cr>")
+map("n", "<A-;>", ":tabnext<cr>")
 
 -- Tabulation
 map("v", "<", "<gv")
@@ -44,3 +60,6 @@ map("n", "gg", "gg0")
 -- Search Result Focus
 map("n", "n", "nzzzv")
 map("n", "N", "Nzzzv")
+
+-- Marks
+map("n", "dam", ":delmarks a-zA-Z0-9<cr>")
