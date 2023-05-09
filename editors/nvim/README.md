@@ -83,3 +83,27 @@
 | Normal  | `dm{@}` | Borrar marca para el caracter seleccionado.    |
 | Normal  |  `dm-`  | Borrar marca de la linea actual.               |
 | Normal  |  `dam`  | Borrar todas las marcas.                       |
+
+### Lua
+
+| VI Mode |            Keymap            | Description                                       |
+| :-----: | :--------------------------: | ------------------------------------------------- |
+| Normal  | `<leader>` + `r` + `l` + `f` | Recargar un archivo tipo lua en la configuración. |
+
+### Move
+
+| VI Mode |    Keymap     | Description                                      |
+| :-----: | :-----------: | ------------------------------------------------ |
+| Visual  | `<Alt>` + `h` | Mover el código seleccionado hacia la derecha.   |
+| Visual  | `<Alt>` + `j` | Mover el código seleccionado hacia abajo.        |
+| Visual  | `<Alt>` + `k` | Mover el código seleccionado hacia arriba.       |
+| Visual  | `<Alt>` + `l` | Mover el código seleccionado hacia la izquierda. |
+
+### Selection
+
+| VI Mode |     Keymap      | Description                            |
+| :-----: | :-------------: | -------------------------------------- |
+| Normal  | `g` + `n` + `n` | Iniciar la selección.                  |
+| Visual  | `g` + `n` + `n` | Ampliar la selección.                  |
+| Visual  | `g` + `n` + `z` | Disminuir la selección.                |
+| Visual  | `g` + `n` + `s` | Aumentar la selección a todo el scope. |

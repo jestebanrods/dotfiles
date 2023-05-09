@@ -1,7 +1,7 @@
 -- Bottom Status Bar.
 local function split(str, character)
-    result = {}
-    index = 0
+    local result = {}
+    local index = 0
 
     for s in string.gmatch(str, "[^" .. character .. "]+") do
         result[index] = s
@@ -11,7 +11,7 @@ local function split(str, character)
     return result
 end
 
-local function folder_name(path)
+local function folder_name()
     local path = vim.fn.getcwd()
     local explode = split(path, "/")
 

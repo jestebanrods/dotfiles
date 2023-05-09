@@ -86,12 +86,8 @@ return {
         }
     },
     init = function()
-        vim.api.nvim_create_autocmd(
-            {
-                "VimEnter"
-            }, {
-                callback = auto_open_tree
-            }
-        )
+        vim.api.nvim_create_autocmd("VimEnter", {
+            callback = auto_open_tree
+        })
     end
 }

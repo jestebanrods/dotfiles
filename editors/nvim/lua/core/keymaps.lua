@@ -1,5 +1,5 @@
--- Functional wrapper for mapping custom keybindings.
-function map(mode, lhs, rhs, opts)
+-- Basic Mapping Custom Keybindings.
+local function map(mode, lhs, rhs, opts)
     local options = {
         noremap = true
     }
@@ -11,7 +11,10 @@ function map(mode, lhs, rhs, opts)
     vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
--- vim.keymap.set("n", "<Leader>cn", change_scheme)
+-- Callback Mapping Custom Keybindings.
+local function mapCallback(mode, lhs, call)
+    vim.keymap.set(mode, lhs, call)
+end
 
 local symbols = {
     ",",
@@ -63,3 +66,6 @@ map("n", "N", "Nzzzv")
 
 -- Marks
 map("n", "dam", ":delmarks a-zA-Z0-9<cr>")
+
+-- Lua
+map("n", "<leader>rlf", ":luafile %<cr>")

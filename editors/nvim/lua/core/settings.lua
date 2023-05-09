@@ -1,6 +1,28 @@
+vim.g.loaded_netrw = 1
 vim.g.mapleader = " "
 
-vim.g.loaded_netrw = 1
+vim.opt.autoindent = true
+vim.opt.autowrite = true
+vim.opt.clipboard = "unnamedplus"
+vim.opt.cmdheight = 1
+vim.opt.colorcolumn = "120"
+vim.opt.cursorline = false
+vim.opt.expandtab = false
+vim.opt.foldcolumn = "0"
+vim.opt.hidden = true
+vim.opt.ignorecase = true
+vim.opt.list = true
+vim.opt.listchars = "tab:\\ ,trail:-"
+vim.opt.number = true
+vim.opt.relativenumber = true
+vim.opt.scroll = 4
+vim.opt.sidescrolloff = 4
+vim.opt.smartcase = true
+vim.opt.splitbelow = true
+vim.opt.splitright = true
+vim.opt.tabstop = 4
 vim.opt.termguicolors = true
-
--- vim.cmd "set foldcolumn=1"
+vim.opt.undodir = os.getenv("HOME") .. "/.cache/nvim/undodir"
+vim.opt.undofile = true
+vim.opt.updatetime = 500
+vim.opt.wrap = false
