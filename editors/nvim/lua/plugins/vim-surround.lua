@@ -1,4 +1,5 @@
 -- Replace Surroundings In Pairs.
 return {
-    "tpope/vim-surround"
+    "tpope/vim-surround",
+    event = { "BufNewFile", "BufRead", "BufAdd" },
 }

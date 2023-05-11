@@ -107,3 +107,9 @@
 | Visual  | `g` + `n` + `n` | Ampliar la selección.                  |
 | Visual  | `g` + `n` + `z` | Disminuir la selección.                |
 | Visual  | `g` + `n` + `s` | Aumentar la selección a todo el scope. |
+
+### Git
+
+| VI Mode |            Keymap            | Description                                           |
+| :-----: | :--------------------------: | ----------------------------------------------------- |
+| Normal  | `<leader>` + `g` + `c` + `b` | Mostrar el responsable del commit en la línea actual. |

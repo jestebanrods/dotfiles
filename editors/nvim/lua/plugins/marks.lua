@@ -1,6 +1,7 @@
 -- Marks Visualizer.
 return {
     "chentoast/marks.nvim",
+    event = { "BufNewFile", "BufRead", "BufAdd" },
     opts = {
         excluded_filetypes = {
             "NvimTree"

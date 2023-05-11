@@ -21,7 +21,7 @@ end
 return {
     "nvim-lualine/lualine.nvim",
     dependencies = {
-        "nvim-tree/nvim-web-devicons"
+        "nvim-tree/nvim-web-devicons",
     },
     opts = {
         options = {
@@ -37,7 +37,7 @@ return {
             }
         },
         sections = {
-            lualine_c = {}
+            lualine_c = {},
         },
         tabline = {},
         winbar = {
