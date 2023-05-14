@@ -113,3 +113,39 @@
 | VI Mode |            Keymap            | Description                                           |
 | :-----: | :--------------------------: | ----------------------------------------------------- |
 | Normal  | `<leader>` + `g` + `c` + `b` | Mostrar el responsable del commit en la línea actual. |
+
+### Diagnostics
+
+| VI Mode |     Keymap      | Description                               |
+| :-----: | :-------------: | ----------------------------------------- |
+| Normal  | `<space>` + `e` | Abre la ventana flotante de diagnosticos. |
+| Normal  |    `[` + `d`    | Ir al siguiente diagnostico.              |
+| Normal  |    `]` + `d`    | Ir al anterior diagnostico.               |
+| Normal  | `<space>` + `q` | Abre la lista resúmen de diagnosticos.    |
+
+### LSP
+
+|    VI Mode     |      Keymap      | Description                                              |
+| :------------: | :--------------: | -------------------------------------------------------- |
+|     Normal     |    `g` + `D`     | Ir a la declaración.                                     |
+|     Normal     |    `g` + `d`     | Ir a la definición.                                      |
+|     Normal     |       `K`        | Abre la ventaba equivalente al hover informativo.        |
+|     Normal     |    `g` + `i`     | Busca las implementaciones.                              |
+|     Normal     |   `Ctrl` + `k`   | Abre la ayuda sobre la firma de un método.               |
+|     Normal     | `<space>` + `D`  | Ir al tipo de la definición.                             |
+|     Normal     | `<space>` + `rn` | Renombrar.                                               |
+| Normal, Visual | `<space>` + `ca` | Abrir el ménu acciones de recomendaciones o sugerencias. |
+|     Normal     |    `g` + `r`     | Buscar las referencias.                                  |
+|     Normal     | `<space>` + `f`  | Formatear el código.                                     |
+
+
+### CMP
+
+| VI Mode |       Keymap       | Description                              |
+| :-----: | :----------------: | ---------------------------------------- |
+| Insert  | `Ctrl` + `<space>` | Abrir el menú de autocompletado.         |
+| Insert  |    `Ctrl` + `e`    | Cerrar menú de autocompletado.           |
+| Insert  |       `Tab`        | Autocompletar al siguiente en la lista.  |
+| Insert  |   `Shift`+`Tab`    | Autocompletar el anterior en la lista.   |
+| Insert  |    `Ctrl` + `k`    | Ir a la siguiente sección de un snippet. |
+| Insert  |    `Ctrl` + `j`    | Ir a la sección anterior de un snippet.  |

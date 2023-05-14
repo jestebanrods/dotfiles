@@ -2,5 +2,7 @@
 return {
 	"windwp/nvim-autopairs",
 	event = { "BufNewFile", "BufRead", "BufAdd" },
-	config = true,
+	opts = {
+		disable_filetype = { "NvimTree" },
+	}
 }

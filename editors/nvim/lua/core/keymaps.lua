@@ -12,8 +12,8 @@ local function map(mode, lhs, rhs, opts)
 end
 
 -- Callback Mapping Custom Keybindings.
-local function mapCallback(mode, lhs, call)
-    vim.keymap.set(mode, lhs, call)
+local function mapCallback(mode, lhs, call, opts)
+    vim.keymap.set(mode, lhs, call, opts)
 end
 
 local symbols = {

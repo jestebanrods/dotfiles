@@ -19,7 +19,7 @@ function m-git-user()
     COMMANDS=("personal" "merqueo")
     ENV=$(printf "%s\n" "${COMMANDS[@]}" | fzf)
 
-    git config --global core.editor nvim
+    git config --global core.editor vim
     git config --global user.name "Jossie Esteban Rodriguez Salazar"
 
     if [[ "$ENV" = "personal" ]]; then
@@ -27,6 +27,11 @@ function m-git-user()
     else
         git config user.email "jerodriguez@merqueo.com"
     fi
+}
+
+function m-git-ignore()
+{
+		git config --global core.excludesFile "$MDOT_BIN/configs/git/.gitignore"
 }
 
 # Cambiar de rama desde seleccion o directamente
