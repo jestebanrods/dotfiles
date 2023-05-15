@@ -138,7 +138,6 @@
 |     Normal     |    `g` + `r`     | Buscar las referencias.                                  |
 |     Normal     | `<space>` + `f`  | Formatear el código.                                     |
 
-
 ### CMP
 
 | VI Mode |       Keymap       | Description                              |
@@ -149,3 +148,54 @@
 | Insert  |   `Shift`+`Tab`    | Autocompletar el anterior en la lista.   |
 | Insert  |    `Ctrl` + `k`    | Ir a la siguiente sección de un snippet. |
 | Insert  |    `Ctrl` + `j`    | Ir a la sección anterior de un snippet.  |
+
+### Telescope Window
+
+| VI Mode |    Keymap    | Description                                                  |
+| :-----: | :----------: | ------------------------------------------------------------ |
+| Normal  | `Ctrl` + `x` | Abrir archivo en un buffer dividido horizontal.              |
+| Normal  | `Ctrl` + `v` | Abrir archivo en un buffer dividido vertical.                |
+| Normal  | `Ctrl` + `u` | Hacer scroll hacia arriba en la ventana de previsualización. |
+| Normal  | `Ctrl` + `d` | Hacer scroll hacia abajo en la ventana de previsualización.  |
+
+### Telescope
+
+| VI Mode |              Keymap              | Description                                                  |
+| :-----: | :------------------------------: | ------------------------------------------------------------ |
+| Normal  |           `Ctrl` + `x`           | Abrir archivo en un buffer dividido horizontal.              |
+| Normal  |           `Ctrl` + `v`           | Abrir archivo en un buffer dividido vertical.                |
+| Normal  |           `Ctrl` + `u`           | Hacer scroll hacia arriba en la ventana de previsualización. |
+| Normal  |           `Ctrl` + `d`           | Hacer scroll hacia abajo en la ventana de previsualización.  |
+| Normal  |      `<leader>` + `f` + `f`      | Abrir buscador de archivos.                                  |
+| Normal  |      `<leader>` + `f` + `a`      | Abrir buscador de archivos listados en git.                  |
+| Normal  |      `<leader>` + `f` + `z`      | Buscar a partir de la palabra en el cursor.                  |
+| Normal  |      `<leader>` + `f` + `s`      | Realizar búsqueda de palabras en todo el proyecto.           |
+| Normal  |      `<leader>` + `f` + `b`      | Listado de buffers abiertos.                                 |
+| Normal  |      `<leader>` + `f` + `e`      | Listado de archivos abiertos recientemente.                  |
+| Normal  |      `<leader>` + `f` + `c`      | Listado de comandos de nvim.                                 |
+| Normal  |   `<leader>` + `f` + `c` + `h`   | Listado del historial de comandos usados.                    |
+| Normal  |   `<leader>` + `f` + `s` + `h`   | Listado del historial de busquedas.                          |
+| Normal  |      `<leader>` + `f` + `h`      | Búsqueda de ayuda.                                           |
+| Normal  |      `<leader>` + `f` + `m`      | Listado de marcas.                                           |
+| Normal  |   `<leader>` + `f` + `k` + `m`   | Listado de atajos de teclado.                                |
+| Normal  |   `<leader>` + `f` + `t` + `p`   | Listado de todos los tipos de archivos.                      |
+| Normal  |   `<leader>` + `f` + `s` + `b`   | Abrir búscador de palabras en el buffer abierto.             |
+| Normal  |      `<leader>` + `f` + `d`      | Listado de diagnosticos.                                     |
+| Normal  | `<leader>` + `f` + `g` +`a` +`c` | Listado de todos los commits.                                |
+| Normal  |   `<leader>` + `f` + `g` +`c`    | Listado de commits involucrados en al buffer abierto.        |
+| Normal  |      `<leader>` + `f` + `s`      | Listado del estado de archivos en git.                       |
+| Normal  |      `<leader>` + `f` + `b`      | Listado del ramas en git.                                    |
+| Normal  |      `<leader>` + `f` + `y`      | Listado simbolos de un buffer.                               |
+| Normal  |      `<leader>` + `l` + `r`      | Lista y recarga el módulo de lua seleccionado.               |
+| Normal  |      `<leader>` + `f` + `r`      | Listado de archivos del directorio del buffer actual.        |
+| Normal  |   `<leader>` + `f` + `d` + `n`   | Listado de archivos de configuración de nvim.                |
+| Normal  |      `<leader>` + `f` + `n`      | Listado de archivos del proyecto.                            |
+
+### Tests
+
+| VI Mode |            Keymap            | Description                        |
+| :-----: | :--------------------------: | ---------------------------------- |
+| Normal  |       `<leader>` + `T`       | Ejecutar testcase mas cercano.     |
+| Normal  |    `<leader>` + `t` + `f`    | Ejecutar tests de todo el archivo. |
+| Normal  |    `<leader>` + `t` + `l`    | Ejecutar el último test ejecutado. |
+| Normal  | `<leader>` + `t` + `c` + `c` | Visualizar code coverage.          |

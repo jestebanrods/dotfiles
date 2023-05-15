@@ -7,6 +7,12 @@
 * xclip
 * cargo
 * ripgrep
+* lua5.3
+* lua-nvim-dev
+* lua-nvim
+* python3.8-venv
+* ripgrep
+* fd-find
 
 ### Maquinas Virtuales
 

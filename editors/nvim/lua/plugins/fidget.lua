@@ -13,14 +13,14 @@ return {
 		},
 		fmt = {
 			fidget = function(fidget_name, spinner)
-				return string.format("%s %s ", spinner, string.upper(fidget_name))
+				return string.format("%s %s", spinner, fidget_name)
 			end,
 			task = function(task_name, message, percentage)
 				return string.format(
-					"%s%s [%s] ",
+					"%s%s [%s]",
 					message,
 					percentage and string.format(" (%s%%)", percentage) or "",
-					string.upper(task_name)
+					task_name
 				)
 			end,
 		},

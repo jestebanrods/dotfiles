@@ -1,6 +1,7 @@
 -- Adds Terminal Display In Floating Window.
 return {
     "voldikss/vim-floaterm",
+    cmd = "FloatermNew",
     keys = {
         {
             "``",

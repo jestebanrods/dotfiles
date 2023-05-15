@@ -8,7 +8,12 @@ vim.api.nvim_create_autocmd("VimResized", {
 -- Quick Close Filetypes.
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = {
-		"qf"
+		"qf",
+		"help",
+		"man",
+		"notify",
+		"lspinfo",
+		"startuptime",
 	},
 	callback = function(event)
 		vim.bo[event.buf].buflisted = false
