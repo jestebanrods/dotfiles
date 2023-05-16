@@ -6,25 +6,25 @@ return {
 			"<A-h>",
 			"<plug>MoveBlockLeft",
 			desc = "Move Block Left",
-			mode = "v"
+			mode = "v",
 		},
 		{
 			"<A-j>",
 			"<plug>MoveBlockDown",
 			desc = "Move Block Down",
-			mode = "v"
+			mode = "v",
 		},
 		{
 			"<A-k>",
 			"<plug>MoveBlockUp",
 			desc = "Move Block Up",
-			mode = "v"
+			mode = "v",
 		},
 		{
 			"<A-l>",
 			"<plug>MoveBlockRight",
 			desc = "Move Block Right",
-			mode = "v"
+			mode = "v",
 		},
 	},
 	init = function()

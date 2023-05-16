@@ -4,5 +4,5 @@ return {
 	event = { "BufNewFile", "BufRead", "BufAdd" },
 	opts = {
 		disable_filetype = { "NvimTree" },
-	}
+	},
 }

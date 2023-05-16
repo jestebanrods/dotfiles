@@ -10,7 +10,7 @@ local options = {
 	hidden = true,
 	ignorecase = true,
 	list = true,
-	listchars = { tab = '‣·', trail = '·' },
+	listchars = { tab = "‣·", trail = "·" },
 	shiftwidth = 4,
 	softtabstop = 4,
 	number = true,

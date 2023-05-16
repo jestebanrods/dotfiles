@@ -1,29 +1,29 @@
 -- Basic Mapping Custom Keybindings.
 local function map(mode, lhs, rhs, opts)
-    local options = {
-        noremap = true
-    }
+	local options = {
+		noremap = true,
+	}
 
-    if opts then
-        options = vim.tbl_extend("force", options, opts)
-    end
+	if opts then
+		options = vim.tbl_extend("force", options, opts)
+	end
 
-    vim.keymap.set(mode, lhs, rhs, options)
+	vim.keymap.set(mode, lhs, rhs, options)
 end
 
 local symbols = {
-    ",",
-    ".",
-    "!",
-    "?",
-    "$",
-    ">",
-    "<"
+	",",
+	".",
+	"!",
+	"?",
+	"$",
+	">",
+	"<",
 }
 
 -- Symbols Undo Points
 for _, symbol in pairs(symbols) do
-    map("i", symbol, symbol .. "<c-g>u")
+	map("i", symbol, symbol .. "<c-g>u")
 end
 
 -- Buffers
@@ -41,8 +41,8 @@ map("n", "<A-9>", "<C-w>>")
 map("n", "<A-0>", "<C-w><")
 
 -- Change To Right Vertial Split
-map('n', '<leader><leader>l', function()
-    vim.cmd.wincmd('L')
+map("n", "<leader><leader>l", function()
+	vim.cmd.wincmd("L")
 end)
 
 -- Splits
