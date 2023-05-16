@@ -1,3 +1,4 @@
+-- Autoinstaller Mason Tools.
 return {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
     opts = {

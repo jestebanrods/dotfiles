@@ -1,4 +1,4 @@
---.
+-- Improves Languages Syntax.
 return {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",

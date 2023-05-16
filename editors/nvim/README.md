@@ -199,3 +199,10 @@
 | Normal  |    `<leader>` + `t` + `f`    | Ejecutar tests de todo el archivo. |
 | Normal  |    `<leader>` + `t` + `l`    | Ejecutar el último test ejecutado. |
 | Normal  | `<leader>` + `t` + `c` + `c` | Visualizar code coverage.          |
+
+### REST Client
+
+| VI Mode |              Keymap               | Description                                     |
+| :-----: | :-------------------------------: | ----------------------------------------------- |
+| Normal  | `<leader>` +`<leader>`+ `r` + `n` | Ejecutar la petición http donde esté el cursor. |
+| Normal  | `<leader>` + `<leader>`+`r` + `l` | Ejecutar la última petición http ejecutada.     |

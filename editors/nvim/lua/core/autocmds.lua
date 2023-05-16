@@ -27,3 +27,11 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 		vim.cmd([[%s/\s\+$//e]])
 	end,
 })
+
+-- Change Filetype To HTML For Better Highlight Syntax.
+vim.api.nvim_create_autocmd({ 'BufWinEnter' }, {
+	pattern = { '*.tmpl', '*.tpl', '*.gohtml' },
+	callback = function()
+		vim.api.nvim_command('set filetype=html')
+	end,
+})

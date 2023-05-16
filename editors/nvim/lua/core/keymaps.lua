@@ -8,12 +8,7 @@ local function map(mode, lhs, rhs, opts)
         options = vim.tbl_extend("force", options, opts)
     end
 
-    vim.api.nvim_set_keymap(mode, lhs, rhs, options)
-end
-
--- Callback Mapping Custom Keybindings.
-local function mapCallback(mode, lhs, call, opts)
-    vim.keymap.set(mode, lhs, call, opts)
+    vim.keymap.set(mode, lhs, rhs, options)
 end
 
 local symbols = {
@@ -44,6 +39,11 @@ map("n", "<A-k>", "<C-w>k")
 map("n", "<A-l>", "<C-w>l")
 map("n", "<A-9>", "<C-w>>")
 map("n", "<A-0>", "<C-w><")
+
+-- Change To Right Vertial Split
+map('n', '<leader><leader>l', function()
+    vim.cmd.wincmd('L')
+end)
 
 -- Splits
 map("n", "<A-\\>", ":vertical split<cr>")

@@ -1,3 +1,4 @@
+-- Adds Coverage Signs.
 return {
     "andythigpen/nvim-coverage",
     dependencies = {
