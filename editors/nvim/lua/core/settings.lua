@@ -12,7 +12,10 @@ vim.opt.foldcolumn = "0"
 vim.opt.hidden = true
 vim.opt.ignorecase = true
 vim.opt.list = true
-vim.opt.listchars = "tab:\\ ,trail:-"
+vim.opt.listchars = { tab = '‣·', trail = '·' }
+vim.opt.shiftwidth = 4
+vim.opt.softtabstop = 4
+vim.opt.tabstop = 4
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.scroll = 4

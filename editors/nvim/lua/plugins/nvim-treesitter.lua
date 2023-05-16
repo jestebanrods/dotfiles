@@ -13,6 +13,7 @@ return {
                 "gitattributes",
                 "gitignore",
                 "go",
+                "gomod",
                 "html",
                 "http",
                 "javascript",
