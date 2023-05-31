@@ -44,6 +44,14 @@ return {
 		local lspconfig = require("lspconfig")
 		local servers = require("core.lsp-servers")
 
+		-- TODO: Improves LSP Attachs To External Files.
+		require("flutter-tools").setup({
+			lsp = {
+				on_attach = on_attach,
+				capabilities = capabilities,
+			}
+		})
+
 		-- Config Servers.
 		for _, serve in ipairs(servers) do
 			lspconfig[serve].setup({

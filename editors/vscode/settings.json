@@ -33,5 +33,17 @@
     "luahelper.format.break_before_functiondef_rp": true,
     "luahelper.format.break_before_table_rb": true,
     "luahelper.format.chop_down_parameter": true,
-    "luahelper.format.chop_down_table": true
+    "luahelper.format.chop_down_table": true,
+    "[dart]": {
+        "editor.formatOnSave": true,
+        "editor.formatOnType": true,
+        "editor.rulers": [
+            80
+        ],
+        "editor.selectionHighlight": false,
+        "editor.suggest.snippetsPreventQuickSuggestions": false,
+        "editor.suggestSelection": "first",
+        "editor.tabCompletion": "onlySnippets",
+        "editor.wordBasedSuggestions": false
+    }
 }
