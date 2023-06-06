@@ -11,7 +11,7 @@ return {
 		},
 		select = {
 			enabled = true,
-			backend = { "builtin", "telescope" },
+			backend = { "telescope", "builtin" },
 			builtin = {
 				relative = "cursor",
 				title_pos = "left",

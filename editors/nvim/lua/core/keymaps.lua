@@ -39,6 +39,8 @@ map("n", "<A-k>", "<C-w>k")
 map("n", "<A-l>", "<C-w>l")
 map("n", "<A-9>", "<C-w>>")
 map("n", "<A-0>", "<C-w><")
+map("n", "<leader>wc", "<C-w>c<cr>")
+map("n", "<leader>wo", "<C-w>o<cr>")
 
 -- Change To Right Vertial Split
 map("n", "<leader><leader>l", function()

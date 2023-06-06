@@ -73,7 +73,6 @@ return {
 					mappings = {
 						["i"] = {
 							["<C-p>"] = action_layout.toggle_preview,
-							["<C-y>"] = fb_actions.create,
 						},
 					},
 				},
@@ -132,12 +131,18 @@ return {
 			extensions.file_browser.file_browser({ path = "%:p:h" })
 		end
 
+		local function flutter_commands()
+			extensions.flutter.commands()
+		end
+
 		vim.keymap.set("n", "<leader>fr", buffer_browser, {})
+		vim.keymap.set("n", "<leader><leader>fc", flutter_commands, {})
 		vim.keymap.set("n", "<leader>fdn", search_nvim_files, {})
 		vim.keymap.set("n", "<leader>fn", extensions.file_browser.file_browser, {})
 
 		-- Load Extensions.
 		require("telescope").load_extension("fzf")
 		require("telescope").load_extension("file_browser")
+		require("telescope").load_extension("flutter")
 	end,
 }
