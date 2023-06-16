@@ -21,7 +21,7 @@ return {
 	},
 	opts = {
 		options = {
-			transparent = true,
+			transparent = false,
 			styles = {
 				comments = "italic",
 				functions = "italic,bold",

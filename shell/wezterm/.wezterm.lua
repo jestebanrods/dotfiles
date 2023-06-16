@@ -29,8 +29,8 @@ local config = {
 	line_height = 1.0,
 	use_fancy_tab_bar = false,
 	use_resize_increments = true,
-	window_background_opacity = 0.95,
-	window_padding = { left = 18, right = 18, top = 18, bottom = 18 },
+	window_background_opacity = 1.0,
+	window_padding = { left = 8, right = 5, top = 8, bottom = 8 },
 }
 
 return config

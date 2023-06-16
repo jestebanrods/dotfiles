@@ -45,5 +45,6 @@
         "editor.suggestSelection": "first",
         "editor.tabCompletion": "onlySnippets",
         "editor.wordBasedSuggestions": false
-    }
+    },
+    "security.workspace.trust.untrustedFiles": "open"
 }
