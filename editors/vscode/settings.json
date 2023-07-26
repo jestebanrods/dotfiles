@@ -15,8 +15,6 @@
     "search.useIgnoreFiles": true,
     "files.autoSave": "onFocusChange",
     "files.eol": "\n",
-    // Plugins
-    "workbench.iconTheme": "file-icons",
     "php-docblocker.returnGap": true,
     "php-docblocker.useShortNames": true,
     "workbench.startupEditor": "none",

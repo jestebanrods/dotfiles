@@ -1,13 +1,10 @@
-#!/usr/bin/env bash
-
-export GOPATH="$HOME/go"
-
-export INFRASTRUCTURE_REPO_PATH=/home/jerodriguez/Documents/Code/merqueo/repos/infrastructure
-# export MERQUEO_ENV=squad-116
+#!/bin/bash
 
 export NVM_DIR="/usr/local/nvm"
    [ -s "/opt/nvm/nvm.sh" ] && \. "/opt/nvm/nvm.sh"
    [ -s "/opt/nvm/bash_completion" ] && \. "/opt/nvm/bash_completion"
+
+export GOPATH="$HOME/go"
 
 export PATH="$HOME/.config/composer/vendor/bin:$PATH"
 

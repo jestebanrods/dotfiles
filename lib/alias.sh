@@ -1,7 +1,6 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
-alias ..="cd .."
-alias ...="cd ../.."
+# $PWD=$(pwd)
 
 # Git
 alias gits='git status'
@@ -16,8 +15,8 @@ alias gitfp='git fetch origin --prune'
 
 # Utils
 alias k='kill -9'
-alias i.="(idea $PWD &>/dev/null &)"
-alias c.="(code $PWD &>/dev/null &)"
+# alias i.="(idea $PWD &>/dev/null &)"
+# alias c.="(code $PWD &>/dev/null &)"
 alias o.='open .'
 alias up='dot package update_all'
 
@@ -34,9 +33,9 @@ alias lh='ls -lhX'
 # OS
 alias dud='du -d 1 -h'
 alias duf='du -sh'
-alias cdc="cd $HOME/Documents/Code"
-alias merqueo="cd $HOME/Documents/Code/merqueo"
-alias jestebanrods="cd $HOME/Documents/Code/jestebanrods"
+alias cdc="cd $HOME/Documents/code"
+alias meli="cd $HOME/Documents/code/mercadolibre"
+alias jestebanrods="cd $HOME/Documents/code/jestebanrods"
 alias dotfiles="cd $DOTFILES_PATH"
 
 # PHP
@@ -44,9 +43,3 @@ alias phptest='vendor/bin/phpunit'
 alias phptestcover='XDEBUG_MODE=coverage phptest --coverage-html coverage'
 alias phpformat='vendor/bin/php-cs-fixer fix -v'
 alias phplinter='vendor/bin/phpstan analyse --memory-limit=10G'
-
-# Laravel
-alias artisan='php artisan'
-alias seeder='artisan db:seed'
-alias optimize='artisan optimize'
-alias optimize-test='artisan optimize --env=testing'

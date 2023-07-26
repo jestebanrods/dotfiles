@@ -1,1 +1,4 @@
 .phpactor.json
+coverage
+.idea
+.vscode
