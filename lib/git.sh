@@ -16,7 +16,7 @@ function m-git-delete()
 
 function m-git-user()
 {
-    commands=("personal" "mercadolibre")
+    commands=("personal" "mercadolibre" "cookpid")
     env=$(printf "%s\n" "${commands[@]}" | fzf)
 
     git config --global core.editor vim
@@ -24,6 +24,8 @@ function m-git-user()
 
     if [[ "$env" = "personal" ]]; then
         git config user.email "jestebanrods@gmail.com"
+    elif [[ "$ENV" = "cookpid" ]]; then
+        git config user.email "jrodriguez@cookpid.com"
     else
         git config user.email "jossie.rodriguez@mercadolibre.com.co"
     fi
