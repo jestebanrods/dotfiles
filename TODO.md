@@ -1,6 +1,8 @@
 # Pendientes Automatizar
 
-## Dependencias Base
+## Dependencias
+
+### Linux
 
 * git
 * make
@@ -13,6 +15,15 @@
 * python3.8-venv
 * ripgrep
 * fd-find
+
+### Mac
+
+* git
+* ripgrep
+
+### Mac Cask
+
+* dbeaver-community
 
 ### Maquinas Virtuales
 

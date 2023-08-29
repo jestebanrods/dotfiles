@@ -46,6 +46,7 @@ return {
 		}
 
 		null_ls.setup({
+			debug = true,
 			sources = {
 				unpack(code_actions),
 				unpack(completion),

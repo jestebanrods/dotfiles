@@ -2,7 +2,7 @@
 return {
 	"williamboman/mason-lspconfig.nvim",
 	opts = {
-		ensure_installed = require("plugins.lsp.servers"),
+		ensure_installed = require("plugins.configs.servers"),
 		automatic_installation = true,
 	},
 }

@@ -14,7 +14,6 @@ return {
 		local telescope_config = require("telescope.config")
 		local actions = require("telescope.actions")
 		local action_layout = require("telescope.actions.layout")
-		local fb_actions = require("telescope").extensions.file_browser.actions
 		local vimgrep_arguments = { unpack(telescope_config.values.vimgrep_arguments) }
 
 		table.insert(vimgrep_arguments, "--hidden")
@@ -29,7 +28,7 @@ return {
 				preview = {
 					hide_on_startup = true,
 				},
-				theme = "ivy",
+				theme = "dropdown",
 				mappings = {
 					i = {
 						["<C-p>"] = action_layout.toggle_preview,
@@ -49,13 +48,30 @@ return {
 				},
 				oldfiles = {
 					theme = "dropdown",
+					cwd_only = true,
 				},
 				git_branches = {
+					theme = "dropdown",
 					mappings = {
 						i = {
 							["<C-j>"] = actions.git_create_branch,
 						},
 					},
+				},
+				buffers = {
+					theme = "dropdown",
+					preview = {
+						hide_on_startup = false,
+					},
+				},
+				grep_string = {
+					theme = "dropdown",
+				},
+				live_grep = {
+					theme = "dropdown",
+				},
+				treesitter = {
+					theme = "dropdown",
 				},
 			},
 			extensions = {
@@ -86,7 +102,7 @@ return {
 		-- File Pickers.
 		vim.keymap.set("n", "<leader>ff", builtin.find_files, {})
 		vim.keymap.set("n", "<leader>fa", builtin.git_files, {})
-		vim.keymap.set("n", "<leader>fz", builtin.grep_string, {})
+		vim.keymap.set("n", "<leader>fw", builtin.grep_string, {})
 		vim.keymap.set("n", "<leader>fs", builtin.live_grep, {})
 
 		-- Vim Pickers.
@@ -102,8 +118,8 @@ return {
 		vim.keymap.set("n", "<leader>fsb", builtin.current_buffer_fuzzy_find, {})
 
 		-- Neovim LSP Pickers.
-		vim.keymap.set("n", "<leader>gr", builtin.lsp_references, {})
-		vim.keymap.set("n", "<leader>gi", builtin.lsp_implementations, {})
+		vim.keymap.set("n", "gr", builtin.lsp_references, {})
+		vim.keymap.set("n", "gi", builtin.lsp_implementations, {})
 		vim.keymap.set("n", "<leader>fd", builtin.diagnostics, {})
 
 		-- Git Pickers.

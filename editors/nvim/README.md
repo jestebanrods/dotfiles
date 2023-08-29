@@ -168,7 +168,7 @@
 | Normal  |           `Ctrl` + `d`           | Hacer scroll hacia abajo en la ventana de previsualización.  |
 | Normal  |      `<leader>` + `f` + `f`      | Abrir buscador de archivos.                                  |
 | Normal  |      `<leader>` + `f` + `a`      | Abrir buscador de archivos listados en git.                  |
-| Normal  |      `<leader>` + `f` + `z`      | Buscar a partir de la palabra en el cursor.                  |
+| Normal  |      `<leader>` + `f` + `w`      | Buscar a partir de la palabra en el cursor.                  |
 | Normal  |      `<leader>` + `f` + `s`      | Realizar búsqueda de palabras en todo el proyecto.           |
 | Normal  |      `<leader>` + `f` + `b`      | Listado de buffers abiertos.                                 |
 | Normal  |      `<leader>` + `f` + `e`      | Listado de archivos abiertos recientemente.                  |
