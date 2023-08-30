@@ -3,16 +3,16 @@ return {
 	"WhoIsSethDaniel/mason-tool-installer.nvim",
 	opts = {
 		ensure_installed = {
-			-- Diagnostics
+			-- Linter
 			"eslint_d",
 			"golangci-lint",
 			"phpstan",
 			"yamllint",
-			-- Formatting
+
+			-- Formatter
 			"beautysh",
 			"blade-formatter",
 			"goimports",
-			"goimports-reviser",
 			"golines",
 			"jq",
 			"php-cs-fixer",
