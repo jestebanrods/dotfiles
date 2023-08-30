@@ -24,7 +24,7 @@ function m-git-user()
 
     if [[ "$env" = "personal" ]]; then
         git config user.email "jestebanrods@gmail.com"
-    elif [[ "$ENV" = "cookpid" ]]; then
+    elif [[ "$env" = "cookpid" ]]; then
         git config user.email "jrodriguez@cookpid.com"
     else
         git config user.email "jossie.rodriguez@mercadolibre.com.co"
@@ -51,4 +51,8 @@ function _m-git-branches()
     )
 
     echo $branch
+}
+
+function _m-git-branch-prompt() {
+    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/{ \1 } $ /'
 }

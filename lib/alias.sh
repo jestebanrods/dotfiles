@@ -1,24 +1,12 @@
 #!/bin/bash
 
-# $PWD=$(pwd)
-
 # Git
 alias gits='git status'
-alias gitss='git status -sb'
 alias gitb='git branch'
 alias gitl='git log --oneline -n 20'
-alias gitco='git switch'
 alias gitcom='git switch master'
 alias gitcod='git switch develop'
 alias gitfap='git fetch --all --prune'
-alias gitfp='git fetch origin --prune'
-
-# Utils
-alias k='kill -9'
-# alias i.="(idea $PWD &>/dev/null &)"
-# alias c.="(code $PWD &>/dev/null &)"
-alias o.='open .'
-alias up='dot package update_all'
 
 # Dirs
 alias ..='cd ..'
@@ -26,9 +14,8 @@ alias ...='cd ../..'
 alias ll='ls -l'
 alias lll='ls -1'
 alias la='ls -la'
-alias lss='ls -1X'
-alias lsa='ls -1SXa'
-alias lh='ls -lhX'
+alias lla='ls -1a'
+alias lh='ls -lh'
 
 # OS
 alias dud='du -d 1 -h'
