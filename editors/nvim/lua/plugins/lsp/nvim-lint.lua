@@ -8,6 +8,7 @@ return {
 			yaml = { "yamllint" },
 			javascript = { "eslint_d" },
 			typescript = { "eslint_d" },
+			lua = { "luacheck" },
 		}
 
 		vim.api.nvim_create_autocmd({ "BufWritePost", "BufEnter" }, {

@@ -138,8 +138,16 @@ return {
 		local function search_nvim_files()
 			require("telescope.builtin").git_files({
 				prompt_title = "Nvim Config",
-				cwd = "$HOME/Documents/Code/jestebanrods/repos/dotfiles/editors/nvim/",
+				cwd = "$HOME/Documents/code/jestebanrods/repos/dotfiles/editors/nvim",
 				show_untracked = true,
+			})
+		end
+
+		local function search_httpreq_files()
+			extensions.file_browser.file_browser({
+				prompt_title = "Http Requests",
+				cwd = "$HOME/Documents/code/jestebanrods/repos/httpreq",
+				hidden = true,
 			})
 		end
 
@@ -151,9 +159,12 @@ return {
 			extensions.flutter.commands()
 		end
 
+		vim.api.nvim_create_user_command("HttpRequest", search_httpreq_files, {})
+
 		vim.keymap.set("n", "<leader>fr", buffer_browser, {})
 		vim.keymap.set("n", "<leader><leader>fc", flutter_commands, {})
 		vim.keymap.set("n", "<leader>fdn", search_nvim_files, {})
+		vim.keymap.set("n", "<leader>fdh", search_httpreq_files, {})
 		vim.keymap.set("n", "<leader>fn", extensions.file_browser.file_browser, {})
 
 		-- Load Extensions.

@@ -14,6 +14,7 @@ vim.api.nvim_create_autocmd("FileType", {
 		"notify",
 		"lspinfo",
 		"startuptime",
+		"httpResult",
 	},
 	callback = function(event)
 		vim.bo[event.buf].buflisted = false

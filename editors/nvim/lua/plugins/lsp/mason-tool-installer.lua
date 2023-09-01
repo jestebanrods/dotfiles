@@ -8,6 +8,7 @@ return {
 			"golangci-lint",
 			"phpstan",
 			"yamllint",
+			"luacheck",
 
 			-- Formatter
 			"beautysh",
