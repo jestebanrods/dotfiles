@@ -7,6 +7,10 @@
 export GOPATH="$HOME/go"
 export PATH="$GOPATH/bin:$PATH"
 
+export PRE_COMMIT_ALLOW_NO_CONFIG=1
+export SQL_NOTES=0
+export LOG_WARNINGS=0
+
 # export PATH="$HOME/.config/composer/vendor/bin:$PATH"
 # export PATH="$HOME/.local/bin:$PATH"
 
