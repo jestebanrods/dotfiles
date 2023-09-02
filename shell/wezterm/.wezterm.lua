@@ -25,11 +25,11 @@ local config = {
 	-- default_prog = { "tmux", "new-session", "-A", "-s", "Main" },
 	enable_tab_bar = false,
 	font = wezterm.font("JetBrainsMono Nerd Font", { weight = "DemiBold" }),
-	font_size = 14.0,
+	font_size = 10.0,
 	line_height = 1.0,
 	use_fancy_tab_bar = false,
 	use_resize_increments = true,
-	window_background_opacity = 1.0,
+	window_background_opacity = 0.8,
 	window_padding = { left = 8, right = 5, top = 8, bottom = 8 },
 }
 
