@@ -12,6 +12,12 @@ return {
 				json = {
 					require("formatter.filetypes.json").jq,
 				},
+				javascript = {
+					require("formatter.filetypes.javascript").eslint_d,
+				},
+				typescript = {
+					require("formatter.filetypes.typescript").eslint_d,
+				},
 			},
 		})
 

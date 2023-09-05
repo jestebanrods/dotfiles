@@ -11,8 +11,9 @@ local lsp_server = {
 	"phpactor",
 	"sqlls",
 	"tsserver",
-	"vuels",
+	-- "vuels",
 	"yamlls",
+	"volar",
 }
 
 local lsp_linter = {

@@ -6,6 +6,7 @@
 
 export GOPATH="$HOME/go"
 export PATH="$GOPATH/bin:$PATH"
+export PATH="$HOME/.cargo/bin:$PATH"
 
 export PRE_COMMIT_ALLOW_NO_CONFIG=1
 export SQL_NOTES=0

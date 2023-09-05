@@ -15,7 +15,7 @@ return {
 	},
 	ft = "http",
 	keys = {
-		{ "<leader><leader>rn", "<Plug>RestNvim",     desc = "RestNvim" },
+		{ "<leader><leader>rn", "<Plug>RestNvim", desc = "RestNvim" },
 		{ "<leader><leader>rl", "<Plug>RestNvimLast", desc = "RestNvimLast" },
 	},
 }

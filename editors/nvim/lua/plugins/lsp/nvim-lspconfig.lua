@@ -29,9 +29,16 @@ return {
 
 		-- Config Servers.
 		for _, serve in ipairs(servers) do
-			lspconfig[serve].setup({
+			local server_config = {
 				capabilities = capabilities,
-			})
+			}
+
+			if serve == "volar" then
+				server_config.filetypes =
+					{ "typescript", "javascript", "javascriptreact", "typescriptreact", "vue", "json" }
+			end
+
+			lspconfig[serve].setup(server_config)
 		end
 
 		-- Global Diagnostics Mappings.
