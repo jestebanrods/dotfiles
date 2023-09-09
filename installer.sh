@@ -2,9 +2,11 @@
 
 KERNEL_NAME=$(uname -s)
 DOTFILES_PATH=$HOME/Documents/code/jestebanrods/repos/dotfiles
+SCRATCH_PATH=$HOME/.scratch
 IS_MAC=$(uname -s | grep -qi "Darwin" && echo true || echo false)
 
 mkdir -p $DOTFILES_PATH
+mkdir -p $SCRATCH_PATH
 
 echo "Download repository dotfiles"
 

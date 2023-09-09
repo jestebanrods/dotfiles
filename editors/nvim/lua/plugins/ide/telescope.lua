@@ -151,6 +151,14 @@ return {
 			})
 		end
 
+		local function scratch_files()
+			extensions.file_browser.file_browser({
+				prompt_title = "Scratch",
+				cwd = "$HOME/.scratch",
+				hidden = true,
+			})
+		end
+
 		local function buffer_browser()
 			extensions.file_browser.file_browser({ path = "%:p:h" })
 		end
@@ -165,6 +173,7 @@ return {
 		vim.keymap.set("n", "<leader><leader>fc", flutter_commands, {})
 		vim.keymap.set("n", "<leader>fdn", search_nvim_files, {})
 		vim.keymap.set("n", "<leader>fdh", search_httpreq_files, {})
+		vim.keymap.set("n", "<leader>fdp", scratch_files, {})
 		vim.keymap.set("n", "<leader>fn", extensions.file_browser.file_browser, {})
 
 		-- Load Extensions.

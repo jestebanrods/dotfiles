@@ -18,6 +18,9 @@ return {
 				typescript = {
 					require("formatter.filetypes.typescript").eslint_d,
 				},
+				yaml = {
+					require("formatter.filetypes.yaml").yamlfmt,
+				},
 			},
 		})
 

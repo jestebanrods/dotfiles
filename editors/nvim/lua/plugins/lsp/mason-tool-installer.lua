@@ -20,6 +20,10 @@ return {
 			"sql-formatter",
 			"stylua",
 			"yamlfmt",
+
+			-- DAP
+			"go-debug-adapter",
+			"js-debug-adapter",
 		},
 		auto_update = false,
 		debounce_hours = nil,

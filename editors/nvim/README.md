@@ -188,7 +188,9 @@
 | Normal  |      `<leader>` + `f` + `y`      | Listado simbolos de un buffer.                               |
 | Normal  |      `<leader>` + `l` + `r`      | Lista y recarga el módulo de lua seleccionado.               |
 | Normal  |      `<leader>` + `f` + `r`      | Listado de archivos del directorio del buffer actual.        |
-| Normal  |   `<leader>` + `f` + `d` + `n`   | Listado de archivos de configuración de nvim.                |
+| Normal  |   `<leader>` + `f` + `d` + `n`   | Listado de archivos de configuración de neovim.              |
+| Normal  |   `<leader>` + `f` + `d` + `h`   | Listado de archivos del repositorio httpreq.                 |
+| Normal  |   `<leader>` + `f` + `d` + `p`   | Listado de archivos scratch.                                 |
 | Normal  |      `<leader>` + `f` + `n`      | Listado de archivos del proyecto.                            |
 
 ### Tests
@@ -206,3 +208,10 @@
 | :-----: | :-------------------------------: | ----------------------------------------------- |
 | Normal  | `<leader>` +`<leader>`+ `r` + `n` | Ejecutar la petición http donde esté el cursor. |
 | Normal  | `<leader>` + `<leader>`+`r` + `l` | Ejecutar la última petición http ejecutada.     |
+
+
+### Debug
+
+| VI Mode |              Keymap         | Description                                     |
+| :-----: | :-------------------------: | ----------------------------------------------- |
+| Normal  | `<leader>` +`<leader>`+ `D` | Inicializa el adaptador de dubugs.              |
