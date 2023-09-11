@@ -23,7 +23,8 @@ return {
 
 			-- DAP
 			"go-debug-adapter",
-			"js-debug-adapter",
+			"node-debug2-adapter",
+			"firefox-debug-adapter",
 		},
 		auto_update = false,
 		debounce_hours = nil,
