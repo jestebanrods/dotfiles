@@ -1,7 +1,8 @@
 -- LSP Loading Progress Display.
 return {
 	"j-hui/fidget.nvim",
-	event = { "BufNewFile", "BufRead", "BufAdd" },
+	tag = "legacy",
+	event = "LspAttach",
 	opts = {
 		text = {
 			spinner = "circle_halves",

@@ -4,6 +4,7 @@ return {
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 	},
+	version = "0.2.0",
 	opts = {
 		result_split_horizontal = true,
 		result = {
@@ -15,7 +16,7 @@ return {
 	},
 	ft = "http",
 	keys = {
-		{ "<leader><leader>rn", "<Plug>RestNvim", desc = "RestNvim" },
+		{ "<leader><leader>rn", "<Plug>RestNvim",     desc = "RestNvim" },
 		{ "<leader><leader>rl", "<Plug>RestNvimLast", desc = "RestNvimLast" },
 	},
 }
