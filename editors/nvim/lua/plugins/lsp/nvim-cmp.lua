@@ -19,6 +19,7 @@ return {
 		local lspkind = require("lspkind")
 		local cmp_autopairs = require("nvim-autopairs.completion.cmp")
 		local luasnip = require("luasnip")
+		local compare = require("cmp.config.compare")
 
 		luasnip.filetype_extend("dart", { "flutter" })
 		luasnip.filetype_extend("vue", { "vue" })
@@ -82,12 +83,12 @@ return {
 				end, { "i", "s" }),
 			}),
 			sources = cmp.config.sources({
+				{ name = "copilot" },
 				{ name = "nvim_lsp" },
 				{ name = "nvim_lsp_signature_help" },
 				{ name = "luasnip" },
 				{ name = "nvim_lua" },
 				{ name = "path" },
-			}, {
 				{ name = "buffer" },
 			}),
 			formatting = {
@@ -98,16 +99,26 @@ return {
 					before = function(entry, vim_item)
 						return vim_item
 					end,
+					with_text = true,
 					menu = {
 						nvim_lua = "[Lua]",
 						nvim_lsp = "[LSP]",
 						luasnip = "[LuaSnip]",
 						buffer = "[Buffer]",
 						path = "[Path]",
+						copilot = "[Copilot]",
 					},
 				}),
 			},
+			sorting = {
+				priority_weight = 2,
+				comparators = {
+					compare.kind,
+					compare.sort_text,
+				},
+			},
 			experimental = {
+				native_menu = false,
 				ghost_text = true,
 			},
 		})
