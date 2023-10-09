@@ -43,7 +43,7 @@ fi
 # Que pueda diferenciar entre mac y linux
 
 # NVIM
-mkdir -p $HOME/.config/nvim
+mkdir -p $HOME/.config  
 ln -sf $DOTFILES_PATH/editors/nvim $HOME/.config
 
 # Se necesita tener instalado node,npm,php,composer para que todos los
@@ -96,4 +96,12 @@ if $IS_MAC; then
 else
     echo "Estás en un sistema Linux. Configurando..."
     source $HOME/.bashrc
+fi
+
+# Minimum Dependencies 
+DEPS="fzf vim make"
+if $IS_MAC; then
+    brew install $DEPS
+else
+    sudo apt install $DEPS
 fi
