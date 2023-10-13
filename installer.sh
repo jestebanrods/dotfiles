@@ -43,7 +43,7 @@ fi
 # Que pueda diferenciar entre mac y linux
 
 # NVIM
-mkdir -p $HOME/.config  
+mkdir -p $HOME/.config
 ln -sf $DOTFILES_PATH/editors/nvim $HOME/.config
 
 # Se necesita tener instalado node,npm,php,composer para que todos los
@@ -69,6 +69,9 @@ fi
 # code --list-extensions > $DOTFILES_PATH/editors/vscode/extensions.txt
 # Instalar todas las extensiones
 # cat $DOTFILES_PATH/editors/vscode/extensions.txt | xargs -L 1 code --install-extension
+
+# HIDDEN
+ln -sf $DOTFILES_PATH/configs/linux/.hidden $HOME/.hidden
 
 # WEZTERM
 ln -sf $DOTFILES_PATH/shell/wezterm/.wezterm.lua $HOME/.wezterm.lua
@@ -98,7 +101,7 @@ else
     source $HOME/.bashrc
 fi
 
-# Minimum Dependencies 
+# Minimum Dependencies
 DEPS="fzf vim make"
 if $IS_MAC; then
     brew install $DEPS
