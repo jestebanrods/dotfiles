@@ -5,10 +5,10 @@ wezterm.on("update-right-status", function(window)
 	window:set_right_status(window:active_workspace())
 end)
 
--- wezterm.on("gui-startup", function(cmd)
--- 	local tab, pane, window = mux.spawn_window(cmd or {})
--- 	window:gui_window():toggle_fullscreen()
--- end)
+wezterm.on("gui-startup", function(cmd)
+	local tab, pane, window = mux.spawn_window(cmd or {})
+	window:gui_window():toggle_fullscreen()
+end)
 
 local config = {
 	colors = {
@@ -22,10 +22,10 @@ local config = {
 			action = wezterm.action.ToggleFullScreen,
 		},
 	},
-	-- default_prog = { "tmux", "new-session", "-A", "-s", "Main" },
+	default_prog = { "tmux", "new-session", "-A", "-s", "Main" },
 	enable_tab_bar = false,
 	font = wezterm.font("JetBrainsMono Nerd Font", { weight = "DemiBold" }),
-	font_size = 14.0,
+	font_size = 11.0,
 	line_height = 1.0,
 	use_fancy_tab_bar = false,
 	use_resize_increments = true,
