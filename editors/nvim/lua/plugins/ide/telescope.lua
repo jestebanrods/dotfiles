@@ -45,6 +45,7 @@ return {
 				},
 				git_files = {
 					theme = "dropdown",
+					show_untracked = true,
 				},
 				oldfiles = {
 					theme = "dropdown",
@@ -72,6 +73,22 @@ return {
 				},
 				treesitter = {
 					theme = "dropdown",
+				},
+				file_browser = {
+					path = "%:p:h",
+					select_buffer = true,
+				},
+				lsp_implementations = {
+					show_line = false,
+					preview = {
+						hide_on_startup = false,
+					},
+				},
+				lsp_references = {
+					show_line = false,
+					preview = {
+						hide_on_startup = false,
+					},
 				},
 			},
 			extensions = {
@@ -160,18 +177,92 @@ return {
 		end
 
 		local function buffer_browser()
-			extensions.file_browser.file_browser({ path = "%:p:h" })
+			extensions.file_browser.file_browser({
+				path = "%:p:h",
+				select_buffer = true,
+			})
 		end
 
 		local function flutter_commands()
 			extensions.flutter.commands()
 		end
 
+		local function get_makefile_targets()
+			local makefile_path = vim.fn.expand("%:p:h") .. "/Makefile"
+			local targets = {}
+			local in_target_section = false
+
+			for line in io.lines(makefile_path) do
+				-- Verify Single Targets.
+				if in_target_section and not line:match("^[ \t]") then
+					local target = string.match(line, "^(%w+)")
+					if target then
+						table.insert(targets, target)
+					end
+				end
+
+				-- Verify Variables.
+				if line:match("^[a-zA-Z_][a-zA-Z_0-9]*%s*:=") then
+					in_target_section = false
+				end
+
+				-- Verify Targets.
+				if line:match("^%w+%s*:") then
+					in_target_section = true
+				end
+			end
+
+			return targets
+		end
+
+		local function search_makefile()
+			local pickers = require("telescope.pickers")
+			local finders = require("telescope.finders")
+			local actions = require("telescope.actions")
+			local action_state = require("telescope.actions.state")
+			local conf = require("telescope.config").values
+
+			pickers
+				.new({}, {
+					prompt_title = "Makefile Commands",
+					finder = finders.new_table({
+						results = get_makefile_targets(),
+					}),
+					sorter = conf.generic_sorter(),
+					previewer = false,
+					attach_mappings = function(_, map)
+						map("i", "<CR>", function(prompt_bufnr)
+							actions.close(prompt_bufnr)
+
+							local entry = action_state.get_selected_entry()
+							local makefile_path = vim.fn.expand("%:p:h")
+							local selected = entry[1]
+
+							vim.notify("Running Target: " .. string.upper(selected), "info", {
+								title = "Makefile",
+								timeout = 3000,
+							})
+
+							vim.cmd(
+								":FloatermNew --wintype=split --autoclose=0 make -s -C "
+									.. makefile_path
+									.. " "
+									.. selected
+							)
+						end)
+						return true
+					end,
+				})
+				:find()
+		end
+
 		vim.api.nvim_create_user_command("HttpRequest", search_httpreq_files, {})
+		vim.api.nvim_create_user_command("MakefileCmds", search_makefile, {})
 
 		vim.keymap.set("n", "<leader>fr", buffer_browser, {})
 		vim.keymap.set("n", "<leader><leader>fc", flutter_commands, {})
 		vim.keymap.set("n", "<leader>fdn", search_nvim_files, {})
+		vim.keymap.set("n", "<leader>mk", search_makefile, {})
 		vim.keymap.set("n", "<leader>fdh", search_httpreq_files, {})
 		vim.keymap.set("n", "<leader>fdp", scratch_files, {})
 		vim.keymap.set("n", "<leader>fn", extensions.file_browser.file_browser, {})

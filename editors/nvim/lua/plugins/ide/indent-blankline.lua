@@ -8,5 +8,5 @@ return {
 		show_current_context_start = false,
 		char_list = { "¦" },
 		context_char_list = { "¦" },
-	}
+	},
 }
