@@ -5,11 +5,6 @@ wezterm.on("update-right-status", function(window)
 	window:set_right_status(window:active_workspace())
 end)
 
-wezterm.on("gui-startup", function(cmd)
-	local tab, pane, window = mux.spawn_window(cmd or {})
-	window:gui_window():toggle_fullscreen()
-end)
-
 local config = {
 	colors = {
 		cursor_bg = '#bcbcbc',
