@@ -4,6 +4,7 @@ KERNEL_NAME=$(uname -s)
 DOTFILES_PATH=$HOME/Documents/code/jestebanrods/repos/dotfiles
 SCRATCH_PATH=$HOME/.scratch
 IS_MAC=$(uname -s | grep -qi "Darwin" && echo true || echo false)
+IS_LINUX=$(uname -s | grep -qi "Linux" && echo true || echo false)
 
 mkdir -p $DOTFILES_PATH
 mkdir -p $SCRATCH_PATH
@@ -89,6 +90,17 @@ fi
 
 ln -sf $DOTFILES_PATH/shell/tmux/.tmux.conf $HOME/.tmux.conf
 
+# Awesome Windows Manager
+if $IS_LINUX; then
+	AWESOME_PATH=$HOME/.config/awesome
+	mkdir -p $AWESOME_PATH
+
+	ln -sf $DOTFILES_PATH/configs/awesome/rc.lua $HOME/.config/awesome/rc.lua
+	ln -sf $DOTFILES_PATH/configs/awesome/theme.lua $HOME/.config/awesome/theme.lua
+
+	git clone git@github.com:streetturtle/awesome-wm-widgets.git $AWESOME_PATH/awesome-wm-widgets
+fi
+
 # GIT
 git config --global core.excludesfile $DOTFILES_PATH/configs/git/.gitignore
 
@@ -102,7 +114,7 @@ else
 fi
 
 # Minimum Dependencies
-DEPS="fzf vim make"
+DEPS="fzf vim make awesome"
 if $IS_MAC; then
     brew install $DEPS
 else
