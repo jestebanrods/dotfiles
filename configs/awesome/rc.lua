@@ -97,6 +97,9 @@ awful.spawn.with_shell("picom -b")
 awful.spawn.with_shell("xset r rate 220 40")
 awful.spawn.with_shell("nm-applet")
 
+awful.spawn.with_shell("firefox")
+awful.spawn.with_shell("wezterm")
+
 ----------
 -- Menu --
 ----------
@@ -109,9 +112,9 @@ myawesomemenu = {
 			hotkeys_popup.show_help(nil, awful.screen.focused())
 		end,
 	},
-	{ "manual", terminal .. " -e man awesome" },
+	{ "manual",      terminal .. " -e man awesome" },
 	{ "edit config", editor_cmd .. " " .. awesome.conffile },
-	{ "restart", awesome.restart },
+	{ "restart",     awesome.restart },
 	{
 		"quit",
 		function()
@@ -251,8 +254,8 @@ awful.screen.connect_for_each_screen(function(s)
 
 	-- Create Taglist Widget
 	s.mytaglist = awful.widget.taglist({
-		screen = s,
-		filter = awful.widget.taglist.filter.all,
+		screen  = s,
+		filter  = awful.widget.taglist.filter.all,
 		buttons = taglist_buttons,
 	})
 
@@ -317,7 +320,7 @@ root.buttons(gears.table.join(
 ------------------
 
 globalkeys = gears.table.join(
-	-- Custom Keys
+-- Custom Keys
 	awful.key({}, "#121", function()
 		volume_widget:toggle()
 	end, { description = "toogle volume", group = "custom" }),
@@ -366,7 +369,6 @@ globalkeys = gears.table.join(
 		awful.screen.focus_relative(-1)
 	end, { description = "focus the previous screen", group = "screen" }),
 	awful.key({ modkey }, "u", awful.client.urgent.jumpto, { description = "jump to urgent client", group = "client" }),
-
 	awful.key({ modkey }, "Tab", function()
 		awful.client.focus.history.previous()
 		if client.focus then
@@ -551,6 +553,14 @@ awful.rules.rules = {
 			screen = awful.screen.preferred,
 			placement = awful.placement.no_overlap + awful.placement.no_offscreen,
 		},
+	},
+	{
+		rule = { class = "Firefox" },
+		properties = { tag = awful.screen.focused().tags[1] }
+	},
+	{
+		rule = { class = "wezterm" },
+		properties = { tag = awful.screen.focused().tags[2] }
 	},
 	-- Floating Clients
 	{
