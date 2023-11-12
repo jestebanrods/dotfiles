@@ -1,4 +1,4 @@
 return {
-	'terryma/vim-multiple-cursors',
+	"terryma/vim-multiple-cursors",
 	event = "LspAttach",
 }

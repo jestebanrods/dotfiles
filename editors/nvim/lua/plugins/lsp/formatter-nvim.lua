@@ -1,7 +1,7 @@
 return {
 	"mhartington/formatter.nvim",
 	config = function()
-		local util = require "formatter.util"
+		local util = require("formatter.util")
 		require("formatter").setup({
 			-- https://github.com/mhartington/formatter.nvim/blob/master/lua/formatter/filetypes/go.lua
 			filetype = {
@@ -27,9 +27,9 @@ return {
 						return {
 							exe = "sql-formatter",
 							args = { util.escape_path(util.get_current_buffer_file_path()) },
-							stdin = true
+							stdin = true,
 						}
-					end
+					end,
 				},
 			},
 		})
