@@ -97,7 +97,7 @@ awful.spawn.with_shell("picom -b")
 awful.spawn.with_shell("xset r rate 220 40")
 awful.spawn.with_shell("nm-applet")
 
-awful.spawn.with_shell("firefox")
+awful.spawn.with_shell("flatpak run com.brave.Browser")
 awful.spawn.with_shell("wezterm")
 
 ----------
@@ -555,7 +555,7 @@ awful.rules.rules = {
 		},
 	},
 	{
-		rule = { class = "Firefox" },
+		rule = { class = "Brave" },
 		properties = { tag = awful.screen.focused().tags[1] }
 	},
 	{
