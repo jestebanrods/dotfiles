@@ -31,6 +31,43 @@ function m-git-user()
     fi
 }
 
+function m-git-clear()
+{
+    branches=$(git branch --all  \
+        | grep -v "remotes/" \
+        | grep -v "master" \
+        | grep -v "develop" \
+        | grep -v "main"
+    )
+
+    if [[ -z $branches ]]; then
+		echo "No se encontraron ramas para eliminar."
+		return
+    fi
+
+	echo "Se eliminarán las siguientes ramas:"
+	echo "$branches"
+
+	read -p "¿Estás seguro de que deseas eliminar estas ramas? (Y/n): " respuesta
+
+	respuesta=${respuesta:-Y}
+
+	if [[ ! "$respuesta" =~ ^[Yy]$ ]]; then
+		echo "Cancelado. Las ramas no fueron eliminadas."
+		return
+	fi
+
+	git switch develop
+	git fetch --all --prune
+	git pull --tags
+
+	echo "Eliminando las ramas..."
+
+	echo "$branches" | xargs git branch -D
+	echo "Ramas eliminadas exitosamente."
+
+}
+
 function m-git-switch()
 {
     branch=$(_m-git-branches)
