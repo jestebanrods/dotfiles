@@ -7,7 +7,7 @@ IS_MAC=$(uname -s | grep -qi "Darwin" && echo true || echo false)
 IS_LINUX=$(uname -s | grep -qi "Linux" && echo true || echo false)
 
 # Minimum Dependencies
-DEPS="curl git xclip make fzf tmux"
+DEPS="curl git xclip make fzf tmux flatpak"
 if $IS_MAC; then
 	brew install $DEPS
 else
