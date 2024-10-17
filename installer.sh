@@ -1,20 +1,85 @@
 #!/bin/bash
 
 KERNEL_NAME=$(uname -s)
-DOTFILES_PATH=$HOME/Documents/code/jestebanrods/repos/dotfiles
+BASE_PATH=$HOME/Documents/code/jestebanrods/repos
+DOTFILES_PATH=$BASE_PATH/dotfiles
 SCRATCH_PATH=$HOME/.scratch
 IS_MAC=$(uname -s | grep -qi "Darwin" && echo true || echo false)
 IS_LINUX=$(uname -s | grep -qi "Linux" && echo true || echo false)
 
-mkdir -p $DOTFILES_PATH
+# Minimum Dependencies
+DEPS="curl git xclip make fzf"
+if $IS_MAC; then
+	brew install $DEPS
+else
+	# Updates
+	sudo apt update
+	sudo apt upgrade
+	sudo apt autoremove
+	sudo apt autoclean
+	sudo apt autopurge
+	sudo apt dist-upgrade
+
+	# Minimal Dependencies
+	sudo apt install $DEPS
+
+	# Browser
+	flatpak install flathub com.brave.Browser
+
+	# Open Media Vault Connection
+	sudo apt install nfs-common
+	mkdir -p $HOME/NFS-Share
+	sudo mount 192.168.1.66:/export/NFS-Share $HOME/NFS-Share
+fi
+
+# SSH Github Generate
+filename="$HOME/.ssh/id_ed25519"
+
+if [ -f $filename ]
+then
+	echo "Ya existe key ssh"
+else
+	ssh-keygen -t ed25519 -C "jestebanrods@gmail.com"
+	eval "$(ssh-agent -s)"
+	ssh-add ~/.ssh/id_ed25519
+	cat ~/.ssh/id_ed25519.pub | xclip -sel clip
+	echo "Clave ssh copiada al portapapeles. Agregar al github"
+	exit
+fi
+
+read -p "Ya copio la clave ssh en github? <y/N> " prompt
+
+if [[ $prompt =~ [yY](es)* ]]
+then
+	echo "Continue"
+else
+	exit
+fi
+
+# Create Base Folder
+mkdir -p $BASE_PATH
 mkdir -p $SCRATCH_PATH
+
+# Clone Repos
+repos=(nixvim deployer-tools dotfiles developer-tools)
+
+for i in "${repos[@]}"
+do
+	dir="$BASE_PATH/$i"
+	if [ -d "$dir" ]
+	then
+		echo "Ya existe $i"
+	else
+		git clone git@github.com:jestebanrods/$i.git $dir
+	fi
+done
 
 echo "Download repository dotfiles"
 
 if [ -d "$DOTFILES_PATH" ]; then
     echo "Dotfiles ya existe."
 else
-    git clone https://github.com/jestebanrods/dotfiles ~/$DOTFILES_PATH
+    git clone https://github.com/jestebanrods/dotfiles $DOTFILES_PATH
 fi
 
 echo "Configurando dotfiles..."
@@ -40,39 +105,14 @@ else
     echo "El archivo '$libs_script' ya está agregado al archivo de configuración: $config_file"
 fi
 
-# TODO: Lanzar algo que me instale todas las dependencias mínimas
-# Que pueda diferenciar entre mac y linux
-
 # NVIM
-mkdir -p $HOME/.config
-ln -sf $DOTFILES_PATH/editors/nvim $HOME/.config
-
-# Se necesita tener instalado node,npm,php,composer para que todos los
-# slp de nvim se puedan descargar con mason
-
-# VSCODE
-if $IS_MAC; then
-    echo "Estás en un sistema macOS. Configurando..."
-    ln -sf $DOTFILES_PATH/editors/vscode/settings.json $HOME/Library/Application\ Support/Code/User/settings.json
-    ln -sf $DOTFILES_PATH/editors/vscode/tasks.json $HOME/Library/Application\ Support/Code/User/tasks.json
-    ln -sf $DOTFILES_PATH/editors/vscode/keybindings.json $HOME/Library/Application\ Support/Code/User/keybindings.json
-    ln -sf $DOTFILES_PATH/editors/vscode/snippets $HOME/Library/Application\ Support/Code/User/snippets
-else
-    echo "Estás en un sistema Linux. Configurando..."
-
-    ln -sf $DOTFILES_PATH/editors/vscode/settings.json $HOME/.config/Code/User/settings.json
-    ln -sf $DOTFILES_PATH/editors/vscode/tasks.json $HOME/.config/Code/User/tasks.json
-    ln -sf $DOTFILES_PATH/editors/vscode/keybindings.json $HOME/.config/Code/User/keybindings.json
-    ln -sf $DOTFILES_PATH/editors/vscode/snippets $HOME/.config/Code/User/snippets
-fi
-
-# Exportar todas las extensiones
-# code --list-extensions > $DOTFILES_PATH/editors/vscode/extensions.txt
-# Instalar todas las extensiones
-# cat $DOTFILES_PATH/editors/vscode/extensions.txt | xargs -L 1 code --install-extension
+# mkdir -p $HOME/.config
+# ln -sf $DOTFILES_PATH/editors/nvim $HOME/.config
 
 # HIDDEN
-ln -sf $DOTFILES_PATH/configs/linux/.hidden $HOME/.hidden
+if $IS_LINUX; then
+	ln -sf $DOTFILES_PATH/configs/linux/.hidden $HOME/.hidden
+fi
 
 # WEZTERM
 ln -sf $DOTFILES_PATH/shell/wezterm/.wezterm.lua $HOME/.wezterm.lua
@@ -90,17 +130,6 @@ fi
 
 ln -sf $DOTFILES_PATH/shell/tmux/.tmux.conf $HOME/.tmux.conf
 
-# Awesome Windows Manager
-if $IS_LINUX; then
-	AWESOME_PATH=$HOME/.config/awesome
-	mkdir -p $AWESOME_PATH
-
-	ln -sf $DOTFILES_PATH/configs/awesome/rc.lua $HOME/.config/awesome/rc.lua
-	ln -sf $DOTFILES_PATH/configs/awesome/theme.lua $HOME/.config/awesome/theme.lua
-
-	git clone git@github.com:streetturtle/awesome-wm-widgets.git $AWESOME_PATH/awesome-wm-widgets
-fi
-
 # GIT
 git config --global core.excludesfile $DOTFILES_PATH/configs/git/.gitignore
 
@@ -113,10 +142,12 @@ else
     source $HOME/.bashrc
 fi
 
-# Minimum Dependencies
-DEPS="fzf vim make awesome"
-if $IS_MAC; then
-    brew install $DEPS
+# NixVim
+if command -v nix &> /dev/null; then
+	echo "Nix ya esta instalado"
 else
-    sudo apt install $DEPS
+	sh <(curl -L https://nixos.org/nix/install) --daemon
 fi
+
+# Install NixVIM
+nix profile install --extra-experimental-features 'nix-command flakes' $HOME/Documents/code/jestebanrods/repos/nixvim
