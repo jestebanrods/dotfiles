@@ -1,12 +1,8 @@
 # Customs
-help/.commands
-custom/*
 .env
-
-# Editors
-.idea
-.vscode
+custom/*
+help/.commands
 
 #  NeoVim
-editors/nvim/plugin/packer_compiled.lua
 editors/nvim/.luarc.json
+editors/nvim/plugin/packer_compiled.lua
