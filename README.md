@@ -3,8 +3,7 @@
 ## 🚀 Installing
 
 ```bash
-DOTFILES_PATH="/home/jerodriguez/Documents/Code/jestebanrods/repos/dotfiles"
-bash <(curl -s https://raw.githubusercontent.com/jestebanrods/dotfiles/master/installer)
+bash <(curl -L https://raw.githubusercontent.com/jestebanrods/dotfiles/master/installer.sh)
 ```
 
 ## Command
@@ -17,9 +16,4 @@ mdot-{{ }}
 * Commands
 ```
 m-{{ }}
-```
-
-* Merqueo
-```
-mer-{{ }}
 ```

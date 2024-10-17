@@ -1,2 +1,0 @@
-file-icons.file-icons
-golang.go
