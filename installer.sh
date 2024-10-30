@@ -12,21 +12,22 @@ if $IS_MAC; then
 	brew install $DEPS
 else
 	# Updates
-	sudo apt update
-	sudo apt upgrade
-	sudo apt autoremove
-	sudo apt autoclean
-	sudo apt autopurge
-	sudo apt dist-upgrade
+	sudo apt update -y
+	sudo apt upgrade -y
+	sudo apt autoremove -y
+	sudo apt autoclean -y
+	sudo apt autopurge -y
+	sudo apt dist-upgrade -y
+	flatpak update -y
 
 	# Minimal Dependencies
-	sudo apt install $DEPS
+	sudo apt install $DEPS -y
 
 	# Browser
-	flatpak install flathub com.brave.Browser
+	flatpak install flathub com.brave.Browser -y
 
 	# Open Media Vault Connection
-	sudo apt install nfs-common
+	sudo apt install nfs-common -y
 	mkdir -p "$HOME/NFS-Share"
 	sudo mount 192.168.1.66:/export/NFS-Share "$HOME/NFS-Share"
 fi
