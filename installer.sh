@@ -59,7 +59,7 @@ mkdir -p "$BASE_PATH"
 mkdir -p "$SCRATCH_PATH"
 
 # Clone Repos
-repos=(nixvim deployer-tools dotfiles developer-tools)
+repos=(nixvim dotfiles)
 
 for i in "${repos[@]}"; do
 	dir="$BASE_PATH/$i"
