@@ -37,7 +37,7 @@ fi
 
 # DNS
 # Servidores DNS que queremos añadir
-DNS_SERVERS=("192.168.1.44" "192.168.1.54")
+DNS_SERVERS=("192.168.1.70")
 
 # Archivo de configuración de resolv.conf
 RESOLV_CONF="/etc/resolv.conf"
