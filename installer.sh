@@ -15,4 +15,5 @@ fi
 
 echo "Configurando dotfiles..."
 
+bash "$DOTFILES_PATH/ansible/installer.sh"
 make -C "$DOTFILES_PATH/ansible" run

@@ -1,5 +1,0 @@
-# TODO
-
-## Nvim
-
-## Dotfiles

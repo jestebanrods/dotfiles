@@ -2,13 +2,14 @@
 
 BASE_PATH=$HOME/Documents/code/jestebanrods/repos
 DOTFILES_PATH=$BASE_PATH/dotfiles
+MDOT_PATH=$DOTFILES_PATH/mdot
 SCRATCH_PATH=$HOME/.scratch
 IS_MAC=$(uname -s | grep -qi "Darwin" && echo true || echo false)
 IS_LINUX=$(uname -s | grep -qi "Linux" && echo true || echo false)
 
-export DOTFILES_PATH
+export MDOT_PATH
 
-libs_folder="$DOTFILES_PATH/lib"
+libs_folder="$MDOT_PATH/lib"
 
 # Comprobamos si la carpeta "libs" existe
 if [ -d "$libs_folder" ]; then

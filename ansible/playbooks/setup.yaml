@@ -3,7 +3,7 @@
   become: false
   vars:
     BASE_PATH: "{{ ansible_env.HOME }}/Documents/code/jestebanrods/repos"
-    DOTFILES_PATH: "{{ BASE_PATH }}/dotfiles"
+    MDOT_PATH: "{{ BASE_PATH }}/dotfiles/mdot"
     SCRATCH_PATH: "{{ ansible_env.HOME }}/.scratch"
     TMUX_FOLDER: "{{ ansible_env.HOME }}/.tmux/plugins/tpm"
     BASH_CONFIG_FILE: "{{ ansible_env.HOME }}/.bashrc"
@@ -16,6 +16,7 @@
       - edu-flutter
       - edu-golang
       - edu-web
+      - homelab
       - invvitae-infrastructure
       - nixvim
       - skeleton-laravel-ddd-cqrs
@@ -23,15 +24,15 @@
       - skeleton-nuxt-dashboard
     symlinks:
       - {
-          src: "{{ DOTFILES_PATH }}/configs/linux/.hidden",
+          src: "{{ MDOT_PATH }}/configs/linux/.hidden",
           dest: "{{ ansible_env.HOME }}/.hidden",
         }
       - {
-          src: "{{ DOTFILES_PATH }}/shell/wezterm/.wezterm.lua",
+          src: "{{ MDOT_PATH }}/shell/wezterm/.wezterm.lua",
           dest: "{{ ansible_env.HOME }}/.wezterm.lua",
         }
       - {
-          src: "{{ DOTFILES_PATH }}/shell/tmux/.tmux.conf",
+          src: "{{ MDOT_PATH }}/shell/tmux/.tmux.conf",
           dest: "{{ ansible_env.HOME }}/.tmux.conf",
         }
   tasks:
@@ -190,13 +191,13 @@
     - name: Configurar git para usar un archivo .gitignore global
       git_config:
         name: core.excludesfile
-        value: "{{ DOTFILES_PATH }}/configs/git/.gitignore"
+        value: "{{ MDOT_PATH }}/configs/git/.gitignore"
         scope: global
 
     - name: Instalación de mdot
       lineinfile:
         path: "{{ BASH_CONFIG_FILE }}"
-        line: 'source "{{ DOTFILES_PATH }}/lib.sh"'
+        line: 'source "{{ MDOT_PATH }}/lib.sh"'
         state: present
         insertafter: EOF
     #
