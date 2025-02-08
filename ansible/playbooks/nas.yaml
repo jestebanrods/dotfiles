@@ -1,0 +1,34 @@
+- name: Configurar servidor de archivos
+  hosts: local
+  become: false
+  vars:
+    NFS_SHARE_PATH: "{{ ansible_env.HOME }}/NFS-Share"
+    SMB_STORAGE_PATH: "{{ ansible_env.HOME }}/Storage"
+  tasks:
+    - name: Instalar paquetes
+      become: true
+      apt:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - nfs-common
+        - cifs-utils
+        - samba-client
+
+    - name: Montar recurso NFS
+      become: true
+      mount:
+        path: "{{ NFS_SHARE_PATH }}"
+        src: "192.168.1.66:/export/NFS-Share"
+        fstype: nfs
+        opts: "_netdev,x-systemd.automount"
+        state: mounted
+
+    - name: Montar recurso CIFS
+      become: true
+      mount:
+        path: "{{ SMB_STORAGE_PATH }}"
+        src: "//192.168.1.52/Storage"
+        fstype: cifs
+        opts: "username=admin,password=superadminpass,uid={{ ansible_env.USER }},_netdev,x-systemd.automount"
+        state: mounted

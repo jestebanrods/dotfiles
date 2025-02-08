@@ -1,0 +1,269 @@
+- name: Configurar PC local
+  hosts: local
+  become: false
+  vars:
+    BASE_PATH: "{{ ansible_env.HOME }}/Documents/code/jestebanrods/repos"
+    DOTFILES_PATH: "{{ BASE_PATH }}/dotfiles"
+    SCRATCH_PATH: "{{ ansible_env.HOME }}/.scratch"
+    TMUX_FOLDER: "{{ ansible_env.HOME }}/.tmux/plugins/tpm"
+    BASH_CONFIG_FILE: "{{ ansible_env.HOME }}/.bashrc"
+    repos:
+      - bitcoin-manager-api
+      - bitcoin-manager-dashboard
+      - deployer-tools
+      - docker-tools
+      - dotfiles
+      - edu-flutter
+      - edu-golang
+      - edu-web
+      - invvitae-infrastructure
+      - nixvim
+      - skeleton-laravel-ddd-cqrs
+      - skeleton-laravel-inertia
+      - skeleton-nuxt-dashboard
+    symlinks:
+      - {
+          src: "{{ DOTFILES_PATH }}/configs/linux/.hidden",
+          dest: "{{ ansible_env.HOME }}/.hidden",
+        }
+      - {
+          src: "{{ DOTFILES_PATH }}/shell/wezterm/.wezterm.lua",
+          dest: "{{ ansible_env.HOME }}/.wezterm.lua",
+        }
+      - {
+          src: "{{ DOTFILES_PATH }}/shell/tmux/.tmux.conf",
+          dest: "{{ ansible_env.HOME }}/.tmux.conf",
+        }
+  tasks:
+    #
+    #
+    #
+    - name: Asegurar que los directorios existen
+      file:
+        path: "{{ item }}"
+        state: directory
+        mode: "0755"
+      loop:
+        - "{{ BASE_PATH }}"
+        - "{{ SCRATCH_PATH }}"
+        - "{{ TMUX_FOLDER }}"
+    #
+    #
+    #
+    - name: Instalar dependencias
+      become: true
+      block:
+        - name: Actualizar, actualizar paquetes y limpiar el sistema
+          apt:
+            update_cache: yes
+            upgrade: dist
+            autoremove: yes
+            autoclean: yes
+            purge: yes
+
+        - name: Instalar paquetes
+          apt:
+            name: "{{ item }}"
+            state: present
+          loop:
+            - ca-certificates
+            - curl
+            - docker.io
+            # - docker-compose-v2
+            - flatpak
+            - fzf
+            - git
+            - git-flow
+            - make
+            - mysql-client
+            - nload
+            - redis-tools
+            - rofi
+            - tmux
+            - unzip
+            - vim
+            - xclip
+
+        - name: Crear el grupo docker
+          group:
+            name: docker
+            state: present
+
+        - name: Añadir el usuario actual al grupo docker
+          user:
+            name: "{{ ansible_env.USER }}"
+            groups: docker
+            append: yes
+
+        - name: Actualizar Flatpak
+          command: flatpak update -y
+          changed_when: false
+
+        - name: Instalar Brave desde flathub usando Flatpak
+          community.general.flatpak:
+            name: "{{ item }}"
+            state: present
+          loop:
+            - com.brave.Browser
+            - com.getpostman.Postman
+            - com.visualstudio.code
+            - com.vscodium.codium
+            - io.dbeaver.DBeaverCommunity
+            - org.wezfurlong.wezterm
+    #
+    #
+    #
+    - name: Verificar si Nix está instalado
+      shell: command -v nix
+      register: nix_installed
+      ignore_errors: true
+      changed_when: false
+
+    - name: Instalar Nix si no está instalado
+      shell: sh <(curl -L https://nixos.org/nix/install) --daemon
+      when: nix_installed.rc != 0
+    #
+    #
+    #
+    - name: Verificar si la clave SSH ya existe
+      stat:
+        path: "{{ ansible_env.HOME }}/.ssh/id_ed25519"
+      register: ssh_key
+
+    - name: Agrupar tareas de configuración de SSH
+      when: not ssh_key.stat.exists
+      block:
+        - name: Crear una clave SSH de tipo ed25519 si no existe
+          openssh_keypair:
+            path: "{{ ansible_env.HOME }}/.ssh/id_ed25519"
+            type: ed25519
+            comment: "jestebanrods@gmail.com"
+            state: present
+
+        - name: Iniciar el agente SSH
+          shell: eval $(ssh-agent -s)
+          register: ssh_agent
+          changed_when: false
+
+        - name: Agregar la clave privada al agente SSH
+          shell: ssh-add "{{ ansible_env.HOME }}/.ssh/id_ed25519"
+          when: ssh_agent.stdout != ""
+
+        - name: Copiar la clave pública al portapapeles
+          shell: "cat {{ ansible_env.HOME }}/.ssh/id_ed25519.pub | xclip -sel clip"
+          when: ansible_facts['distribution'] == "Linux Mint"
+
+        - name: Mostrar mensaje sobre la clave SSH copiada
+          debug:
+            msg: "Clave SSH copiada al portapapeles. Agregarla a GitHub."
+
+        - name: Pausar para confirmar si la clave se ha copiado a GitHub
+          pause:
+            prompt: "¿Ya copió la clave SSH a GitHub? (y/N)"
+    #
+    #
+    #
+    - name: Clonar repositorios base
+      git:
+        repo: "git@github.com:jestebanrods/{{ item }}.git"
+        dest: "{{ BASE_PATH }}/{{ item }}"
+        clone: yes
+        update: no
+      loop: "{{ repos }}"
+
+    - name: Clonar repositorio tmux plugins
+      git:
+        repo: "https://github.com/tmux-plugins/tpm"
+        dest: "{{ TMUX_FOLDER }}"
+        clone: yes
+        update: no
+    #
+    #
+    #
+    - name: Crear enlaces simbólicos
+      file:
+        src: "{{ item.src }}"
+        dest: "{{ item.dest }}"
+        state: link
+      loop: "{{ symlinks }}"
+      register: symlink_results
+
+    - name: Configurar git para usar un archivo .gitignore global
+      git_config:
+        name: core.excludesfile
+        value: "{{ DOTFILES_PATH }}/configs/git/.gitignore"
+        scope: global
+
+    - name: Instalación de mdot
+      lineinfile:
+        path: "{{ BASH_CONFIG_FILE }}"
+        line: 'source "{{ DOTFILES_PATH }}/lib.sh"'
+        state: present
+        insertafter: EOF
+    #
+    #
+    #
+    - name: Verificar si JetBrainsMono está instalada
+      shell: fc-list | grep -iq "JetBrainsMono" > /dev/null 2>&1
+      register: font_installed
+      changed_when: false
+      failed_when: false
+
+    - name: Instalar JetBrainsMono si no está presente
+      when: font_installed.rc != 0
+      block:
+        - name: Crear directorio para la fuente JetBrainsMono
+          become: true
+          file:
+            path: /usr/share/fonts/JetBrainsMono
+            state: directory
+            mode: "0755"
+
+        - name: Descargar JetBrainsMono.zip
+          get_url:
+            url: "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/JetBrainsMono.zip"
+            dest: "/tmp/JetBrainsMono.zip"
+            mode: "0644"
+
+        - name: Asegurar que los directorios existen
+          file:
+            path: "/tmp/JetBrainsMono"
+            state: directory
+            mode: "0755"
+
+        - name: Descomprimir JetBrainsMono.zip
+          unarchive:
+            src: "/tmp/JetBrainsMono.zip"
+            dest: "/tmp/JetBrainsMono"
+            remote_src: yes
+
+        - name: Copiar las fuentes al directorio adecuado
+          become: true
+          synchronize:
+            src: "/tmp/JetBrainsMono/"
+            dest: "/usr/share/fonts/JetBrainsMono/"
+            mode: push
+            recursive: yes
+
+        - name: Actualizar la caché de fuentes
+          command: fc-cache -fv
+    #
+    #
+    #
+    - name: Configurar nameserver y hacer backup de la configuración anterior
+      become: true
+      block:
+        - name: Configurar el nameserver a 192.168.1.70
+          lineinfile:
+            path: /etc/resolv.conf
+            regexp: "^nameserver"
+            line: "nameserver 192.168.1.70"
+            backup: yes
+            state: present
+          register: resolv_conf_change
+
+        - name: Reiniciar servicio de red (si es necesario)
+          service:
+            name: systemd-networkd
+            state: restarted
+          when: resolv_conf_change.changed and ansible_facts['os_family'] == "Debian"
