@@ -15,4 +15,4 @@ fi
 
 echo "Configurando dotfiles..."
 
-make -C ansible run
+make -C "$DOTFILES_PATH/ansible" run
