@@ -151,7 +151,6 @@
 
         - name: Copiar la clave pública al portapapeles
           shell: "cat {{ ansible_env.HOME }}/.ssh/id_ed25519.pub | xclip -sel clip"
-          when: ansible_facts['distribution'] == "Linux Mint"
 
         - name: Mostrar mensaje sobre la clave SSH copiada
           debug:
@@ -266,4 +265,3 @@
           service:
             name: systemd-networkd
             state: restarted
-          when: resolv_conf_change.changed and ansible_facts['os_family'] == "Debian"
