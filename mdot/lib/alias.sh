@@ -24,6 +24,8 @@ alias cdc="cd $HOME/Documents/code"
 alias meli="cd $HOME/Documents/code/mercadolibre"
 alias jestebanrods="cd $HOME/Documents/code/jestebanrods"
 alias dotfiles="cd $DOTFILES_PATH"
+alias homelab="cd $BASE_PATH/homelab"
+alias nixvim="cd $BASE_PATH/nixvim"
 
 # PHP
 alias phptest='vendor/bin/phpunit'
