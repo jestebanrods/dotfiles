@@ -12,9 +12,9 @@ if [ -d "$DOTFILES_PATH" ]; then
 else
 	sudo apt update -y
 	sudo apt install git curl -y
-	flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+	sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 	git clone https://github.com/jestebanrods/dotfiles "$DOTFILES_PATH"
-    git -C "$DOTFILES_PATH" remote set-url origin git@github.com:jestebanrods/dotfiles.git
+	git -C "$DOTFILES_PATH" remote set-url origin git@github.com:jestebanrods/dotfiles.git
 fi
 
 echo "Configurando dotfiles..."
