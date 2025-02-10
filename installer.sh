@@ -10,7 +10,10 @@ echo "Download repository dotfiles"
 if [ -d "$DOTFILES_PATH" ]; then
     echo "Dotfiles ya existe."
 else
-    git clone https://github.com/jestebanrods/dotfiles "$DOTFILES_PATH"
+	sudo apt update -y
+	sudo apt install git curl -y
+	flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+	git clone https://github.com/jestebanrods/dotfiles "$DOTFILES_PATH"
 fi
 
 echo "Configurando dotfiles..."

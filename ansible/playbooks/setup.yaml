@@ -3,7 +3,8 @@
   become: false
   vars:
     BASE_PATH: "{{ ansible_env.HOME }}/Documents/code/jestebanrods/repos"
-    MDOT_PATH: "{{ BASE_PATH }}/dotfiles/mdot"
+    DOTFILES_PATH: "{{ ansible_env.HOME }}/Documents/code/jestebanrods/repos/dotfiles"
+    MDOT_PATH: "{{ DOTFILES_PATH }}/mdot"
     SCRATCH_PATH: "{{ ansible_env.HOME }}/.scratch"
     TMUX_FOLDER: "{{ ansible_env.HOME }}/.tmux/plugins/tpm"
     BASH_CONFIG_FILE: "{{ ansible_env.HOME }}/.bashrc"
@@ -114,18 +115,6 @@
     #
     #
     #
-    - name: Verificar si Nix está instalado
-      shell: command -v nix
-      register: nix_installed
-      ignore_errors: true
-      changed_when: false
-
-    - name: Instalar Nix si no está instalado
-      shell: sh <(curl -L https://nixos.org/nix/install) --daemon
-      when: nix_installed.rc != 0
-    #
-    #
-    #
     - name: Verificar si la clave SSH ya existe
       stat:
         path: "{{ ansible_env.HOME }}/.ssh/id_ed25519"
@@ -163,6 +152,13 @@
     #
     #
     #
+    - name: Another way to call known_hosts
+      ansible.builtin.known_hosts:
+        name: github.com
+        key: "{{ lookup('pipe', 'ssh-keyscan -trsa github.com 2>/dev/null | head -n 1') }}"
+        path: "{{ ansible_env.HOME }}/.ssh/known_hosts"
+        state: present
+
     - name: Clonar repositorios base
       git:
         repo: "git@github.com:jestebanrods/{{ item }}.git"
@@ -252,6 +248,7 @@
     #
     - name: Configurar nameserver y hacer backup de la configuración anterior
       become: true
+      when: ansible_facts['distribution'] == 'Linux Mint'
       block:
         - name: Configurar el nameserver a 192.168.1.70
           lineinfile:
@@ -266,3 +263,28 @@
           service:
             name: systemd-networkd
             state: restarted
+    #
+    #
+    #
+    - name: Configurar nameserver y hacer backup de la configuración anterior
+      become: true
+      when: ansible_facts['distribution'] == 'Ubuntu'
+      block:
+        - name: Configurar el servidor DNS en systemd-resolved
+          lineinfile:
+            path: /etc/systemd/resolved.conf
+            regexp: '^DNS='
+            line: 'DNS=192.168.1.70'
+            state: present
+          register: resolv_conf_change
+
+        - name: Reiniciar systemd-resolved
+          when: resolv_conf_change.changed
+          systemd:
+            name: systemd-resolved
+            state: restarted
+    #
+    #
+    #
+    - name: Verificar si Nix está instalado
+      shell: "bash {{ BASE_PATH }}/nixvim/installer.sh -i"
