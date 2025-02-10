@@ -21,7 +21,7 @@
         path: "{{ NFS_SHARE_PATH }}"
         src: "192.168.1.66:/export/NFS-Share"
         fstype: nfs
-        opts: "_netdev,x-systemd.automount"
+        opts: "_netdev"
         state: mounted
 
     - name: Montar recurso CIFS
@@ -30,5 +30,5 @@
         path: "{{ SMB_STORAGE_PATH }}"
         src: "//192.168.1.52/Storage"
         fstype: cifs
-        opts: "username=admin,password=superadminpass,uid={{ ansible_env.USER }},_netdev,x-systemd.automount"
+        opts: "username=admin,password=superadminpass,uid={{ ansible_env.USER }},_netdev"
         state: mounted
