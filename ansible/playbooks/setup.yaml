@@ -36,6 +36,10 @@
           src: "{{ MDOT_PATH }}/shell/tmux/.tmux.conf",
           dest: "{{ ansible_env.HOME }}/.tmux.conf",
         }
+      - {
+          src: "{{ MDOT_PATH }}/configs/ssh/config",
+          dest: "{{ ansible_env.HOME }}/.ssh/config",
+        }
   tasks:
     #
     #
@@ -71,7 +75,6 @@
             - ca-certificates
             - curl
             - docker.io
-            # - docker-compose-v2
             - flatpak
             - fzf
             - git
@@ -82,6 +85,7 @@
             - redis-tools
             - rofi
             - tmux
+            - tree
             - unzip
             - vim
             - xclip

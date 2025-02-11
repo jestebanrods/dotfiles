@@ -1,4 +1,4 @@
-run:
+setup:
 	ansible-playbook ./playbooks/setup.yaml --ask-become-pass
 
 nas:

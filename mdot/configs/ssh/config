@@ -1,0 +1,6 @@
+Host services
+  HostName 192.168.1.51
+  User ubuntu
+Host storage
+  HostName 192.168.1.52
+  User ubuntu
