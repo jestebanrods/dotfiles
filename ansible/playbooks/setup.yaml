@@ -292,3 +292,12 @@
     #
     - name: Verificar si Nix está instalado
       shell: "bash {{ BASE_PATH }}/nixvim/installer.sh -i"
+    #
+    #
+    #
+    - name: Instalar scripts en bash
+      become: true
+      copy:
+        src: "{{ DOTFILES_PATH }}/scripts/rsyncignore.sh"
+        dest: /usr/local/bin/rsyncignore
+        mode: '0755'
