@@ -22,7 +22,7 @@
         src: "192.168.1.66:/export/NFS-Share"
         fstype: nfs
         opts: "_netdev"
-        state: mounted
+        state: absent
 
     - name: Montar recurso CIFS
       become: true

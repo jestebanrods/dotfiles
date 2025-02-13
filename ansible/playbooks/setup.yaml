@@ -254,11 +254,11 @@
       become: true
       when: ansible_facts['distribution'] == 'Linux Mint'
       block:
-        - name: Configurar el nameserver a 192.168.1.70
+        - name: Configurar el nameserver a 192.168.1.51
           lineinfile:
             path: /etc/resolv.conf
             regexp: "^nameserver"
-            line: "nameserver 192.168.1.70"
+            line: "nameserver 192.168.1.51"
             backup: yes
             state: present
           register: resolv_conf_change
@@ -278,7 +278,7 @@
           lineinfile:
             path: /etc/systemd/resolved.conf
             regexp: '^DNS='
-            line: 'DNS=192.168.1.70'
+            line: 'DNS=192.168.1.51'
             state: present
           register: resolv_conf_change
 
