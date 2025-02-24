@@ -1,0 +1,57 @@
+- name: Deshabilitar systemd-resolved y configurar DNS
+  hosts: local
+  become: true
+
+  tasks:
+    # - name: Verificar si systemd-resolved está deshabilitado
+    #   systemd:
+    #     name: systemd-resolved
+    #     state: stopped
+    #     enabled: no
+    #   register: systemd_resolved_status
+    #   check_mode: true
+
+    - name: Detener el servicio systemd-resolved (si no está ya detenido)
+      systemd:
+        name: systemd-resolved
+        state: stopped
+        enabled: no
+
+    - name: Verificar si /etc/resolv.conf es un enlace simbólico
+      stat:
+        path: /etc/resolv.conf
+      register: resolv_conf_stat
+
+    - name: Eliminar el enlace simbólico /etc/resolv.conf si es necesario
+      file:
+        path: /etc/resolv.conf
+        state: absent
+      when: resolv_conf_stat.stat.islnk
+
+    - name: Crear un archivo /etc/resolv.conf vacío si no es un enlace simbólico
+      file:
+        path: /etc/resolv.conf
+        state: touch
+      when: resolv_conf_stat.stat.islnk
+
+    - name: Asegurar que el nameserver 192.168.1.51 esté en /etc/resolv.conf
+      lineinfile:
+        path: /etc/resolv.conf
+        regexp: "^nameserver"
+        line: "nameserver 192.168.1.51"
+        backup: yes
+        state: present
+        mode: '0644'
+      register: resolv_conf_change
+
+    - name: Reiniciar servicio de red (si es necesario)
+      service:
+        name: systemd-networkd
+        state: restarted
+      when: resolv_conf_change.changed
+
+    - name: Asegurarse de que systemd-resolved esté deshabilitado
+      systemd:
+        name: systemd-resolved
+        state: stopped
+        enabled: no
