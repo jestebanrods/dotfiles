@@ -2,8 +2,7 @@
   hosts: local
   become: false
   vars:
-    NFS_SHARE_PATH: "{{ ansible_env.HOME }}/NFS-Share"
-    SMB_STORAGE_PATH: "{{ ansible_env.HOME }}/Storage"
+    NFS_CLOUD_PATH: "{{ ansible_env.HOME }}/NAS-Cloud"
   tasks:
     - name: Instalar paquetes
       become: true
@@ -15,20 +14,19 @@
         - cifs-utils
         - samba-client
 
+    - name: Asegurar que los directorios existen
+      file:
+        path: "{{ item }}"
+        state: directory
+        # mode: "0755"
+      loop:
+        - "{{ NFS_CLOUD_PATH }}"
+
     - name: Montar recurso NFS
       become: true
       mount:
-        path: "{{ NFS_SHARE_PATH }}"
-        src: "192.168.1.66:/export/NFS-Share"
+        path: "{{ NFS_CLOUD_PATH }}"
+        src: "192.168.1.79:/export/Cloud"
         fstype: nfs
         opts: "_netdev"
-        state: absent
-
-    - name: Montar recurso CIFS
-      become: true
-      mount:
-        path: "{{ SMB_STORAGE_PATH }}"
-        src: "//192.168.1.52/Storage"
-        fstype: cifs
-        opts: "username=admin,password=superadminpass,uid={{ ansible_env.USER }},_netdev"
-        state: mounted
+        state: present
