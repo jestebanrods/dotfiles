@@ -20,5 +20,4 @@ fi
 echo "Configurando dotfiles..."
 
 bash "$DOTFILES_PATH/ansible/installer.sh"
-make -C "$DOTFILES_PATH/ansible" run
-sudo reboot
+make -C "$DOTFILES_PATH/ansible" setup
