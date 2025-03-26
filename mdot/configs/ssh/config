@@ -1,12 +1,6 @@
-Host services
+Host docker_1
   HostName 192.168.1.51
   User ubuntu
-Host storage
-  HostName 192.168.1.52
-  User ubuntu
-Host manager
+Host docker_2
   HostName 192.168.1.53
-  User ubuntu
-Host worker
-  HostName 192.168.1.54
   User ubuntu
