@@ -1,6 +1,6 @@
 Host docker_1
   HostName 192.168.1.51
-  User ubuntu
+  User root
 Host docker_2
   HostName 192.168.1.53
-  User ubuntu
+  User root
