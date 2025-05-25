@@ -1,0 +1,24 @@
+- name: Instalar Node.js 22.x usando NVM
+  hosts: local
+  become: no
+  vars:
+    nvm_version: "v0.40.3"
+    node_version: "22"
+
+  tasks:
+    - name: Descargar e instalar NVM
+      shell: curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/{{ nvm_version }}/install.sh | bash
+      args:
+        executable: /bin/bash
+      environment:
+        PROFILE: "{{ ansible_env.HOME }}/.bashrc"
+
+    - name: Cargar NVM en la shell actual
+      shell: . $HOME/.nvm/nvm.sh && nvm install {{ node_version }}
+      args:
+        executable: /bin/bash
+
+    - name: source bashrc
+      shell: source $HOME/.bashrc
+      args:
+        executable: /bin/bash

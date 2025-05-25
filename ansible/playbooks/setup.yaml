@@ -23,6 +23,7 @@
       - skeleton-laravel-ddd-cqrs
       - skeleton-laravel-inertia
       - skeleton-nuxt-dashboard
+      - tranding-journal
     symlinks:
       - {
           src: "{{ MDOT_PATH }}/configs/linux/.hidden",
@@ -74,7 +75,7 @@
           loop:
             - ca-certificates
             - curl
-            - docker.io
+            # - docker.io
             - flatpak
             - fzf
             - git
@@ -90,16 +91,16 @@
             - vim
             - xclip
 
-        - name: Crear el grupo docker
-          group:
-            name: docker
-            state: present
-
-        - name: Añadir el usuario actual al grupo docker
-          user:
-            name: "{{ ansible_env.USER }}"
-            groups: docker
-            append: yes
+        # - name: Crear el grupo docker
+        #   group:
+        #     name: docker
+        #     state: present
+        #
+        # - name: Añadir el usuario actual al grupo docker
+        #   user:
+        #     name: "{{ ansible_env.USER }}"
+        #     groups: docker
+        #     append: yes
 
         - name: Actualizar Flatpak
           command: flatpak update -y

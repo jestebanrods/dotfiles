@@ -1,0 +1,70 @@
+---
+- name: Instalar PHP con versión configurable y módulos extra
+  hosts: local
+  become: true
+
+  vars:
+    php_version: "8.4"
+    php_modules:
+      - curl
+      - mbstring
+      - xml
+      - mysql
+      - sqlite3
+      - intl
+      - zip
+      - xdebug
+    php_new_install_url: "https://php.new/install/linux/8.4"
+    composer_bin_path: "/usr/local/bin/composer"
+
+  tasks:
+    - name: Actualizar la caché de APT
+      apt:
+        update_cache: yes
+
+    - name: Instalar software-properties-common (para add-apt-repository)
+      apt:
+        name: software-properties-common
+        state: present
+
+    - name: Añadir repositorio de PHP de Ondřej Surý
+      apt_repository:
+        repo: ppa:ondrej/php
+        state: present
+        update_cache: yes
+
+    - name: Instalar PHP y módulos adicionales
+      apt:
+        name: "{{ ['php' + php_version] + php_modules | map('regex_replace', '^(.*)$', 'php' + php_version + '-\\1') | list }}"
+        state: present
+
+    - name: Verificar la versión instalada de PHP
+      command: php -v
+      register: php_version_output
+      changed_when: false
+
+    - name: Mostrar versión instalada de PHP
+      debug:
+        var: php_version_output.stdout_lines
+
+    - name: Asegurarse de que Composer esté disponible
+      stat:
+        path: "{{ composer_bin_path }}"
+      register: composer_check
+
+    - name: Instalar Composer si no está presente
+      get_url:
+        url: https://getcomposer.org/installer
+        dest: /tmp/composer-setup.php
+      when: not composer_check.stat.exists
+
+    - name: Instalar Composer globalmente
+      shell: php /tmp/composer-setup.php --install-dir=/usr/local/bin --filename=composer
+      when: not composer_check.stat.exists
+
+    - name: Install a package globally
+      become: false
+      community.general.composer:
+        command: require
+        global_command: true
+        arguments: laravel/installer

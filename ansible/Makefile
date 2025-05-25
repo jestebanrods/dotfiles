@@ -6,3 +6,9 @@ nas:
 
 dns:
 	ansible-playbook ./playbooks/dns.yaml --ask-become-pass
+
+php:
+	ansible-playbook ./playbooks/php.yaml --ask-become-pass
+
+node:
+	ansible-playbook ./playbooks/node.yaml --ask-become-pass
