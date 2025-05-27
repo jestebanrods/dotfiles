@@ -23,7 +23,7 @@
       - skeleton-laravel-ddd-cqrs
       - skeleton-laravel-inertia
       - skeleton-nuxt-dashboard
-      - tranding-journal
+      - trading-journal
     symlinks:
       - {
           src: "{{ MDOT_PATH }}/configs/linux/.hidden",
@@ -262,3 +262,10 @@
         src: "{{ DOTFILES_PATH }}/scripts/rsyncignore.sh"
         dest: /usr/local/bin/rsyncignore
         mode: '0755'
+    #
+    #
+    #
+    - name: Instalar tailscale
+      shell: curl -fsSL https://tailscale.com/install.sh | sh
+      args:
+        executable: /bin/bash
