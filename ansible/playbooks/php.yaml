@@ -30,6 +30,7 @@
     - name: Añadir repositorio de PHP de Ondřej Surý
       apt_repository:
         repo: ppa:ondrej/php
+        codename: noble
         state: present
         update_cache: yes
 

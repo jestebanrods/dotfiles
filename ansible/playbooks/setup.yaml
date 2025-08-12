@@ -76,7 +76,7 @@
           loop:
             - ca-certificates
             - curl
-            # - docker.io
+            - docker.io
             - flatpak
             - fzf
             - git
@@ -93,16 +93,16 @@
             - xclip
             - openssh-client
 
-        # - name: Crear el grupo docker
-        #   group:
-        #     name: docker
-        #     state: present
-        #
-        # - name: Añadir el usuario actual al grupo docker
-        #   user:
-        #     name: "{{ ansible_env.USER }}"
-        #     groups: docker
-        #     append: yes
+        - name: Crear el grupo docker
+          group:
+            name: docker
+            state: present
+        
+        - name: Añadir el usuario actual al grupo docker
+          user:
+            name: "{{ ansible_env.USER }}"
+            groups: docker
+            append: yes
 
         - name: Actualizar Flatpak
           command: flatpak update -y
@@ -252,21 +252,9 @@
     #
     #
     #
-    #- name: Verificar si Nix está instalado
-    #  shell: "bash {{ BASE_PATH }}/nixvim/installer.sh -i"
-    #
-    #
-    #
     - name: Instalar scripts en bash
       become: true
       copy:
         src: "{{ DOTFILES_PATH }}/scripts/rsyncignore.sh"
         dest: /usr/local/bin/rsyncignore
         mode: '0755'
-    #
-    #
-    #
-    #- name: Instalar tailscale
-    #  shell: curl -fsSL https://tailscale.com/install.sh | sh
-    #  args:
-    #    executable: /bin/bash

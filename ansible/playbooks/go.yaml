@@ -1,0 +1,41 @@
+- name: Instalar última versión de Go en Linux Mint
+  hosts: local
+  become: true
+  vars:
+    go_version: "go1.25.0"
+    install_dir: "/usr/local"
+    go_os: "linux"
+    go_arch: "amd64"
+
+  tasks:
+    - name: Crear directorio temporal
+      tempfile:
+        state: directory
+        suffix: go_install
+      register: temp_dir
+
+    - name: Descargar Go
+      get_url:
+        url: "https://dl.google.com/go/{{ go_version }}.{{ go_os }}-{{ go_arch }}.tar.gz"
+        dest: "{{ temp_dir.path }}/go.tar.gz"
+        checksum: "sha256:https://dl.google.com/go/{{ go_version }}.{{ go_os }}-{{ go_arch }}.tar.gz.sha256"
+        timeout: 60
+
+    - name: Descomprimir en directorio de instalación
+      unarchive:
+        src: "{{ temp_dir.path }}/go.tar.gz"
+        dest: "{{ install_dir }}"
+        remote_src: yes
+
+    - name: Limpiar directorio temporal
+      file:
+        path: "{{ temp_dir.path }}"
+        state: absent
+
+    - name: Verificar instalación
+      shell: "go version"
+      environment:
+        PATH: "{{ install_dir }}/go/bin:{{ ansible_env.PATH }}"
+      register: go_check
+      changed_when: false
+      failed_when: false
