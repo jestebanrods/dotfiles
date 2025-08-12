@@ -9,21 +9,21 @@
     TMUX_FOLDER: "{{ ansible_env.HOME }}/.tmux/plugins/tpm"
     BASH_CONFIG_FILE: "{{ ansible_env.HOME }}/.bashrc"
     repos:
+      - homelab
+      - bitunix-trading-journal
+      - dotfiles
+      - nixvim
+      - docker-tools
+      - deployer-tools
       - bitcoin-manager-api
       - bitcoin-manager-dashboard
-      - deployer-tools
-      - docker-tools
-      - dotfiles
-      - edu-flutter
-      - edu-golang
-      - edu-web
-      - homelab
-      - invvitae-infrastructure
-      - nixvim
-      - skeleton-laravel-ddd-cqrs
-      - skeleton-laravel-inertia
       - skeleton-nuxt-dashboard
-      - trading-journal
+      - edu-web
+      - edu-flutter
+      - skeleton-laravel-ddd-cqrs
+      - edu-golang
+      - skeleton-laravel-inertia
+      - invvitae-infrastructure
     symlinks:
       - {
           src: "{{ MDOT_PATH }}/configs/linux/.hidden",
@@ -54,6 +54,7 @@
         - "{{ BASE_PATH }}"
         - "{{ SCRATCH_PATH }}"
         - "{{ TMUX_FOLDER }}"
+        - "{{ ansible_env.HOME }}/.ssh"
     #
     #
     #
@@ -90,6 +91,7 @@
             - unzip
             - vim
             - xclip
+            - openssh-client
 
         # - name: Crear el grupo docker
         #   group:
@@ -113,7 +115,6 @@
           loop:
             - com.brave.Browser
             - com.getpostman.Postman
-            - com.visualstudio.code
             - com.vscodium.codium
             - io.dbeaver.DBeaverCommunity
             - org.wezfurlong.wezterm
@@ -251,8 +252,8 @@
     #
     #
     #
-    - name: Verificar si Nix está instalado
-      shell: "bash {{ BASE_PATH }}/nixvim/installer.sh -i"
+    #- name: Verificar si Nix está instalado
+    #  shell: "bash {{ BASE_PATH }}/nixvim/installer.sh -i"
     #
     #
     #
@@ -265,7 +266,7 @@
     #
     #
     #
-    - name: Instalar tailscale
-      shell: curl -fsSL https://tailscale.com/install.sh | sh
-      args:
-        executable: /bin/bash
+    #- name: Instalar tailscale
+    #  shell: curl -fsSL https://tailscale.com/install.sh | sh
+    #  args:
+    #    executable: /bin/bash
