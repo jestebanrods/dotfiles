@@ -5,6 +5,8 @@ DOTFILES_PATH=$BASE_PATH/dotfiles
 
 mkdir -p "$BASE_PATH"
 
+
+
 echo "Download repository dotfiles"
 
 if [ -d "$DOTFILES_PATH" ]; then
@@ -19,7 +21,9 @@ fi
 
 echo "Configurando dotfiles..."
 
-bash "$DOTFILES_PATH/ansible/installer.sh"
+sudo apt-add-repository ppa:ansible/ansible -y
+sudo apt update
+sudo apt install ansible make -y
 
 cd "$DOTFILES_PATH/ansible"
 make setup

@@ -12,11 +12,6 @@ bash <(wget -qO- https://raw.githubusercontent.com/jestebanrods/dotfiles/master/
 
 ## Command
 
-* Helpers
-```
-mdot-{{ }}
-```
-
 * Commands
 ```
 m-{{ }}
